@@ -1,0 +1,13 @@
+package model;
+
+public enum MedicalSpecialty {
+    DIGESTIVE_SYSTEM,
+    CARDIOLOGY,
+    GENERAL_SURGERY,
+    DERMATOLOGY,
+    INTERNAL_MEDICINE,
+    ONCOLOGY,
+    OPHTHALMOLOGY,
+    PSYCHIATRY,
+    TRAUMATOLOGY
+}
