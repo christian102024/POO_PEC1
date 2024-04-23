@@ -11,7 +11,3 @@ public class hospital {
 		empleados.darDeAltaEmpleado();
 	}
 }
-
-public static void initializeMenu {
-	syso
-}
