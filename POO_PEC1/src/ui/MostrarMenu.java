@@ -1,17 +1,12 @@
 package ui;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class MostrarMenu {
-
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
-	}
 	
-    public static void mostrarMenu(String titulo, ArrayList<String> listaDeOpciones) {
+    public static void mostrarMenu(String titulo, List<String> listaDeOpciones) {
         int anchoMenu = calcularAnchoMenu(titulo, listaDeOpciones);
-        System.out.println("anchoMenu: " + anchoMenu);
 
         // Imprimir bordes superiores del menú
         imprimirLinea(anchoMenu);
@@ -29,7 +24,7 @@ public class MostrarMenu {
         imprimirLinea(anchoMenu);
     }
 
-    public static int calcularAnchoMenu(String titulo, ArrayList<String> listaDeOpciones) {
+    public static int calcularAnchoMenu(String titulo, List<String> listaDeOpciones) {
         int maxLongitud = titulo.length();
         for (int i = 0; i < listaDeOpciones.size(); i++) {
         	String opcion = listaDeOpciones.get(i);
