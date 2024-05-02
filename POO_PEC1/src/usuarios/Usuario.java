@@ -7,6 +7,20 @@ public class Usuario {
 	private String dni;
 	private String telefono;
 	
+	public Usuario(String nombre, String apellidos, String dni, String telefono) {
+		super();
+		this.nombre = nombre;
+		this.apellidos = apellidos;
+		this.dni = dni;
+		this.telefono = telefono;
+	}
+	
+	
+	public Usuario() {
+		super();
+	}
+
+
 	public String getNombre() {
 		return nombre;
 	}
@@ -31,6 +45,15 @@ public class Usuario {
 	public void setTelefono(String telefono) {
 		this.telefono = telefono;
 	}
+	
+
+
+	@Override
+	public String toString() {
+		return "Nombre: " + nombre + ", Apellidos: " + apellidos + ", DNI: " + dni + ", teléfono: " + telefono;
+	}
+	
+	
 	
 	
 }

@@ -53,11 +53,18 @@ public class EntradaValores {
 			
 			if (scanner.hasNextInt()) {
 				numero = scanner.nextInt();
-				if(Arrays.asList(opcionesValidas).contains(numero)) {
-					esValido = true;					
-				} else {
+				
+				for(int opcion: opcionesValidas) {
+					if(opcion == numero) {
+						esValido = true;
+						break;
+					}
+				}
+				
+				if(!esValido) {
 					System.out.println("El numero no es valido, por favor, introduzca una opción valida.");
 				}
+				
 			} else {
 				System.out.println("El valor introducido no es un numero valido.");
 				scanner.next();
@@ -65,7 +72,6 @@ public class EntradaValores {
 			
 		} while (!esValido);
 		
-		scanner.close();
 		return numero;
 	}
 	
