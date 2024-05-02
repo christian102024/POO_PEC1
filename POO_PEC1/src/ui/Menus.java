@@ -1,6 +1,5 @@
 package ui;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
@@ -19,7 +18,7 @@ public class Menus {
 	}
 
 
-	public static void mostrarMenuGestionHospital() {
+	public void mostrarMenuGestionHospital() {
 		List<String> opciones = Arrays.asList("Dar de alta a personal", "Dar de baja a personal", "Modificar expediente", "Mostrar empleados", "Volver");
 		int opcion;
 		boolean navegar = false;
@@ -28,7 +27,7 @@ public class Menus {
 			MostrarMenu.mostrarMenu("GESTIÓN DE PERSONAL DEL HOSPITAL", opciones );
 			System.out.print("Seleccione una opción: ");
 
-//			if(scanner.hasNext())  {
+			if(scanner.hasNext())  {
 				opcion = scanner.nextInt();
 				scanner.nextLine();
 				
@@ -48,9 +47,9 @@ public class Menus {
 		            default:
 		            	System.out.println("Opción inválida. Por favor, introduzca una opción del menu.");
 				}
-//			} else {
-//				System.out.println("Opción inválida. Por favor, introduzca una opción del menu.");
-//			}
+			} else {
+				System.out.println("Opción inválida. Por favor, introduzca una opción del menu.");
+			}
 
 			
 		} while(!navegar);
