@@ -9,7 +9,7 @@ import usuarios.Empleados;
 public class Menus {
 	
 	private static Scanner scanner;
-	private static Empleados empleados;
+	private Empleados empleados;
 	
 	public Menus() {
 		super();
@@ -17,9 +17,17 @@ public class Menus {
 		empleados = new Empleados();
 	}
 
+	public Menus(Empleados empleados) {
+		super();
+		scanner = new Scanner(System.in);
+		this.empleados = empleados;
+	}
+
+
+
 
 	public void mostrarMenuGestionHospital() {
-		List<String> opciones = Arrays.asList("Dar de alta a personal", "Dar de baja a personal", "Modificar expediente", "Mostrar empleados", "Volver");
+		List<String> opciones = Arrays.asList("Dar de alta a personal", "Dar de baja a personal", "Modificar expediente", "Mostrar empleados", "Buscar empleados por DNI", "Asignar turno", "Volver");
 		int opcion;
 		boolean navegar = false;
 		
@@ -36,13 +44,20 @@ public class Menus {
 		            	empleados.darDeAltaEmpleado(scanner);
 		                break;
 		            case 2:
-		            	navegar = true;
+		            	empleados.darDeBajaEmpleado();
 		                break;
 		            case 3:
-		            	navegar = true;
+		            	empleados.modificarEmpleado();
 		                break;
 		            case 4:
+		            	System.out.println("EMPLEADOS DADOS DE ALTA");
 		            	System.out.println(empleados.toString());
+		            	break;
+		            case 5:
+		            	empleados.buscarEmpleadoPorDNI();
+		            	break;
+		            case 6:
+		            	empleados.asignarTurno();
 		            	break;
 		            default:
 		            	System.out.println("Opción inválida. Por favor, introduzca una opción del menu.");

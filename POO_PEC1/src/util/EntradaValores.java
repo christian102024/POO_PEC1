@@ -74,5 +74,57 @@ public class EntradaValores {
 		
 		return numero;
 	}
+	/**
+	 * Pide introducir un valor de tipo String al usuario. Si el usuario no lo introduce, repetira la secuencia para que lo introduzca.
+	 * @param mensaje El mensaje para solicitar la cadena.
+	 * @return El valor introducido por el usuario
+	 */
+	public static String introducirCadena(String mensaje) {
+		boolean esValido = false;
+
+		String cadena = "";
+		
+		Scanner scanner = new Scanner(System.in);
+		do {
+			System.out.println(mensaje);
+			
+			if (scanner.hasNext()) {
+				cadena = scanner.nextLine();
+				esValido = true;
+			}
+			
+		} while (!esValido);
+		
+		scanner.close();
+		return cadena;
+	}
+	
+	/**
+	 * Pide introducir un valor de tipo String al usuario. Si el usuario no lo introduce, comprobará el valor previo.
+	 * Si el valor previo no esta vacío, lo devolverá, si no, repetira la secuencia para que el usuario introduzca un valor nuevamente.
+	 * @param mensaje El mensaje para solicitar la cadena.
+	 * @return El valor introducido por el usuario o en su defecto el valor previo.
+	 */
+	public static String introducirCadena(String mensaje, String valorPrevio) {
+		boolean esValido = false;
+
+		String cadena = "";
+		
+		Scanner scanner = new Scanner(System.in);
+		do {
+			System.out.println(mensaje);
+			
+			cadena = scanner.nextLine();
+			if (!cadena.isEmpty()) {
+				esValido = true;
+			} else if (valorPrevio != null && !valorPrevio.equals("")) {
+				cadena = valorPrevio;
+				esValido = true;
+			}
+			
+		} while (!esValido);
+		
+		return cadena;
+	}
 	
 }

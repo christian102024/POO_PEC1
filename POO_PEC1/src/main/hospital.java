@@ -16,11 +16,11 @@ public class hospital {
 		
 		ArrayList<String> opcionesMenu = new ArrayList<String>(Arrays.asList("Dar de alta a empleado"));
 		Empleados empleados = new Empleados();
-		empleados.anyadirEmpleado(new Empleado("Christian", "Jurado Maique", "18098277W", "629932957", Unidad.GERENCIA));
-		Menus menus = new Menus();
+		empleados.addEmpleado(new Empleado("Christian", "Jurado Maique", "18098277W", "629932957", Unidad.GERENCIA));
+		Menus menus = new Menus(empleados);
 		
 		menus.mostrarMenuGestionHospital();
 		
 		
 	}
-}
+}	
