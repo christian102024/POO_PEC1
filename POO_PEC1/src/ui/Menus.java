@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Scanner;
 
 import usuarios.Empleados;
+import util.EntradaValores;
 
 public class Menus {
 	
@@ -24,7 +25,30 @@ public class Menus {
 	}
 
 
-
+	public void mostrarMenuPrincipal() {
+		List<String> opciones = Arrays.asList("GESTIÓN DE PERSONAL DEL HOSPITAL", "GESTION DE MEDICINA", "GESTION DE ENFERMERÍA", "GESTION DE SOPORTE", "SALIR");
+		int opcion;
+		boolean navegar = false;
+		
+		do {
+			MostrarMenu.mostrarMenu("MENU PRINCIPAL", opciones);
+			System.out.print("Seleccione una opción: ");
+			
+			opcion = EntradaValores.introducirNumeroEntero("Seleccione una opción: ", new int[]{1, 2, 3, 4, 5});
+			
+			switch(opcion) {
+			case 1:
+				mostrarMenuGestionHospital();
+				break;
+			case 5:
+				return;
+				
+			}
+			
+				
+	
+		} while (!navegar);
+	}
 
 	public void mostrarMenuGestionHospital() {
 		List<String> opciones = Arrays.asList("Dar de alta a personal", "Dar de baja a personal", "Modificar expediente", "Mostrar empleados", "Buscar empleados por DNI", "Asignar turno", "Volver");
@@ -59,6 +83,9 @@ public class Menus {
 		            case 6:
 		            	empleados.asignarTurno();
 		            	break;
+		            case 7:
+		            	return;
+		            	
 		            default:
 		            	System.out.println("Opción inválida. Por favor, introduzca una opción del menu.");
 				}

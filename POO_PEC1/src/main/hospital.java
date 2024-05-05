@@ -19,7 +19,7 @@ public class hospital {
 		empleados.addEmpleado(new Empleado("Christian", "Jurado Maique", "18098277W", "629932957", Unidad.GERENCIA));
 		Menus menus = new Menus(empleados);
 		
-		menus.mostrarMenuGestionHospital();
+		menus.mostrarMenuPrincipal();
 		
 		
 	}

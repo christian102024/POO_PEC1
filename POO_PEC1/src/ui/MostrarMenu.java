@@ -29,7 +29,6 @@ public class MostrarMenu {
         for (int i = 0; i < listaDeOpciones.size(); i++) {
         	String opcion = listaDeOpciones.get(i);
             if (opcion.length() > maxLongitud) {
-            	System.out.println("opcion lenght: " + opcion.length());
                 maxLongitud = opcion.length() + String.valueOf(i).length() + 5;
             }
         }
