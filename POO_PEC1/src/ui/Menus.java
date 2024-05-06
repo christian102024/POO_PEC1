@@ -105,7 +105,7 @@ public class Menus {
 	}
 	
 	public void mostrarMenuGestionEstudiantes() {
-		List<String> opciones = Arrays.asList("Dar de alta a estudiante", "Dar de baja a estudiante", "Volver");
+		List<String> opciones = Arrays.asList("Dar de alta a estudiante", "Dar de baja a estudiante", "Mostrar estudiantes", "Volver");
 		int opcion;
 		boolean navegar = false;
 		
@@ -126,12 +126,10 @@ public class Menus {
 		            	empleados.darDeBajaEmpleado();
 		                break;
 		            case 3:
-		            	empleados.modificarEmpleado();
+		            	estudiantes.mostrarEstudiantes();
 		                break;
-//		            case 4:
-//		            	System.out.println("EMPLEADOS DADOS DE ALTA");
-//		            	System.out.println(empleados.toString());
-//		            	break;
+		            case 4:
+		            	break;
 //		            case 5:
 //		            	empleados.buscarEmpleadoPorDNI();
 //		            	break;

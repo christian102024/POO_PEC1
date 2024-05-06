@@ -85,5 +85,12 @@ public class Estudiantes {
 		return estudiante;
 	}
 	
+	public void mostrarEstudiantes() {
+		System.out.println("Estudiantes dados de alta");
+		for(Estudiante estudiante: estudiantes) {
+			System.out.println(estudiante);
+		}
+	}
+	
 	
 }
