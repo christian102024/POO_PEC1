@@ -230,7 +230,7 @@ public class Empleados {
 
 		int opcion = -1;
 
-		if (empleado.getUnidad().equals(Unidad.URGENCIAS)) {
+		if (empleado.getUnidad().equals(Unidad.URGENCAS)) {
 			MostrarMenu.mostrarMenu("Seleccione el turno para el empleado",
 					Arrays.asList("Turno de día", "Turno de noche", "Cancelar"));
 			opcion = EntradaValores.introducirNumeroEntero("Introduce el turno al que se quiere asignar el empleado",

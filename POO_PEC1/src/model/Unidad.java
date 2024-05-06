@@ -13,7 +13,7 @@ public enum Unidad {
 	MEDICINA("Medicina"),
     ENFERMERIA("Enfermeria"),
     SOPORTE("Soporte"),
-	URGENCIAS("Urgencias");
+	URGENCAS("Urgencias");
 
 	private final String valor;
 	
