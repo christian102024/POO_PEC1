@@ -127,4 +127,32 @@ public class EntradaValores {
 		return cadena;
 	}
 	
+	public static boolean introducirValorBooleano(String mensaje) {
+		Scanner scanner = new Scanner(System.in);
+		
+		System.out.println(mensaje);
+		String respuesta = scanner.next().toLowerCase();
+		
+		boolean valorBooleano = false;
+		switch (respuesta) {
+		case "si":
+			valorBooleano = true;
+			break;
+			
+		case "s":
+			valorBooleano = true;
+			break;
+			
+		case "no":
+			valorBooleano = true;
+			break;
+			
+		case "n":
+			valorBooleano = true;
+			break;
+		}
+		
+		return valorBooleano;
+	}
+	
 }
