@@ -144,11 +144,11 @@ public class EntradaValores {
 			break;
 			
 		case "no":
-			valorBooleano = true;
+			valorBooleano = false;
 			break;
 			
 		case "n":
-			valorBooleano = true;
+			valorBooleano = false;
 			break;
 		}
 		

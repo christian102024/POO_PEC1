@@ -8,11 +8,19 @@ import util.EntradaValores;
 
 public class Estudiantes {
 
+	private static Estudiantes instancia;
 	private List<Estudiante> estudiantes;
 
 	public Estudiantes() {
 		super();
 		this.estudiantes = new ArrayList<Estudiante>();
+	}
+	
+	public static Estudiantes getInstancia() {
+		if(instancia == null) {
+			instancia = new Estudiantes();
+		}
+		return instancia;
 	}
 
 	public List<Estudiante> getEstudiantes() {
@@ -30,8 +38,11 @@ public class Estudiantes {
 	public void darDeAltaEstudiante() {
 		Estudiante estudiante = new Estudiante();
 		Scanner scanner = new Scanner(System.in);
+		estudiante = pedirDatosEstudiante(scanner, estudiante);
 		
-		
+		if(estudiante != null) {
+			estudiantes.add(estudiante);
+		}
 	}
 	
 	private Estudiante pedirDatosEstudiante(Scanner scanner, Estudiante estudiante) {
@@ -64,18 +75,14 @@ public class Estudiantes {
 		boolean asignarPersonal = EntradaValores.introducirValorBooleano("¿Asignar personal medico al estudiante? (S/N): ");
 		
 		if(asignarPersonal) {
-			Empleados empleados = new Empleados();
-			System.out.println("empleados: " + empleados.getEmpleados());
-		} else {
-			return estudiante;
-		}
-		
+			Empleados empleados = Empleados.getInstancia();
+			Empleado empleado = empleados.buscarEmpleadoPorDNI();
+			
+			if(empleado != null)  {
+				estudiante.setPersonalAsignado(empleado);
+			}
+		} 
 		return estudiante;
-	}
-	
-	public void asignarPersonalMedico() {
-		Empleados empleados = new Empleados();
-		System.out.println("empleados: " + empleados.getEmpleados());
 	}
 	
 	

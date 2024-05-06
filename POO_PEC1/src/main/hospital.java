@@ -17,7 +17,7 @@ public class hospital {
 	public static void main(String[] args) {
 		
 		ArrayList<String> opcionesMenu = new ArrayList<String>(Arrays.asList("Dar de alta a empleado"));
-		Empleados empleados = new Empleados();
+		Empleados empleados = Empleados.getInstancia();
 		Empleado empleado = new Empleado("Christian", "Jurado Maique", "18098277W", "629932957", Unidad.GERENCIA);
 		empleados.addEmpleado(empleado);
 		

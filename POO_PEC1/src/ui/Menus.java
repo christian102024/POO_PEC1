@@ -17,8 +17,8 @@ public class Menus {
 	public Menus() {
 		super();
 		scanner = new Scanner(System.in);
-		empleados = new Empleados();
-		estudiantes = new Estudiantes();
+		empleados = Empleados.getInstancia();
+		estudiantes = Estudiantes.getInstancia();
 	}
 
 	public Menus(Empleados empleados, Estudiantes estudiantes) {
@@ -85,7 +85,7 @@ public class Menus {
 		            	System.out.println(empleados.toString());
 		            	break;
 		            case 5:
-		            	empleados.buscarEmpleadoPorDNI();
+		            	empleados.mostrarEmpleadoBuscadoPorDNI();
 		            	break;
 		            case 6:
 		            	empleados.asignarTurno();
@@ -119,7 +119,7 @@ public class Menus {
 				
 				switch (opcion) {
 		            case 1:
-		            	estudiantes.asignarPersonalMedico();
+		            	estudiantes.darDeAltaEstudiante();
 //		            	empleados.darDeAltaEmpleado(scanner);
 		                break;
 		            case 2:
