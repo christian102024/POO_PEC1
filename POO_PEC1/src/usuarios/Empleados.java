@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
+import model.Servicio;
 import model.Turno;
 import model.Unidad;
 import model.Unidades;
@@ -86,26 +87,51 @@ public class Empleados {
 			return null;
 		}
 		empleado.setTelefono(telefono);
-
-		try {
-			empleado.setUnidad(seleccionarUnidad());
-		} catch (Exception expection) {
-			System.out.println("La unidad seleccionada no existe.");
-			System.out.println(expection);
+		
+		Servicio servicio = seleccionarServicio();
+		
+		if(servicio != null) {
+			Unidad unidad = seleccionarUnidad(servicio);
+			empleado.setUnidad(unidad);
 		}
+
+//		try {
+//			empleado.setUnidad(seleccionarUnidad());
+//		} catch (Exception expection) {
+//			System.out.println("La unidad seleccionada no existe.");
+//			System.out.println(expection);
+//		}
 
 		return empleado;
 	}
+	
+	private static Servicio seleccionarServicio() {
+		List<String> listaServicios = Servicio.getValores();
+		int opcion = -1;
+		while(opcion < 1 || opcion > 4) {
+			MostrarMenu.mostrarMenu("SELECCIONE UN SECTOR", listaServicios);
+			opcion = EntradaValores.introducirNumeroEntero("Seleccione una opción", new int[] { 1, 2, 3, 4 });
+			
+			if (opcion >= 1 || opcion <= 4) {
+				return Servicio.values()[opcion-1];
+			}			
+		}
+		
+		return null;
+		
+	}
 
-	private static Unidad seleccionarUnidad() {
-		List<String> lista = Unidades.UNIDADES2;
+	private static Unidad seleccionarUnidad(Servicio servicio) {
+		List<Unidad> listaUnidades = Unidades.getUnidadesDisponiblesPorServicio(servicio);
+		List<String> lista = Unidades.getValoresUnidadesDisponiblesPorServicio(servicio);
+		
 
 		MostrarMenu.mostrarMenu("SELECCIONE UNA UNIDAD", lista);
 		int opcion = EntradaValores.introducirNumeroEntero("Seleccione una opción",
 				new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 });
 
 		if (opcion >= 1 || opcion <= 10) {
-			return Unidades.UNIDADES3.get(opcion - 1);
+			return listaUnidades.get(opcion-1);
 		} else {
 			throw new Error("Entrada incorrecta: la entrada no puede ser nula o vacía");
 		}

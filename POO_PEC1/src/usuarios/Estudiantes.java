@@ -1,9 +1,12 @@
 package usuarios;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
+import model.Unidad;
+import ui.MostrarMenu;
 import util.EntradaValores;
 
 public class Estudiantes {
@@ -72,17 +75,34 @@ public class Estudiantes {
 		}
 		estudiante.setTelefono(telefono);
 		
-		boolean asignarPersonal = EntradaValores.introducirValorBooleano("¿Asignar personal medico al estudiante? (S/N): ");
+		boolean asignarPersonal = EntradaValores.introducirValorBooleano("¿Asignar personal al estudiante? (S/N): ");
 		
 		if(asignarPersonal) {
-			Empleados empleados = Empleados.getInstancia();
-			Empleado empleado = empleados.buscarEmpleadoPorDNI();
 			
-			if(empleado != null)  {
-				estudiante.setPersonalAsignado(empleado);
-			}
 		} 
 		return estudiante;
+	}
+	
+	private void asignarPersonalAlEmpleado(Estudiante estudiante) {
+		MostrarMenu.mostrarMenu("Seleccionar tipo de personal", Arrays.asList("Asignar personal médico", "Asignar personal de enfermería", "Asignar cita", "Cancelar"));
+		int opcion = EntradaValores.introducirNumeroEntero("Seleccione una opción: ", new int[] {1, 2, 3, 4});
+		Empleados empleados = Empleados.getInstancia();
+		
+		
+		switch(opcion) {
+		case 1:
+			Empleado empleado = empleados.buscarEmpleadoPorDNI();
+			if(empleado != null && empleado.getUnidad().equals(Unidad.MEDICINA))  {
+				estudiante.setPersonalAsignado(empleado);
+			}
+			break;
+		case 2:
+			break;
+		case 3:
+			break;
+		case 4:
+			break;
+		}
 	}
 	
 	public void mostrarEstudiantes() {

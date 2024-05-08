@@ -1,6 +1,8 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public enum Unidad {
 	ADMINISTRACION("Administración"),
@@ -8,12 +10,15 @@ public enum Unidad {
 	UCI("Unidad de Cuidados Intensivos (UCI)"),
 	HOSPITALIZACION("Hospitalización"),
 	PRUEBAS_MEDICAS("Pruebas médicas"),
-	UNIDADES_MEDICAS_ESPECIALIZADAS("Unidades médicas especializadas"),
+	CARDIOVASCULAR("Cardiovascular"),
+	DIABETES("Diabetes"),
 	GERENCIA("Gerencia"),
 	MEDICINA("Medicina"),
     ENFERMERIA("Enfermeria"),
-    SOPORTE("Soporte"),
-	URGENCAS("Urgencias");
+    CAFETERIA("Cafetería"),
+    APARCAMIENTO("Aparcamiento"),
+	URGENCAS("Urgencias"),
+	FORMACION("Formación");
 
 	private final String valor;
 	
@@ -23,6 +28,14 @@ public enum Unidad {
 	
 	public String getValor() {
 		return this.valor;
+	}
+	
+	public static List<String> getValores() {
+		List<String> listaUnidades = new ArrayList<String>();
+		for (Unidad unidad : Unidad.values()) {
+			listaUnidades.add(unidad.getValor());
+		}
+		return listaUnidades;
 	}
 	
 	
