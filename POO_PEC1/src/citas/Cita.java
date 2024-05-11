@@ -8,15 +8,17 @@ import usuarios.Paciente;
 public class Cita {
 	private Paciente paciente;
 	private Empleado empleado;
-	private LocalDateTime fechaAlta;
-	private LocalDateTime fechaBaja;
+	private LocalDateTime fechaInicio;
+	private LocalDateTime fechaFin;
+	private boolean reservado;
 	
-	public Cita(Paciente paciente, Empleado empleado, LocalDateTime fechaAlta, LocalDateTime fechaBaja) {
+	public Cita(Paciente paciente, Empleado empleado, LocalDateTime fechaInicio, LocalDateTime fechaFin, boolean reservado) {
 		super();
 		this.paciente = paciente;
 		this.empleado = empleado;
-		this.fechaAlta = fechaAlta;
-		this.fechaBaja = fechaBaja;
+		this.fechaInicio = fechaInicio;
+		this.fechaFin = fechaFin;
+		this.reservado = reservado;
 	}
 
 	public Paciente getPaciente() {
@@ -35,21 +37,30 @@ public class Cita {
 		this.empleado = empleado;
 	}
 
-	public LocalDateTime getFechaAlta() {
-		return fechaAlta;
+	public LocalDateTime getFechaInicio() {
+		return fechaInicio;
 	}
 
-	public void setFechaAlta(LocalDateTime fechaAlta) {
-		this.fechaAlta = fechaAlta;
+	public void setFechaInicio(LocalDateTime fechaInicio) {
+		this.fechaInicio = fechaInicio;
 	}
 
-	public LocalDateTime getFechaBaja() {
-		return fechaBaja;
+	public LocalDateTime getFechaFin() {
+		return fechaFin;
 	}
 
-	public void setFechaBaja(LocalDateTime fechaBaja) {
-		this.fechaBaja = fechaBaja;
+	public void setFechaFin(LocalDateTime fechaFin) {
+		this.fechaFin = fechaFin;
 	}
+
+	public boolean isReservado() {
+		return reservado;
+	}
+
+	public void setReservado(boolean reservado) {
+		this.reservado = reservado;
+	}
+	
 	
 	
 	

@@ -1,16 +1,20 @@
 package usuarios;
+import model.Horario;
 import model.Turno;
+import model.HorariosPorTurno;
 import model.Unidad;
 import usuarios.Usuario;
 
 public class Empleado extends Usuario {
 	private Unidad unidad;
 	private Turno turno;
+	private Horario horario;
 
 	public Empleado(String nombre, String apellidos, String dni, String telefono, Unidad unidad) {
 		super(nombre, apellidos, dni, telefono);
 		this.unidad = unidad;
 		this.turno = Turno.DIA;
+		this.horario = HorariosPorTurno.HORARIO_DIA.getHorario();
 	}
 	
 	public Empleado() {
@@ -32,6 +36,14 @@ public class Empleado extends Usuario {
 
 	public void setTurno(Turno turno) {
 		this.turno = turno;
+	}
+	
+	public Horario getHorario() {
+		return horario;
+	}
+
+	public void setHorario(Horario horario) {
+		this.horario = horario;
 	}
 
 	@Override

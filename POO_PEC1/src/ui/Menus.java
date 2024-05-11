@@ -4,8 +4,11 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
+import citas.Agenda;
+import usuarios.Empleado;
 import usuarios.Empleados;
 import usuarios.Estudiantes;
+import usuarios.PersonalSanitario;
 import util.EntradaValores;
 
 public class Menus {
@@ -46,6 +49,9 @@ public class Menus {
 				break;
 			case 2:
 				mostrarMenuGestionEstudiantes();
+				break;
+			case 3:
+				mostrarMenuGestionMedicina();
 				break;
 			case 5:
 				return;
@@ -130,6 +136,58 @@ public class Menus {
 		                break;
 		            case 4:
 		            	break;
+//		            case 5:
+//		            	empleados.buscarEmpleadoPorDNI();
+//		            	break;
+//		            case 6:
+//		            	empleados.asignarTurno();
+//		            	break;
+//		            case 7:
+//		            	return;
+		            	
+		            default:
+		            	System.out.println("Opción inválida. Por favor, introduzca una opción del menu.");
+				}
+			} else {
+				System.out.println("Opción inválida. Por favor, introduzca una opción del menu.");
+			}
+
+			
+		} while(!navegar);
+	}
+	
+	public void mostrarMenuGestionMedicina() {
+		List<String> opciones = Arrays.asList("Ver agenda de medico", "Volver");
+		int opcion;
+		boolean navegar = false;
+		
+		do {
+			MostrarMenu.mostrarMenu("GESTIÓN DE ESTUDIANTES DEL HOSPITAL", opciones );
+			System.out.print("Seleccione una opción: ");
+
+			if(scanner.hasNext())  {
+				opcion = scanner.nextInt();
+				scanner.nextLine();
+				
+				switch (opcion) {
+		            case 1:
+		            	Empleado empleado = empleados.buscarEmpleadoPorDNI();
+		            	if(empleado != null ) {
+		            		PersonalSanitario personalSanitario = PersonalSanitario.comprobarEmpleadoEsMedico(empleado);
+		            		if(personalSanitario != null) {
+		            			System.out.println(personalSanitario.getAgenda());	            		
+		            		}		            		
+		            	} else {
+		            		System.out.println("Proceso cancelado.");
+		            	}
+		                break;
+		            case 2:
+		            	return;
+//		            case 3:
+//		            	estudiantes.mostrarEstudiantes();
+//		                break;
+//		            case 4:
+//		            	break;
 //		            case 5:
 //		            	empleados.buscarEmpleadoPorDNI();
 //		            	break;
