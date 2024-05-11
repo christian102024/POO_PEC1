@@ -21,28 +21,4 @@ public enum HorariosPorTurno {
 	public Horario getHorario() {
 		return horario;
 	}
-
-	private static List<HoraConsulta> horarioDia() {
-		LocalDateTime hoy = LocalDateTime.now();
-		List<HoraConsulta> listahoras = new ArrayList<HoraConsulta>();
-
-		listahoras.add(new HoraConsulta(LocalDateTime.of(hoy.getYear(), hoy.getMonth(), hoy.getDayOfMonth(), 7, 0),
-				LocalDateTime.of(hoy.getYear(), hoy.getMonth(), hoy.getDayOfMonth(), 8, 0)));
-		listahoras.add(new HoraConsulta(LocalDateTime.of(hoy.getYear(), hoy.getMonth(), hoy.getDayOfMonth(), 8, 0),
-				LocalDateTime.of(hoy.getYear(), hoy.getMonth(), hoy.getDayOfMonth(), 9, 0)));
-		listahoras.add(new HoraConsulta(LocalDateTime.of(hoy.getYear(), hoy.getMonth(), hoy.getDayOfMonth(), 9, 0),
-				LocalDateTime.of(hoy.getYear(), hoy.getMonth(), hoy.getDayOfMonth(), 10, 0)));
-		listahoras.add(new HoraConsulta(LocalDateTime.of(hoy.getYear(), hoy.getMonth(), hoy.getDayOfMonth(), 10, 0),
-				LocalDateTime.of(hoy.getYear(), hoy.getMonth(), hoy.getDayOfMonth(), 11, 0)));
-		listahoras.add(new HoraConsulta(LocalDateTime.of(hoy.getYear(), hoy.getMonth(), hoy.getDayOfMonth(), 11, 0),
-				LocalDateTime.of(hoy.getYear(), hoy.getMonth(), hoy.getDayOfMonth(), 12, 0)));
-		listahoras.add(new HoraConsulta(LocalDateTime.of(hoy.getYear(), hoy.getMonth(), hoy.getDayOfMonth(), 12, 0),
-				LocalDateTime.of(hoy.getYear(), hoy.getMonth(), hoy.getDayOfMonth(), 13, 0)));
-		listahoras.add(new HoraConsulta(LocalDateTime.of(hoy.getYear(), hoy.getMonth(), hoy.getDayOfMonth(), 13, 0),
-				LocalDateTime.of(hoy.getYear(), hoy.getMonth(), hoy.getDayOfMonth(), 14, 0)));
-		listahoras.add(new HoraConsulta(LocalDateTime.of(hoy.getYear(), hoy.getMonth(), hoy.getDayOfMonth(), 14, 0),
-				LocalDateTime.of(hoy.getYear(), hoy.getMonth(), hoy.getDayOfMonth(), 15, 0)));
-
-		return listahoras;
-	}
 }
