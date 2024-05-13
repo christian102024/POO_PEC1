@@ -11,6 +11,7 @@ import java.util.Map;
 
 import citas.Agenda;
 import citas.Cita;
+import model.Expediente;
 import model.Seguro;
 import model.Unidad;
 import ui.Menus;
@@ -21,6 +22,7 @@ import usuarios.Estudiante;
 import usuarios.Estudiantes;
 import usuarios.Medico;
 import usuarios.Paciente;
+import usuarios.Pacientes;
 import usuarios.PersonalSanitario;
 
 public class hospital {
@@ -48,8 +50,11 @@ public class hospital {
 
 		Estudiantes estudiantes = new Estudiantes();
 		estudiantes.addEstudiante(new Estudiante("Pedro", "Fraga", "141654214X", "645124521", empleado));
+		
+		Pacientes pacientes = new Pacientes();
+		pacientes.addPaciente(new Paciente("Orosco", "Salinas Zambrano", "74891365F", "645474124", Seguro.SEGURIDAD_SOCIAL, "053700291753", new ArrayList<Expediente>()));
 
-		Menus menus = new Menus(empleados, estudiantes);
+		Menus menus = new Menus(empleados, estudiantes, pacientes);
 
 		menus.mostrarMenuPrincipal();
 

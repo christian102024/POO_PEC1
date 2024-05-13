@@ -10,6 +10,7 @@ public class Paciente extends Usuario {
 	private Seguro seguro;
 	private String numeroSeguridadSocial;
 	private List<Expediente> expedientes;
+	private boolean hospitalizado;
 	
 	public Paciente(String nombre, String apellidos, String dni, String telefono, Seguro seguro,
 			String numeroSeguridadSocial, List<Expediente> expedientes) {
@@ -46,8 +47,18 @@ public class Paciente extends Usuario {
 	public void setExpedientes(List<Expediente> expedientes) {
 		this.expedientes = expedientes;
 	}
-	
-	
-	
+
+	@Override
+	public String toString() {
+		String expedientesConcatenados = "";
+		if(expedientes != null && expedientes.size() > 0) {
+			for (Expediente expediente : this.expedientes) {
+				expedientesConcatenados += expediente.toString();
+			}			
+		} else {
+			expedientesConcatenados += "Sin expedientes";
+		}
+		return super.toString() + ", seguro: " + seguro + ", número de seguridad social: " + numeroSeguridadSocial + ", expedientes: " + expedientesConcatenados;
+	}
 	
 }

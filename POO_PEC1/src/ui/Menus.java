@@ -1,15 +1,19 @@
 package ui;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
 import citas.Agenda;
+import citas.Cita;
 import citas.MostrarAgenda;
 import usuarios.Empleado;
 import usuarios.Empleados;
 import usuarios.Estudiantes;
+import usuarios.Paciente;
 import usuarios.Pacientes;
 import usuarios.PersonalSanitario;
 import util.EntradaValores;
@@ -29,11 +33,12 @@ public class Menus {
 		pacientes = Pacientes.getInstancia();
 	}
 
-	public Menus(Empleados empleados, Estudiantes estudiantes) {
+	public Menus(Empleados empleados, Estudiantes estudiantes, Pacientes pacientes) {
 		super();
 		scanner = new Scanner(System.in);
 		this.empleados = empleados;
 		this.estudiantes = estudiantes;
+		this.pacientes = pacientes;
 	}
 
 
@@ -58,9 +63,18 @@ public class Menus {
 			case 3:
 				mostrarMenuGestionMedicina();
 				break;
+			case 4:
+				System.out.println("NO IMPLEMENTADO");
+				break;
 			case 5:
 				mostrarMenuGestionPacientes();
-				return;
+				break;
+			case 6:
+				System.out.println("NO IMPLEMENTADO");
+				break;
+			case 7:
+				navegar = true;
+				break;
 				
 			}
 			
@@ -141,6 +155,7 @@ public class Menus {
 		            	estudiantes.mostrarEstudiantes();
 		                break;
 		            case 4:
+		            	navegar = true;
 		            	break;
 //		            case 5:
 //		            	empleados.buscarEmpleadoPorDNI();
@@ -168,7 +183,7 @@ public class Menus {
 		boolean navegar = false;
 		
 		do {
-			MostrarMenu.mostrarMenu("GESTIÓN DE ESTUDIANTES DEL HOSPITAL", opciones );
+			MostrarMenu.mostrarMenu("GESTIÓN DE MEDICINA DEL HOSPITAL", opciones );
 			System.out.print("Seleccione una opción: ");
 
 			if(scanner.hasNext())  {
@@ -191,16 +206,45 @@ public class Menus {
 		            	empleado = empleados.buscarEmpleadoPorDNI();
 		            	if(empleado != null) {
 		            		PersonalSanitario personalSanitario = PersonalSanitario.comprobarEmpleadoEsMedico(empleado);
+		            		Agenda agenda = personalSanitario.getAgenda();
+		            		
 		            		if(personalSanitario != null) {
-		            			MostrarAgenda.mostrarAgendaPorFecha(personalSanitario.getAgenda());
+		            			LocalDate fecha = EntradaValores.introducirFecha("Introduzca la fecha en la que quiere dar de alta la cita: ");
+		            			MostrarAgenda.mostrarAgenda(agenda, fecha);
+//		            			while (citaNoDisponbile) {
+		            				LocalTime horaInicio = EntradaValores.introducirHora("Introduzca la hora de inicio: ");
+		            				LocalTime horaFin = EntradaValores.introducirHora("Introduzca la hora de fin: ");
+		            				Paciente paciente = pacientes.buscarPacientePorDNI();
+		            				
+		            				if(paciente == null) {
+		            					System.out.println("Paciente no encontrado.");
+		            				} else {
+		            					
+		            					LocalDateTime fechaHoraInicio = LocalDateTime.of(fecha, horaInicio);
+		            					LocalDateTime fechaHoraFin = LocalDateTime.of(fecha, horaFin);
+		            					
+		            					boolean citaDisponible = agenda.comprobarCitaEstaDisponible(fecha, fechaHoraInicio, fechaHoraFin);
+		            					
+		            					if(citaDisponible) {
+		            						agenda.anyadirCita(fecha, new Cita(paciente, fechaHoraInicio, fechaHoraFin, true));
+		            						System.out.println("Cita registrada correctamente!");
+		            					}
+		            				}
+		            				
+//		            			}
+		            			
+		            			
+//		            			personalSanitario.getAgenda().anyadirCita(fecha, new Cita(null, horaInicio, horaFin, true));
+//		            			MostrarAgenda.mostrarAgendaPorFecha(personalSanitario.getAgenda());
+		            			
 		            		}	
 		            	} else {
 		            		System.out.println("Proceso cancelado.");
 		            	}
 		            	break;
-//		            case 3:
-//		            	estudiantes.mostrarEstudiantes();
-//		                break;
+		            case 3:
+		            	navegar = true;
+		                break;
 //		            case 4:
 //		            	break;
 //		            case 5:
@@ -224,13 +268,13 @@ public class Menus {
 	}
 	
 	public void mostrarMenuGestionPacientes() {
-		List<String> opciones = Arrays.asList("Añadir paciente", "Eliminar paciente", "Volver");
+		List<String> opciones = Arrays.asList("Añadir paciente", "Eliminar paciente", "Mostrar pacientes", "Volver");
 		boolean navegar = false;
 		
 		do {
-			MostrarMenu.mostrarMenu("GESTIÓN DE ESTUDIANTES DEL HOSPITAL", opciones );
+			MostrarMenu.mostrarMenu("GESTIÓN DE PACIENTES DEL HOSPITAL", opciones );
 
-			int opcion = EntradaValores.introducirNumeroEntero("Seleccione una opción: ", new int[] {1, 2, 3});
+			int opcion = EntradaValores.introducirNumeroEntero("Seleccione una opción: ", new int[] {1, 2, 3, 4});
 				switch (opcion) {
 		            case 1:
 		            	pacientes.darDeAltaPaciente();
@@ -238,11 +282,11 @@ public class Menus {
 		            case 2:
 		            	pacientes.darDeBajaPaciente();
 		            	break;
-//		            case 3:
-//		            	estudiantes.mostrarEstudiantes();
-//		                break;
-//		            case 4:
-//		            	break;
+		            case 3:
+		            	System.out.println(pacientes);
+		                break;
+		            case 4:
+		            	return;
 //		            case 5:
 //		            	empleados.buscarEmpleadoPorDNI();
 //		            	break;

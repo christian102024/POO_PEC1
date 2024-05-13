@@ -95,13 +95,6 @@ public class Empleados {
 			empleado.setUnidad(unidad);
 		}
 
-//		try {
-//			empleado.setUnidad(seleccionarUnidad());
-//		} catch (Exception expection) {
-//			System.out.println("La unidad seleccionada no existe.");
-//			System.out.println(expection);
-//		}
-
 		return empleado;
 	}
 	
@@ -156,7 +149,7 @@ public class Empleados {
 			if (indice == null) {
 				continuar = false;
 			} else if (indice == -1) {
-				System.out.println("Empleado no encontrado");
+				System.out.println("Empleado no encontrado.");
 			} else {
 				return empleados.get(indice);
 			}
@@ -186,6 +179,7 @@ public class Empleados {
 		System.out.print("Introduzca el DNI del empleado: ");
 		String respuesta = scanner.nextLine();
 		if (respuesta.equals("cancelar")) {
+			System.out.println(Mensajes.PROCESO_CANCELADO);
 			return null;
 		}
 		return buscarIndiceDeEmpleadoPorDNI(respuesta);
@@ -299,7 +293,7 @@ public class Empleados {
 		}
 
 		if (empleados.size() == 0) {
-			resultado += "No existen empleados dados de alta";
+			resultado += "No existen empleados dados de alta.";
 		}
 
 		return resultado;

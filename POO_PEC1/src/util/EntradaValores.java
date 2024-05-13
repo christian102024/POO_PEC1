@@ -100,7 +100,6 @@ public class EntradaValores {
 			
 		} while (!esValido);
 		
-		scanner.close();
 		return cadena;
 	}
 	
@@ -214,8 +213,12 @@ public class EntradaValores {
 		return LocalDate.of(anyo, mes, dia);
 	}
 	
-	public static LocalTime introducirHora() {
+	public static LocalTime introducirHora(String mensaje) {
 		Scanner scanner = new Scanner(System.in);
+		
+		if(mensaje != null) {
+			System.out.println(mensaje);
+		}
 		
 		int hora = -1;
 		while(hora == -1) {
@@ -241,7 +244,7 @@ public class EntradaValores {
 				System.out.println("El valor introducido no es numérico!");
 			}
 			
-			if(minutos < 1 || minutos > 12) {
+			if(minutos < 0 || minutos > 60) {
 				minutos = -1;
 				System.out.println("El mes introducido no es válido!");
 			}

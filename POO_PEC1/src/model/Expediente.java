@@ -36,6 +36,11 @@ public class Expediente {
 	public void setDiagnostico(String diagnostico) {
 		this.diagnostico = diagnostico;
 	}
+
+	@Override
+	public String toString() {
+		return "Expediente [informe: " + informe + ", tratamiento: " + tratamiento + ", diagnostico: " + diagnostico + "]";
+	}
 	
 	
 	

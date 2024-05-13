@@ -2,6 +2,7 @@ package citas;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -60,6 +61,47 @@ public class Agenda {
 		List<Cita> citas = this.agenda.get(fecha);
 		citas.remove(cita);
 		this.agenda.replace(fecha, citas);
+	}
+	
+	public boolean comprobarCitaEstaDisponible(LocalDate fecha, LocalDateTime horaInicio, LocalDateTime horaFin) {
+//		boolean horaDeInicioDisponbile = false;
+		
+		if(comprobarHoraExisteEnHorario(horaInicio, horaFin) && comprobarCitaNoExiste(fecha, horaInicio, horaFin)) {
+			return true;
+		} else {
+			return false;
+		}
+		
+	}
+	
+	public boolean comprobarHoraExisteEnHorario(LocalDateTime horaInicio, LocalDateTime horaFin) {
+		List<HoraConsulta> listaHorasConsultas = horario.getListaHorasConsultas();
+		
+		if(listaHorasConsultas == null) {
+			return false;
+		}
+		
+		for (HoraConsulta horaConsulta : horario.getListaHorasConsultas()) {
+			if(horaConsulta.getHoraInicio().equals(horaInicio) && horaConsulta.getHoraFin().equals(horaFin)) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	public boolean comprobarCitaNoExiste(LocalDate fecha, LocalDateTime horaInicio, LocalDateTime horaFin) {
+		List<Cita> citas = agenda.get(fecha);
+		
+		if(citas == null) {
+			return true;
+		} else {
+			for (Cita cita : citas) {
+				if(cita.getFechaInicio().equals(horaInicio) && cita.getFechaFin().equals(horaFin) && cita.getPaciente() != null) {
+					return false;
+				}
+			}
+		}
+		return true;
 	}
 
 //	@Override
