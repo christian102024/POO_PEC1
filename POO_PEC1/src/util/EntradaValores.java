@@ -1,5 +1,6 @@
 package util;
 
+import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.Scanner;
 
@@ -153,6 +154,57 @@ public class EntradaValores {
 		}
 		
 		return valorBooleano;
+	}
+	
+	public static LocalDate introducirFecha() {
+		Scanner scanner = new Scanner(System.in);
+		
+		int anyo = -1;
+		while(anyo == -1) {
+			System.out.print("Introduzca el año: ");
+			try {
+				anyo = scanner.nextInt();				
+			} catch(Exception exception) {
+				System.out.println("El valor introducido no es numérico!");
+			}
+			
+			if(anyo < 2000) {
+				anyo = -1;
+				System.out.println("El año introducido no es válido!");
+			}
+		}
+		
+		int mes = -1;
+		while(mes == -1) {
+			System.out.print("Introduzca el mes: ");
+			try {
+				mes = scanner.nextInt();
+			} catch(Exception exception) {
+				System.out.println("El valor introducido no es numérico!");
+			}
+			
+			if(mes < 1 || mes > 12) {
+				mes = -1;
+				System.out.println("El mes introducido no es válido!");
+			}
+		}
+		
+		int dia = -1;
+		while(dia == -1) {
+			System.out.print("Introduzca el día: ");
+			try {
+				dia = scanner.nextInt();				
+			} catch(Exception exception) {
+				System.out.println("El valor introducido no es numérico!");
+			}
+			
+			if(dia < 1 || dia > 31) {
+				dia = -1;
+				System.out.println("El día introducido no es válido!");
+			}
+		}
+		
+		return LocalDate.of(anyo, mes, dia);
 	}
 	
 }

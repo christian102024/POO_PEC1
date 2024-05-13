@@ -1,7 +1,14 @@
 package usuarios;
 
+import java.time.format.DateTimeFormatter;
+import java.util.List;
+
 import citas.Agenda;
+import citas.Cita;
+import model.HoraConsulta;
 import model.Unidad;
+import util.Cadenas;
+import util.FormatosFechas;
 
 public class PersonalSanitario extends Empleado {
 	private Agenda agenda;
@@ -43,10 +50,4 @@ public class PersonalSanitario extends Empleado {
 		}
 
 	}
-
-	@Override
-	public String toString() {
-		return super.toString() + ", agenda: " + agenda;
-	}
-
 }

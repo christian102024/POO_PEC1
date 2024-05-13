@@ -1,10 +1,12 @@
 package ui;
 
+import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
 import citas.Agenda;
+import citas.MostrarAgenda;
 import usuarios.Empleado;
 import usuarios.Empleados;
 import usuarios.Estudiantes;
@@ -175,7 +177,7 @@ public class Menus {
 		            	if(empleado != null ) {
 		            		PersonalSanitario personalSanitario = PersonalSanitario.comprobarEmpleadoEsMedico(empleado);
 		            		if(personalSanitario != null) {
-		            			System.out.println(personalSanitario.getAgenda());	            		
+		            			MostrarAgenda.mostrarAgendaPorFecha(personalSanitario.getAgenda());
 		            		}		            		
 		            	} else {
 		            		System.out.println("Proceso cancelado.");

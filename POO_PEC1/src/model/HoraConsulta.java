@@ -2,6 +2,8 @@ package model;
 
 import java.time.LocalDateTime;
 
+import citas.Cita;
+
 public class HoraConsulta {
 
 	private LocalDateTime horaInicio;
@@ -32,5 +34,4 @@ public class HoraConsulta {
 	public void setHoraFin(LocalDateTime horaFin) {
 		this.horaFin = horaFin;
 	}
-	
 }

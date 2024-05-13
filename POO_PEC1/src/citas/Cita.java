@@ -7,15 +7,13 @@ import usuarios.Paciente;
 
 public class Cita {
 	private Paciente paciente;
-	private Empleado empleado;
 	private LocalDateTime fechaInicio;
 	private LocalDateTime fechaFin;
 	private boolean reservado;
 	
-	public Cita(Paciente paciente, Empleado empleado, LocalDateTime fechaInicio, LocalDateTime fechaFin, boolean reservado) {
+	public Cita(Paciente paciente, LocalDateTime fechaInicio, LocalDateTime fechaFin, boolean reservado) {
 		super();
 		this.paciente = paciente;
-		this.empleado = empleado;
 		this.fechaInicio = fechaInicio;
 		this.fechaFin = fechaFin;
 		this.reservado = reservado;
@@ -28,15 +26,7 @@ public class Cita {
 	public void setPaciente(Paciente paciente) {
 		this.paciente = paciente;
 	}
-
-	public Empleado getEmpleado() {
-		return empleado;
-	}
-
-	public void setEmpleado(Empleado empleado) {
-		this.empleado = empleado;
-	}
-
+	
 	public LocalDateTime getFechaInicio() {
 		return fechaInicio;
 	}
@@ -60,9 +50,12 @@ public class Cita {
 	public void setReservado(boolean reservado) {
 		this.reservado = reservado;
 	}
-	
-	
-	
+
+	@Override
+	public String toString() {
+		return "Cita [paciente=" + paciente + ", fechaInicio=" + fechaInicio + ", fechaFin=" + fechaFin + ", reservado="
+				+ reservado + "]";
+	}
 	
 	
 }

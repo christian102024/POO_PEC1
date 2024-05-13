@@ -12,15 +12,15 @@ public class Horario {
 		super();
 		this.listaHorasConsultas = horario;
 	}
-
-	public List<HoraConsulta> getHorario() {
+	
+	public List<HoraConsulta> getListaHorasConsultas() {
 		return listaHorasConsultas;
 	}
 
-	public void setHorario(List<HoraConsulta> horario) {
-		this.listaHorasConsultas = horario;
+	public void setListaHorasConsultas(List<HoraConsulta> listaHorasConsultas) {
+		this.listaHorasConsultas = listaHorasConsultas;
 	}
-	
+
 	public static List<HoraConsulta> generarHorarioIntensivo(int horaEntrada, int horaSalida, int duracionConsulta) {
 	    LocalDateTime hoy = LocalDateTime.now();
 	    List<HoraConsulta> listahoras = new ArrayList<>();
@@ -32,6 +32,6 @@ public class Horario {
 	    }
 
 	    return listahoras;
-}
+	}
 	
 }
