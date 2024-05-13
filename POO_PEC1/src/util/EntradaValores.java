@@ -1,6 +1,7 @@
 package util;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.Arrays;
 import java.util.Scanner;
 
@@ -44,7 +45,7 @@ public class EntradaValores {
 		return numero;
 	}
 	
-	public static int introducirNumeroEntero(String mensaje, int[] opcionesValidas) {
+	public static Integer introducirNumeroEntero(String mensaje, int[] opcionesValidas) {
 		boolean esValido = false;
 		int numero = -1;
 		
@@ -66,6 +67,8 @@ public class EntradaValores {
 					System.out.println("El numero no es valido, por favor, introduzca una opción valida.");
 				}
 				
+			} else if (scanner.hasNext()) {
+				if(scanner.next().equals("cancelar")) return null;
 			} else {
 				System.out.println("El valor introducido no es un numero valido.");
 				scanner.next();
@@ -75,6 +78,7 @@ public class EntradaValores {
 		
 		return numero;
 	}
+	
 	/**
 	 * Pide introducir un valor de tipo String al usuario. Si el usuario no lo introduce, repetira la secuencia para que lo introduzca.
 	 * @param mensaje El mensaje para solicitar la cadena.
@@ -156,8 +160,11 @@ public class EntradaValores {
 		return valorBooleano;
 	}
 	
-	public static LocalDate introducirFecha() {
+	public static LocalDate introducirFecha(String mensaje) {
 		Scanner scanner = new Scanner(System.in);
+		if(mensaje != null) {
+			System.out.println(mensaje);
+		}
 		
 		int anyo = -1;
 		while(anyo == -1) {
@@ -205,6 +212,42 @@ public class EntradaValores {
 		}
 		
 		return LocalDate.of(anyo, mes, dia);
+	}
+	
+	public static LocalTime introducirHora() {
+		Scanner scanner = new Scanner(System.in);
+		
+		int hora = -1;
+		while(hora == -1) {
+			System.out.print("Introduzca la hora: ");
+			try {
+				hora = scanner.nextInt();				
+			} catch(Exception exception) {
+				System.out.println("El valor introducido no es numérico!");
+			}
+			
+			if(hora < 0 || hora > 24) {
+				hora = -1;
+				System.out.println("La hora introducida no es válida!");
+			}
+		}
+		
+		int minutos = -1;
+		while(minutos == -1) {
+			System.out.print("Introduzca los minutos: ");
+			try {
+				minutos = scanner.nextInt();
+			} catch(Exception exception) {
+				System.out.println("El valor introducido no es numérico!");
+			}
+			
+			if(minutos < 1 || minutos > 12) {
+				minutos = -1;
+				System.out.println("El mes introducido no es válido!");
+			}
+		}
+		
+		return LocalTime.of(hora, minutos);
 	}
 	
 }

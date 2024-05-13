@@ -10,6 +10,7 @@ import citas.MostrarAgenda;
 import usuarios.Empleado;
 import usuarios.Empleados;
 import usuarios.Estudiantes;
+import usuarios.Pacientes;
 import usuarios.PersonalSanitario;
 import util.EntradaValores;
 
@@ -18,12 +19,14 @@ public class Menus {
 	private static Scanner scanner;
 	private Empleados empleados;
 	private Estudiantes estudiantes;
+	private Pacientes pacientes;
 	
 	public Menus() {
 		super();
 		scanner = new Scanner(System.in);
 		empleados = Empleados.getInstancia();
 		estudiantes = Estudiantes.getInstancia();
+		pacientes = Pacientes.getInstancia();
 	}
 
 	public Menus(Empleados empleados, Estudiantes estudiantes) {
@@ -35,7 +38,7 @@ public class Menus {
 
 
 	public void mostrarMenuPrincipal() {
-		List<String> opciones = Arrays.asList("GESTIÓN DE PERSONAL DEL HOSPITAL", "GESTIÓN DE ESTUDIANTES", "GESTIÓN DE MEDICINA", "GESTIÓN DE ENFERMERÍA", "GESTIÓN DE SOPORTE", "SALIR");
+		List<String> opciones = Arrays.asList("GESTIÓN DE PERSONAL DEL HOSPITAL", "GESTIÓN DE ESTUDIANTES", "GESTIÓN DE MEDICINA", "GESTIÓN DE ENFERMERÍA", "GESTIÓN DE PACIENTES", "GESTIÓN DE SOPORTE", "SALIR");
 		int opcion;
 		boolean navegar = false;
 		
@@ -43,7 +46,7 @@ public class Menus {
 			MostrarMenu.mostrarMenu("MENU PRINCIPAL", opciones);
 			System.out.print("Seleccione una opción: ");
 			
-			opcion = EntradaValores.introducirNumeroEntero("Seleccione una opción: ", new int[]{1, 2, 3, 4, 5, 6});
+			opcion = EntradaValores.introducirNumeroEntero("Seleccione una opción: ", new int[]{1, 2, 3, 4, 5, 6, 7});
 			
 			switch(opcion) {
 			case 1:
@@ -56,6 +59,7 @@ public class Menus {
 				mostrarMenuGestionMedicina();
 				break;
 			case 5:
+				mostrarMenuGestionPacientes();
 				return;
 				
 			}
@@ -159,7 +163,7 @@ public class Menus {
 	}
 	
 	public void mostrarMenuGestionMedicina() {
-		List<String> opciones = Arrays.asList("Ver agenda de medico", "Volver");
+		List<String> opciones = Arrays.asList("Ver agenda de medico", "Añadir una cita", "Volver");
 		int opcion;
 		boolean navegar = false;
 		
@@ -170,10 +174,10 @@ public class Menus {
 			if(scanner.hasNext())  {
 				opcion = scanner.nextInt();
 				scanner.nextLine();
-				
+				Empleado empleado;
 				switch (opcion) {
 		            case 1:
-		            	Empleado empleado = empleados.buscarEmpleadoPorDNI();
+		            	empleado = empleados.buscarEmpleadoPorDNI();
 		            	if(empleado != null ) {
 		            		PersonalSanitario personalSanitario = PersonalSanitario.comprobarEmpleadoEsMedico(empleado);
 		            		if(personalSanitario != null) {
@@ -184,7 +188,16 @@ public class Menus {
 		            	}
 		                break;
 		            case 2:
-		            	return;
+		            	empleado = empleados.buscarEmpleadoPorDNI();
+		            	if(empleado != null) {
+		            		PersonalSanitario personalSanitario = PersonalSanitario.comprobarEmpleadoEsMedico(empleado);
+		            		if(personalSanitario != null) {
+		            			MostrarAgenda.mostrarAgendaPorFecha(personalSanitario.getAgenda());
+		            		}	
+		            	} else {
+		            		System.out.println("Proceso cancelado.");
+		            	}
+		            	break;
 //		            case 3:
 //		            	estudiantes.mostrarEstudiantes();
 //		                break;
@@ -205,6 +218,44 @@ public class Menus {
 			} else {
 				System.out.println("Opción inválida. Por favor, introduzca una opción del menu.");
 			}
+
+			
+		} while(!navegar);
+	}
+	
+	public void mostrarMenuGestionPacientes() {
+		List<String> opciones = Arrays.asList("Añadir paciente", "Eliminar paciente", "Volver");
+		boolean navegar = false;
+		
+		do {
+			MostrarMenu.mostrarMenu("GESTIÓN DE ESTUDIANTES DEL HOSPITAL", opciones );
+
+			int opcion = EntradaValores.introducirNumeroEntero("Seleccione una opción: ", new int[] {1, 2, 3});
+				switch (opcion) {
+		            case 1:
+		            	pacientes.darDeAltaPaciente();
+		            	break;
+		            case 2:
+		            	pacientes.darDeBajaPaciente();
+		            	break;
+//		            case 3:
+//		            	estudiantes.mostrarEstudiantes();
+//		                break;
+//		            case 4:
+//		            	break;
+//		            case 5:
+//		            	empleados.buscarEmpleadoPorDNI();
+//		            	break;
+//		            case 6:
+//		            	empleados.asignarTurno();
+//		            	break;
+//		            case 7:
+//		            	return;
+		            	
+		            default:
+		            	System.out.println("Opción inválida. Por favor, introduzca una opción del menu.");
+				}
+
 
 			
 		} while(!navegar);

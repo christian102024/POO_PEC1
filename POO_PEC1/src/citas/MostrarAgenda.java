@@ -2,17 +2,50 @@ package citas;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Scanner;
 
 import model.HoraConsulta;
 import model.Horario;
+import usuarios.Paciente;
 import util.Cadenas;
 import util.EntradaValores;
 import util.FormatosFechas;
 
 public class MostrarAgenda {
+	
+//	public static String darCita(Agenda agenda) {
+//		
+//		Paciente paciente = null;
+//		while(paciente == null) {
+//			
+//		}
+//		
+//		LocalDate fecha = EntradaValores.introducirFecha("Introduzca la fecha en la que quiere reservar la cita.");
+//		boolean mostrarAgenda = EntradaValores.introducirValorBooleano("¿Mostrar agenda? (S/N): ");
+//		
+//		if(mostrarAgenda) {
+//			mostrarAgenda(agenda, fecha);
+//		}
+//		
+//		
+//		Cita cita = null;
+//		while(cita == null) {
+//			System.out.println("Introduzca la hora a la que quiere reservar la cita");
+//			LocalTime hora = EntradaValores.introducirHora();
+//			cita = seleccionarCita(agenda, hora, fecha);
+//			
+//			if(cita == null) {
+//				cita = new Cita(null, null, null, mostrarAgenda)
+//				agenda.anyadirCita(fecha, cita);
+//			} else {
+//				
+//			}
+//		}
+//		
+//	}
 
 	
 	public static String mostrarAgendaPorFecha(Agenda agenda) {
@@ -21,7 +54,7 @@ public class MostrarAgenda {
 		if(agendaHoy) {
 			return mostrarAgenda(agenda, LocalDate.now());
 		} else {
-			LocalDate fecha = EntradaValores.introducirFecha();
+			LocalDate fecha = EntradaValores.introducirFecha(null);
 			return mostrarAgenda(agenda, fecha);
 		}
 	}
@@ -39,11 +72,6 @@ public class MostrarAgenda {
 		citas +=("+-------------+----------------+-------------+-----------+"+ columnaPaciente  +"+" + "\n");
 		citas += String.format("|    Fecha    | Hora de Inicio | Hora de Fin | Reservado | " + formatoColumnaPaciente + " |" + "\n", "Paciente");
 		citas +=("+-------------+----------------+-------------+-----------+"+ columnaPaciente + "+" + "\n");
-	    
-	    // Imprimir cada cita en la lista
-//	    for (Cita cita : agenda.getListaCitas()) {
-//	        citas += imprimirFilaCita(cita, formatter, longitudDefectoPaciente);
-//	    }
 		
 		for (HoraConsulta horaConsulta : horario.getListaHorasConsultas()) {
 	        citas += imprimirFilaHoraConsulta(horaConsulta, longitudDefectoPaciente, agenda, fecha);
@@ -104,6 +132,21 @@ public class MostrarAgenda {
 		} else {
 			for (Cita cita : listaCitas) {
 				if(cita.getFechaInicio().equals(horaInicio) && cita.getFechaFin().equals(horaFin)) {
+					return cita;
+				}
+			}
+			
+		}
+		return null;
+	}
+	
+	private static Cita seleccionarCita(Agenda agenda, LocalTime horaInicio, LocalDate fecha) {
+		List<Cita> listaCitas = agenda.getListaCitas(fecha);
+		if(listaCitas == null) {
+			return null;
+		} else {
+			for (Cita cita : listaCitas) {
+				if(cita.getFechaInicio().equals(LocalDateTime.of(fecha, horaInicio))) {
 					return cita;
 				}
 			}
