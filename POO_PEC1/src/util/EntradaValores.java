@@ -13,7 +13,7 @@ public class EntradaValores {
 		
 		Scanner scanner = new Scanner(System.in);
 		do {
-			System.out.println(mensaje);
+			System.out.print(mensaje);
 			
 			if (scanner.hasNextDouble()) {
 				numero = scanner.nextDouble();
@@ -22,26 +22,26 @@ public class EntradaValores {
 			
 		} while (!esValido);
 		
-		scanner.close();
 		return numero;
 	}
 	
-	public static int introducirNumeroEntero(String mensaje) {
+	public static Integer introducirNumeroEntero(String mensaje) {
 		boolean esValido = false;
 		int numero = -1;
 		
 		Scanner scanner = new Scanner(System.in);
 		do {
-			System.out.println(mensaje);
+			System.out.print(mensaje);
 			
 			if (scanner.hasNextInt()) {
 				numero = scanner.nextInt();
 				esValido = true;
-			}
+			} else if (scanner.hasNext()) {
+				if(scanner.next().equals("cancelar")) return null;
+			} 
 			
 		} while (!esValido);
 		
-		scanner.close();
 		return numero;
 	}
 	
@@ -51,7 +51,7 @@ public class EntradaValores {
 		
 		Scanner scanner = new Scanner(System.in);
 		do {
-			System.out.println(mensaje);
+			System.out.print(mensaje);
 			
 			if (scanner.hasNextInt()) {
 				numero = scanner.nextInt();
@@ -64,7 +64,7 @@ public class EntradaValores {
 				}
 				
 				if(!esValido) {
-					System.out.println("El numero no es valido, por favor, introduzca una opción valida.");
+					System.out.println("El número no es valido, por favor, introduzca una opción valida.");
 				}
 				
 			} else if (scanner.hasNext()) {
@@ -91,12 +91,14 @@ public class EntradaValores {
 		
 		Scanner scanner = new Scanner(System.in);
 		do {
-			System.out.println(mensaje);
+			System.out.print(mensaje);
 			
 			if (scanner.hasNext()) {
 				cadena = scanner.nextLine();
 				esValido = true;
 			}
+			
+			if(cadena.equals("cancelar")) return null;
 			
 		} while (!esValido);
 		
@@ -116,7 +118,7 @@ public class EntradaValores {
 		
 		Scanner scanner = new Scanner(System.in);
 		do {
-			System.out.println(mensaje);
+			System.out.print(mensaje);
 			
 			cadena = scanner.nextLine();
 			if (!cadena.isEmpty()) {
@@ -134,7 +136,7 @@ public class EntradaValores {
 	public static boolean introducirValorBooleano(String mensaje) {
 		Scanner scanner = new Scanner(System.in);
 		
-		System.out.println(mensaje);
+		System.out.print(mensaje);
 		String respuesta = scanner.next().toLowerCase();
 		
 		boolean valorBooleano = false;
@@ -162,7 +164,7 @@ public class EntradaValores {
 	public static LocalDate introducirFecha(String mensaje) {
 		Scanner scanner = new Scanner(System.in);
 		if(mensaje != null) {
-			System.out.println(mensaje);
+			System.out.print(mensaje);
 		}
 		
 		int anyo = -1;

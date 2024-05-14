@@ -2,6 +2,7 @@ package usuarios;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
 
@@ -91,12 +92,24 @@ public class Estudiantes {
 		
 		switch(opcion) {
 		case 1:
-			Empleado empleado = empleados.buscarEmpleadoPorDNI();
-			if(empleado != null && empleado.getUnidad().equals(Unidad.MEDICINA))  {
-				estudiante.setPersonalAsignado(empleado);
+			Empleado medico = empleados.buscarEmpleadoPorDNI();
+			if(medico != null && medico.getUnidad().equals(Unidad.MEDICINA))  {
+				estudiante.setPersonalAsignado(medico);
+			} else if(medico == null) {
+				System.out.println("El empleado no ha sido encontrado.");
+			} else {
+				System.out.println("El empleado no pertenece a la Unidad de medicina.");
 			}
 			break;
 		case 2:
+			Empleado enfermero = empleados.buscarEmpleadoPorDNI();
+			if(enfermero != null && enfermero.getUnidad().equals(Unidad.ENFERMERIA)) {
+				estudiante.setPersonalAsignado(enfermero);
+			} else if(enfermero == null) {
+				System.out.println("El empleado no ha sido encontrado.");
+			} else {
+				System.out.println("El empleado no pertenece a la Unidad de enfermería.");
+			}
 			break;
 		case 3:
 			break;
@@ -105,11 +118,44 @@ public class Estudiantes {
 		}
 	}
 	
+	public void darDeBajaEstudiante() {
+		String dni = EntradaValores.introducirCadena("Introduzca el DNI del estudiante a eliminar: ");
+		darDeBajaEstudiante(dni);
+	}
+	
+	public void darDeBajaEstudiante(String dni) {
+		int indice = buscarIndiceDeEstudiantePorDNI(dni);
+		if(indice == -1) {
+			System.out.println("Estudiante no encontrado.");
+		} else {
+			estudiantes.remove(indice);
+		}
+	}
+	
 	public void mostrarEstudiantes() {
-		System.out.println("Estudiantes dados de alta");
+		System.out.println("Estudiantes dados de alta: ");
 		for(Estudiante estudiante: estudiantes) {
 			System.out.println(estudiante);
 		}
+		if (estudiantes == null || estudiantes.size() == 0) {
+			System.out.println("No hay estudiates dados de alta.");
+		}
+	}
+	
+	/**
+	 * 
+	 * @param dni
+	 * @return El índice del estudiante en la lista de estudiantes
+	 */
+	public int buscarIndiceDeEstudiantePorDNI(String dni) {
+		for (int i = 0; i < estudiantes.size(); i++) {
+			Estudiante estudiante = estudiantes.get(i);
+			
+			if(estudiante.getDni().equals(dni)) {
+				return i;
+			}
+		}
+		return -1;
 	}
 	
 	

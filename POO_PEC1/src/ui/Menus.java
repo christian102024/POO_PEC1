@@ -44,37 +44,40 @@ public class Menus {
 
 	public void mostrarMenuPrincipal() {
 		List<String> opciones = Arrays.asList("GESTIÓN DE PERSONAL DEL HOSPITAL", "GESTIÓN DE ESTUDIANTES", "GESTIÓN DE MEDICINA", "GESTIÓN DE ENFERMERÍA", "GESTIÓN DE PACIENTES", "GESTIÓN DE SOPORTE", "SALIR");
-		int opcion;
+		String opcion;
 		boolean navegar = false;
 		
 		do {
 			MostrarMenu.mostrarMenu("MENU PRINCIPAL", opciones);
-			System.out.print("Seleccione una opción: ");
 			
-			opcion = EntradaValores.introducirNumeroEntero("Seleccione una opción: ", new int[]{1, 2, 3, 4, 5, 6, 7});
+			opcion = EntradaValores.introducirCadena("Seleccione una opción: ");
+			
+			if(opcion == null) return;
 			
 			switch(opcion) {
-			case 1:
+			case "1":
 				mostrarMenuGestionHospital();
 				break;
-			case 2:
+			case "2":
 				mostrarMenuGestionEstudiantes();
 				break;
-			case 3:
+			case "3":
 				mostrarMenuGestionMedicina();
 				break;
-			case 4:
+			case "4":
 				System.out.println("NO IMPLEMENTADO");
 				break;
-			case 5:
+			case "5":
 				mostrarMenuGestionPacientes();
 				break;
-			case 6:
+			case "6":
 				System.out.println("NO IMPLEMENTADO");
 				break;
-			case 7:
+			case "7":
 				navegar = true;
 				break;
+			default:
+            	System.out.println("Opción inválida. Por favor, introduzca una opción del menu.");
 				
 			}
 			
@@ -85,46 +88,43 @@ public class Menus {
 
 	public void mostrarMenuGestionHospital() {
 		List<String> opciones = Arrays.asList("Dar de alta a personal", "Dar de baja a personal", "Modificar expediente", "Mostrar empleados", "Buscar empleados por DNI", "Asignar turno", "Volver");
-		int opcion;
+		String opcion;
 		boolean navegar = false;
 		
 		do {
 			MostrarMenu.mostrarMenu("GESTIÓN DE PERSONAL DEL HOSPITAL", opciones );
 			System.out.print("Seleccione una opción: ");
 
-			if(scanner.hasNext())  {
-				opcion = scanner.nextInt();
-				scanner.nextLine();
+				opcion = EntradaValores.introducirCadena("Seleccione una opción: ");
+				
+				if(opcion == null) return;
 				
 				switch (opcion) {
-		            case 1:
+		            case "1":
 		            	empleados.darDeAltaEmpleado(scanner);
 		                break;
-		            case 2:
+		            case "2":
 		            	empleados.darDeBajaEmpleado();
 		                break;
-		            case 3:
+		            case "3":
 		            	empleados.modificarEmpleado();
 		                break;
-		            case 4:
+		            case "4":
 		            	System.out.println("EMPLEADOS DADOS DE ALTA");
 		            	System.out.println(empleados.toString());
 		            	break;
-		            case 5:
+		            case "5":
 		            	empleados.mostrarEmpleadoBuscadoPorDNI();
 		            	break;
-		            case 6:
+		            case "6":
 		            	empleados.asignarTurno();
 		            	break;
-		            case 7:
+		            case "7":
 		            	return;
 		            	
 		            default:
 		            	System.out.println("Opción inválida. Por favor, introduzca una opción del menu.");
 				}
-			} else {
-				System.out.println("Opción inválida. Por favor, introduzca una opción del menu.");
-			}
 
 			
 		} while(!navegar);
@@ -132,29 +132,27 @@ public class Menus {
 	
 	public void mostrarMenuGestionEstudiantes() {
 		List<String> opciones = Arrays.asList("Dar de alta a estudiante", "Dar de baja a estudiante", "Mostrar estudiantes", "Volver");
-		int opcion;
+		String opcion;
 		boolean navegar = false;
 		
 		do {
 			MostrarMenu.mostrarMenu("GESTIÓN DE ESTUDIANTES DEL HOSPITAL", opciones );
-			System.out.print("Seleccione una opción: ");
 
-			if(scanner.hasNext())  {
-				opcion = scanner.nextInt();
-				scanner.nextLine();
+			opcion = EntradaValores.introducirCadena("Seleccione una opción: ");
+			
+			if(opcion == null) return;
 				
 				switch (opcion) {
-		            case 1:
+		            case "1":
 		            	estudiantes.darDeAltaEstudiante();
-//		            	empleados.darDeAltaEmpleado(scanner);
 		                break;
-		            case 2:
-		            	empleados.darDeBajaEmpleado();
+		            case "2":
+		            	estudiantes.darDeBajaEstudiante();
 		                break;
-		            case 3:
+		            case "3":
 		            	estudiantes.mostrarEstudiantes();
 		                break;
-		            case 4:
+		            case "4":
 		            	navegar = true;
 		            	break;
 //		            case 5:
@@ -169,9 +167,6 @@ public class Menus {
 		            default:
 		            	System.out.println("Opción inválida. Por favor, introduzca una opción del menu.");
 				}
-			} else {
-				System.out.println("Opción inválida. Por favor, introduzca una opción del menu.");
-			}
 
 			
 		} while(!navegar);
@@ -179,19 +174,16 @@ public class Menus {
 	
 	public void mostrarMenuGestionMedicina() {
 		List<String> opciones = Arrays.asList("Ver agenda de medico", "Añadir una cita", "Volver");
-		int opcion;
+		String opcion;
 		boolean navegar = false;
 		
 		do {
 			MostrarMenu.mostrarMenu("GESTIÓN DE MEDICINA DEL HOSPITAL", opciones );
-			System.out.print("Seleccione una opción: ");
 
-			if(scanner.hasNext())  {
-				opcion = scanner.nextInt();
-				scanner.nextLine();
+				opcion = EntradaValores.introducirCadena("Seleccione una opción: ");
 				Empleado empleado;
 				switch (opcion) {
-		            case 1:
+		            case "1":
 		            	empleado = empleados.buscarEmpleadoPorDNI();
 		            	if(empleado != null ) {
 		            		PersonalSanitario personalSanitario = PersonalSanitario.comprobarEmpleadoEsMedico(empleado);
@@ -202,7 +194,7 @@ public class Menus {
 		            		System.out.println("Proceso cancelado.");
 		            	}
 		                break;
-		            case 2:
+		            case "2":
 		            	empleado = empleados.buscarEmpleadoPorDNI();
 		            	if(empleado != null) {
 		            		PersonalSanitario personalSanitario = PersonalSanitario.comprobarEmpleadoEsMedico(empleado);
@@ -242,7 +234,7 @@ public class Menus {
 		            		System.out.println("Proceso cancelado.");
 		            	}
 		            	break;
-		            case 3:
+		            case "3":
 		            	navegar = true;
 		                break;
 //		            case 4:
@@ -259,11 +251,7 @@ public class Menus {
 		            default:
 		            	System.out.println("Opción inválida. Por favor, introduzca una opción del menu.");
 				}
-			} else {
-				System.out.println("Opción inválida. Por favor, introduzca una opción del menu.");
-			}
-
-			
+				
 		} while(!navegar);
 	}
 	
@@ -274,18 +262,18 @@ public class Menus {
 		do {
 			MostrarMenu.mostrarMenu("GESTIÓN DE PACIENTES DEL HOSPITAL", opciones );
 
-			int opcion = EntradaValores.introducirNumeroEntero("Seleccione una opción: ", new int[] {1, 2, 3, 4});
+			String opcion = EntradaValores.introducirCadena("Seleccione una opción: ");
 				switch (opcion) {
-		            case 1:
+		            case "1":
 		            	pacientes.darDeAltaPaciente();
 		            	break;
-		            case 2:
+		            case "2":
 		            	pacientes.darDeBajaPaciente();
 		            	break;
-		            case 3:
+		            case "3":
 		            	System.out.println(pacientes);
 		                break;
-		            case 4:
+		            case "4":
 		            	return;
 //		            case 5:
 //		            	empleados.buscarEmpleadoPorDNI();
