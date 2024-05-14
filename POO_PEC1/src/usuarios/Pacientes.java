@@ -6,8 +6,12 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
 
+import campus.Habitacion;
+import campus.Habitaciones;
+import model.Expediente;
 import model.Seguro;
 import ui.MostrarMenu;
+import util.Cadenas;
 import util.EntradaValores;
 import util.Mensajes;
 
@@ -129,13 +133,12 @@ public class Pacientes {
 		return null;
 	}
 
-	public int buscarIndiceDePacientePorDNI() {
-		Scanner scanner = new Scanner(System.in);
+	public Integer buscarIndiceDePacientePorDNI() {
 		String dni = EntradaValores.introducirCadena("Introduzca el DNI del paciente: ");
 
-		if (dni.equals("cancelar")) {
+		if (dni == null) {
 			System.out.println(Mensajes.PROCESO_CANCELADO.getMensaje());
-			return -1;
+			return null;
 		}
 
 		return buscarIndiceDePacientePorDNI(dni);
@@ -151,6 +154,125 @@ public class Pacientes {
 			}
 		}
 		return -1;
+	}
+	
+	public void ingresarPaciente() {
+		Paciente paciente = buscarPacientePorDNI();
+		Habitacion habitacion = buscarHabitacionPorNumero();
+		paciente = addTratamiento(paciente);
+		
+		ingresarPaciente(paciente, habitacion);
+		System.out.println("Paciente ingresado correctamente");
+	}
+	
+	public void ingresarPaciente(Paciente paciente, Habitacion habitacion) {
+		if(paciente != null && habitacion != null) {
+			habitacion.setOcupada(true);
+			habitacion.setPaciente(paciente);
+			
+			Habitaciones habitaciones = Habitaciones.getInstancia();
+			habitaciones.setHabitaciones(actualizarHabitacion(paciente, habitacion, habitaciones));
+		}
+	}
+	
+	public Habitacion buscarHabitacionPorNumero() {
+		boolean encontrada = false;
+		Habitacion habitacionEncontrada = null;
+		
+		while(!encontrada) {
+			Integer numeroHabitacion = EntradaValores.introducirNumeroEntero("Introduzca el número de habitación: ");
+			
+			Habitaciones habitaciones = Habitaciones.getInstancia();
+			for (int i = 0; i < habitaciones.getHabitaciones().size(); i++) {
+				
+				Habitacion habitacion = habitaciones.getHabitaciones().get(i);
+				
+				if(habitacion.getNumeroHabitacion() == (numeroHabitacion) && habitacion.isOcupada() == false) {
+					habitacionEncontrada = habitacion;
+					encontrada = true;
+				} else if(habitacion.getNumeroHabitacion() == (numeroHabitacion)) {
+					System.out.println("La habitación esta ocupada");
+					i = habitaciones.getHabitaciones().size();
+				}
+			}
+			if(!encontrada) System.out.println("Habitación no encontrada");			
+		}
+		
+		return habitacionEncontrada;
+	}
+	
+	public List<Habitacion> actualizarHabitacion(Paciente paciente, Habitacion habitacion, Habitaciones habitaciones) {
+		List<Habitacion> listaHabitaciones = habitaciones.getHabitaciones();
+		
+		int indice = habitaciones.buscarHabitacionPorNumero(habitacion.getNumeroHabitacion());
+		
+		if(indice != -1) {
+			listaHabitaciones.set(indice, habitacion);
+		}
+		
+		return listaHabitaciones;
+	}
+	
+	public Paciente addTratamiento(Paciente paciente) {
+		boolean tratamiento = EntradaValores.introducirValorBooleano("¿Introducir procedimiento médico? (S/N): ");
+		
+		if(tratamiento) {
+			paciente.getExpedientes().add(pedirDatosProcedimiento());
+			System.out.println("Tratamiento");
+		} else {
+			return null;
+		}
+		
+		return paciente;
+	}
+	
+	private Expediente pedirDatosProcedimiento() {
+		Expediente expediente = new Expediente(null, null, null);
+		String procedimiento = EntradaValores.introducirCadena("Escriba el procedimiento médico: ");
+		expediente.setProcedimiento(procedimiento);
+		return expediente;
+		
+	}
+	
+	public void actualizarExpedientePaciente() {
+		Integer indice = buscarIndiceDePacientePorDNI();
+		
+		if(indice != null && indice != -1) {
+			Paciente paciente = pacientes.get(indice);
+			Expediente expediente = pedirDatosExpediente();
+			paciente.anyadirExpediente(expediente);
+		} 
+	}
+	
+	public Expediente pedirDatosExpediente() {
+		Expediente expediente = new Expediente();
+		String informe = EntradaValores.introducirCadena("Informe: ");
+		if(informe == null) {
+			System.out.println(Mensajes.PROCESO_CANCELADO);
+			return null;
+		}
+		expediente.setInforme(informe);
+		
+		String procedimiento = EntradaValores.introducirCadena("Procedimiento: ");
+		if(procedimiento == null) {
+			System.out.println(Mensajes.PROCESO_CANCELADO);
+			return null;
+		}
+		expediente.setProcedimiento(procedimiento);
+		
+		String diagnostico = EntradaValores.introducirCadena("Diagnostico: ");
+		if(diagnostico == null) {
+			System.out.println(Mensajes.PROCESO_CANCELADO);
+			return null;
+		}
+		expediente.setDiagnostico(diagnostico);
+		
+		return expediente;
+		
+	}
+	
+	public void modificarPaciente(Paciente paciente) {
+		
 	}
 
 	@Override

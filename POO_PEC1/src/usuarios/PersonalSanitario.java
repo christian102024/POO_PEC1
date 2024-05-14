@@ -45,7 +45,21 @@ public class PersonalSanitario extends Empleado {
 		if (personalSanitario.getUnidad() == Unidad.MEDICINA) {
 			return personalSanitario;
 		} else {
-			System.out.println("El empleado no es un Médico");
+			System.out.println("El empleado no es un Médico.");
+			return null;
+		}
+
+	}
+	
+	public static PersonalSanitario comprobarEmpleadoEsEnfermero(Empleado empleado) {
+		PersonalSanitario personalSanitario = convertirEmpleadoEnPersonalSanitario(empleado);
+		if (personalSanitario == null) {
+			return null;
+		}
+		if (personalSanitario.getUnidad() == Unidad.ENFERMERIA) {
+			return personalSanitario;
+		} else {
+			System.out.println("El empleado no es un Enfermero.");
 			return null;
 		}
 

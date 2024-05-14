@@ -164,7 +164,7 @@ public class EntradaValores {
 	public static LocalDate introducirFecha(String mensaje) {
 		Scanner scanner = new Scanner(System.in);
 		if(mensaje != null) {
-			System.out.print(mensaje);
+			System.out.println(mensaje);
 		}
 		
 		int anyo = -1;

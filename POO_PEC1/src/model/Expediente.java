@@ -1,17 +1,32 @@
 package model;
 
+import java.time.LocalDateTime;
+
+import util.FormatosFechas;
+
 public class Expediente {
 
+	private LocalDateTime fecha;
 	private String informe;
-	private String tratamiento;
+	private String procedimiento;
 	private String diagnostico;
 	
-	public Expediente(String informe, String tratamiento, String diagnostico) {
+	public Expediente(String informe, String procedimiento, String diagnostico) {
 		super();
+		this.fecha = LocalDateTime.now();
 		this.informe = informe;
-		this.tratamiento = tratamiento;
+		this.procedimiento = procedimiento;
 		this.diagnostico = diagnostico;
 	}
+	
+	public Expediente() {
+		super();
+		this.fecha = LocalDateTime.now();
+		this.informe = null;
+		this.procedimiento = null;
+		this.diagnostico = null;
+	}
+
 
 	public String getInforme() {
 		return informe;
@@ -21,12 +36,12 @@ public class Expediente {
 		this.informe = informe;
 	}
 
-	public String getTratamiento() {
-		return tratamiento;
+	public String getProcedimiento() {
+		return procedimiento;
 	}
 
-	public void setTratamiento(String tratamiento) {
-		this.tratamiento = tratamiento;
+	public void setProcedimiento(String procedimiento) {
+		this.procedimiento = procedimiento;
 	}
 
 	public String getDiagnostico() {
@@ -37,9 +52,17 @@ public class Expediente {
 		this.diagnostico = diagnostico;
 	}
 
+	public LocalDateTime getFecha() {
+		return fecha;
+	}
+
+	public void setFecha(LocalDateTime fecha) {
+		this.fecha = fecha;
+	}
+
 	@Override
 	public String toString() {
-		return "Expediente [informe: " + informe + ", tratamiento: " + tratamiento + ", diagnostico: " + diagnostico + "]";
+		return "Expediente [fecha: " + fecha.format(FormatosFechas.FORMATO_DIA_HORA.getFormatter()) +", informe: " + (informe != null ? informe : "-") + ", procedimiento: " + (procedimiento != null ? procedimiento : "-") + ", diagnostico: " + (diagnostico != null ? diagnostico : "-") + "] ";
 	}
 	
 	

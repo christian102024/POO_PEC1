@@ -54,5 +54,12 @@ public class Habitacion {
 	public void setPaciente(Paciente paciente) {
 		this.paciente = paciente;
 	}
+
+	@Override
+	public String toString() {
+		return "Número de habitación: " + numeroHabitacion + ", Piso: " + piso + ", Ocupada: " + ocupada
+				+ ", Paciente: " + paciente;
+	}
+	
 	
 }

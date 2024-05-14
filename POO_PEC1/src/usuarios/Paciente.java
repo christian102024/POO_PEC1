@@ -47,6 +47,10 @@ public class Paciente extends Usuario {
 	public void setExpedientes(List<Expediente> expedientes) {
 		this.expedientes = expedientes;
 	}
+	
+	public void anyadirExpediente(Expediente expediente) {
+		this.expedientes.add(expediente);
+	}
 
 	@Override
 	public String toString() {

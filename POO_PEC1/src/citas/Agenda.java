@@ -2,10 +2,6 @@ package citas;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
@@ -13,9 +9,6 @@ import java.util.TreeMap;
 import model.HoraConsulta;
 import model.Horario;
 import model.HorariosPorTurno;
-import usuarios.PersonalSanitario;
-import util.Cadenas;
-import util.FormatosFechas;
 
 public class Agenda {
 
@@ -32,12 +25,6 @@ public class Agenda {
 		super();
 		this.agenda = new TreeMap<LocalDate, List<Cita>>();
 	}
-	
-//	public Agenda(Horario horario) {
-//		super();
-//		horario.get
-//		this.listaCitas = listaCitas;
-//	}
 
 	public List<Cita> getListaCitas(LocalDate fecha) {
 		return agenda.get(fecha);
@@ -64,14 +51,11 @@ public class Agenda {
 	}
 	
 	public boolean comprobarCitaEstaDisponible(LocalDate fecha, LocalDateTime horaInicio, LocalDateTime horaFin) {
-//		boolean horaDeInicioDisponbile = false;
-		
 		if(comprobarHoraExisteEnHorario(horaInicio, horaFin) && comprobarCitaNoExiste(fecha, horaInicio, horaFin)) {
 			return true;
 		} else {
 			return false;
 		}
-		
 	}
 	
 	public boolean comprobarHoraExisteEnHorario(LocalDateTime horaInicio, LocalDateTime horaFin) {

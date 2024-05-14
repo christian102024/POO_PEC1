@@ -179,7 +179,7 @@ public class Empleados {
 		System.out.print("Introduzca el DNI del empleado: ");
 		String respuesta = scanner.nextLine();
 		if (respuesta.equals("cancelar")) {
-			System.out.println(Mensajes.PROCESO_CANCELADO);
+			System.out.println(Mensajes.PROCESO_CANCELADO.getMensaje());
 			return null;
 		}
 		return buscarIndiceDeEmpleadoPorDNI(respuesta);
@@ -208,15 +208,16 @@ public class Empleados {
 			System.out.print("Introduzca el dni del empleado al que quiere modificar: ");
 			String dni = scanner.nextLine();
 			indice = buscarIndiceDeEmpleadoPorDNI(dni);
+			
+			if (dni.equals("cancelar")) {
+				System.out.println(Mensajes.PROCESO_CANCELADO.getMensaje());
+				return;
+			}
 
 			if (indice == -1) {
 				System.out.println("DNI no encontrado.");
 			}
 
-			if (dni.equals("cancel")) {
-				System.out.println("PROCESO CANCELADO");
-				return;
-			}
 		} while (indice == -1);
 
 		Empleado empleado = empleados.get(indice);
