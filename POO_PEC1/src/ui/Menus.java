@@ -85,7 +85,7 @@ public class Menus {
 
 	public void mostrarMenuGestionHospital() {
 		List<String> opciones = Arrays.asList("Dar de alta a personal", "Dar de baja a personal", "Modificar empleado",
-				"Mostrar empleados", "Buscar empleados por DNI", "Asignar turno", "Expedir factura", "Volver");
+				"Mostrar empleados", "Buscar empleados por DNI", "Asignar turno", "Expedir factura", "Mostrar empleados clasificados por unidad", "Volver");
 		String opcion;
 		boolean navegar = false;
 
@@ -122,6 +122,9 @@ public class Menus {
 				facturas.generarFactura();
 				break;
 			case "8":
+				empleados.mostrarEmpleadosClasificadosPorUnidad();
+				break;
+			case "9":
 				return;
 
 			default:

@@ -200,6 +200,36 @@ public class Empleados {
 
 		return -1;
 	}
+	
+	public void mostrarEmpleadosClasificadosPorUnidad() {
+		for (Unidad unidad : Unidad.values()) {
+			
+			List<Empleado> listaEmpleados = buscarEmpleadosPorUnidad(unidad);
+			if(listaEmpleados.size() > 0) {
+				System.out.println("EMPLEADOS UNIDAD " + unidad.getValor());
+				imprimirEmpleados(listaEmpleados);
+				System.out.println();
+			}
+		}
+	}
+	
+	public List<Empleado> buscarEmpleadosPorUnidad(Unidad unidad) {
+		List<Empleado> listaEmpleados = new ArrayList<Empleado>();
+		
+		for (Empleado empleado : empleados) {
+			if(empleado.getUnidad().equals(unidad)) {
+				listaEmpleados.add(empleado);
+			}
+		}
+		
+		return listaEmpleados;
+	}
+	
+	public void imprimirEmpleados(List<Empleado> listaEmpleados) {
+		for (Empleado empleado : listaEmpleados) {
+			System.out.println(empleado);
+		}
+	}
 
 	public void modificarEmpleado() {
 		int indice = -1;
