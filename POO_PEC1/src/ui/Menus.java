@@ -264,7 +264,6 @@ public class Menus {
 		            			Agenda agenda = personalSanitario.getAgenda();
 		            			LocalDate fecha = EntradaValores.introducirFecha("Introduzca la fecha en la que quiere dar de alta la cita: ");
 		            			MostrarAgenda.mostrarAgenda(agenda, fecha);
-//		            			while (citaNoDisponbile) {
 		            				LocalTime horaInicio = EntradaValores.introducirHora("Introduzca la hora de inicio: ");
 		            				LocalTime horaFin = EntradaValores.introducirHora("Introduzca la hora de fin: ");
 		            				Paciente paciente = pacientes.buscarPacientePorDNI();
@@ -304,7 +303,7 @@ public class Menus {
 	}
 	
 	public void mostrarMenuGestionPacientes() {
-		List<String> opciones = Arrays.asList("Añadir paciente", "Eliminar paciente", "Mostrar pacientes", "Buscar paciente por DNI", "Ingresar paciente", "Mostrar habitaciones", "Volver");
+		List<String> opciones = Arrays.asList("Añadir paciente", "Eliminar paciente", "Mostrar pacientes", "Buscar paciente por DNI", "Ingresar paciente", "Dar el alta a paciente ingresado", "Mostrar habitaciones", "Volver");
 		boolean navegar = false;
 		
 		do {
@@ -328,9 +327,12 @@ public class Menus {
 		            	pacientes.ingresarPaciente();
 		            	break;
 		            case "6":
-		            	System.out.println(habitaciones.toString());
+		            	pacientes.darAltaPacienteIngresado();
 		            	break;
 		            case "7":
+		            	System.out.println(habitaciones.toString());
+		            	break;
+		            case "8":
 		            	return;
 		            	
 		            default:

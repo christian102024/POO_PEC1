@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import usuarios.Paciente;
+
 public class Habitaciones {
 
 	private static Habitaciones instancia;
@@ -53,6 +55,17 @@ public class Habitaciones {
 		int indice = 0;
 		for (Habitacion habitacion : habitaciones) {
 			if(habitacion.getNumeroHabitacion() == numeroHabitacion) {
+				return indice;
+			}
+			indice++;
+		}
+		return -1;
+	}
+	
+	public int buscarIndiceHabitacionPorPaciente(Paciente paciente) {
+		int indice = 0;
+		for (Habitacion habitacion : habitaciones) {
+			if(habitacion.getPaciente().equals(paciente)) {
 				return indice;
 			}
 			indice++;

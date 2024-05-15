@@ -175,6 +175,26 @@ public class Pacientes {
 		}
 	}
 	
+	public void darAltaPacienteIngresado() {
+		Paciente paciente = buscarPacientePorDNI();
+		Habitaciones habitaciones = Habitaciones.getInstancia();
+		if(paciente != null) {
+			int indice = habitaciones.buscarIndiceHabitacionPorPaciente(paciente);
+			
+			if(indice != -1) {
+				Habitacion habitacion = habitaciones.getHabitaciones().get(indice);
+				habitacion.setOcupada(false);
+				habitacion.setPaciente(null);
+				System.out.println("Paciente dado de alta; Habitación desocupada.");
+			}
+		} else {
+			return;
+		}
+		
+		
+		
+	}
+	
 	public Habitacion buscarHabitacionPorNumero() {
 		boolean encontrada = false;
 		Habitacion habitacionEncontrada = null;
