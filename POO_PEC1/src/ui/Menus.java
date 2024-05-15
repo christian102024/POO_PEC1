@@ -200,7 +200,6 @@ public class Menus {
 						LocalDate fecha = EntradaValores
 								.introducirFecha("Introduzca la fecha en la que quiere dar de alta la cita: ");
 						MostrarAgenda.mostrarAgenda(agenda, fecha);
-//		            			while (citaNoDisponbile) {
 						LocalTime horaInicio = EntradaValores.introducirHora("Introduzca la hora de inicio: ");
 						LocalTime horaFin = EntradaValores.introducirHora("Introduzca la hora de fin: ");
 						Paciente paciente = pacientes.buscarPacientePorDNI();
