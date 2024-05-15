@@ -1,12 +1,10 @@
 package model;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 import usuarios.Empleado;
 import usuarios.Empleados;
-import usuarios.Paciente;
 import util.EntradaValores;
 
 public class Recursos {
@@ -47,6 +45,10 @@ public class Recursos {
 		this.recursos.remove(recurso);		
 	}
 	
+	public void eliminarRecurso(int indice) {
+		this.recursos.remove(indice);
+	}
+	
 	public void darDeAltaRecurso() {
 		Recurso recurso = pedirDatosRecurso();
 		
@@ -85,12 +87,25 @@ public class Recursos {
 		
 		return recurso;
 	}
+	
+	public void darDeBajaRecurso() {
+		System.out.println(this);
+
+		if(recursos.size() == 0) return;
+		int indice = EntradaValores.introducirNumeroEntero("Introduzca el número del recurso a eliminar: ");
+		if(indice >= 0 && indice < recursos.size()) {
+			eliminarRecurso(indice);
+		}
+	}
 
 	@Override
 	public String toString() {
 		String cadena = "";
+		int indice = 0;
+		
 		for (Recurso recurso : recursos) {
-			cadena += recurso + "\n";
+			cadena += indice + ".\t" + recurso + "\n";
+			indice++;
 		}
 		
 		if(recursos.size() == 0) return "No hay recursos dañados disponibles.";

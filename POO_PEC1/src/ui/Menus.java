@@ -430,7 +430,7 @@ public class Menus {
 				recursos.darDeAltaRecurso();
 				break;
 			case "2":
-//				recursos.darDeBajaRecurso();
+				recursos.darDeBajaRecurso();
 				break;
 			case "3":
 				System.out.println(recursos);
