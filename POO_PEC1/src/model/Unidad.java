@@ -12,12 +12,9 @@ public enum Unidad {
 	PRUEBAS_MEDICAS("Pruebas médicas"),
 	CARDIOVASCULAR("Cardiovascular"),
 	DIABETES("Diabetes"),
-	GERENCIA("Gerencia"),
-	MEDICINA("Medicina"),
-    ENFERMERIA("Enfermeria"),
     CAFETERIA("Cafetería"),
     APARCAMIENTO("Aparcamiento"),
-	URGENCAS("Urgencias"),
+	URGENCIAS("Urgencias"),
 	FORMACION("Formación");
 
 	private final String valor;

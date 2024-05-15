@@ -91,7 +91,7 @@ public class Menus {
 	}
 
 	public void mostrarMenuGestionHospital() {
-		List<String> opciones = Arrays.asList("Dar de alta a personal", "Dar de baja a personal", "Modificar expediente", "Mostrar empleados", "Buscar empleados por DNI", "Asignar turno", "Volver");
+		List<String> opciones = Arrays.asList("Dar de alta a personal", "Dar de baja a personal", "Modificar empleado", "Mostrar empleados", "Buscar empleados por DNI", "Asignar turno", "Volver");
 		String opcion;
 		boolean navegar = false;
 		
@@ -159,14 +159,6 @@ public class Menus {
 		            case "4":
 		            	navegar = true;
 		            	break;
-//		            case 5:
-//		            	empleados.buscarEmpleadoPorDNI();
-//		            	break;
-//		            case 6:
-//		            	empleados.asignarTurno();
-//		            	break;
-//		            case 7:
-//		            	return;
 		            	
 		            default:
 		            	System.out.println("Opción inválida. Por favor, introduzca una opción del menu.");
@@ -224,16 +216,7 @@ public class Menus {
 		            						System.out.println("Cita registrada correctamente!");
 		            					}
 		            				}
-		            				
-//		            			}
-		            			
-		            			
-//		            			personalSanitario.getAgenda().anyadirCita(fecha, new Cita(null, horaInicio, horaFin, true));
-//		            			MostrarAgenda.mostrarAgendaPorFecha(personalSanitario.getAgenda());
-		            			
 		            		}	
-		            	} else {
-		            		System.out.println("Proceso cancelado.");
 		            	}
 		            	break;
 		            case "3":
@@ -242,14 +225,6 @@ public class Menus {
 		            case "4":
 		            	navegar = true;
 		            	break;
-//		            case 5:
-//		            	empleados.buscarEmpleadoPorDNI();
-//		            	break;
-//		            case 6:
-//		            	empleados.asignarTurno();
-//		            	break;
-//		            case 7:
-//		            	return;
 		            	
 		            default:
 		            	System.out.println("Opción inválida. Por favor, introduzca una opción del menu.");
@@ -320,14 +295,6 @@ public class Menus {
 		            case "4":
 		            	navegar = true;
 		            	break;
-//		            case 5:
-//		            	empleados.buscarEmpleadoPorDNI();
-//		            	break;
-//		            case 6:
-//		            	empleados.asignarTurno();
-//		            	break;
-//		            case 7:
-//		            	return;
 		            	
 		            default:
 		            	System.out.println("Opción inválida. Por favor, introduzca una opción del menu.");

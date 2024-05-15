@@ -1,14 +1,9 @@
 package usuarios;
 
-import java.time.format.DateTimeFormatter;
-import java.util.List;
-
 import citas.Agenda;
-import citas.Cita;
-import model.HoraConsulta;
+import model.Servicio;
 import model.Unidad;
-import util.Cadenas;
-import util.FormatosFechas;
+import model.Unidades;
 
 public class PersonalSanitario extends Empleado {
 	private Agenda agenda;
@@ -42,7 +37,7 @@ public class PersonalSanitario extends Empleado {
 		if (personalSanitario == null) {
 			return null;
 		}
-		if (personalSanitario.getUnidad() == Unidad.MEDICINA) {
+		if (Unidades.getServiciosPorUnidad(personalSanitario.getUnidad()).contains(Servicio.MEDICINA)) {
 			return personalSanitario;
 		} else {
 			System.out.println("El empleado no es un Médico.");
@@ -56,7 +51,7 @@ public class PersonalSanitario extends Empleado {
 		if (personalSanitario == null) {
 			return null;
 		}
-		if (personalSanitario.getUnidad() == Unidad.ENFERMERIA) {
+		if (Unidades.getServiciosPorUnidad(personalSanitario.getUnidad()).contains(Servicio.ENFERMERIA)) {
 			return personalSanitario;
 		} else {
 			System.out.println("El empleado no es un Enfermero.");

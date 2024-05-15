@@ -57,10 +57,10 @@ public class Hospital {
 
 		// Personal Sanitario de la unidad de MEDICINA
 		PersonalSanitario medico = new PersonalSanitario("María", "Latorre", "18098278W", "624142536",
-				Unidad.MEDICINA, new Agenda(agendaMedico));
+				Unidad.CARDIOVASCULAR, new Agenda(agendaMedico));
 		
 		// Personal Sanitario de la unidad de ENFERMERÍA
-		PersonalSanitario enfermero = new PersonalSanitario("Laura", "Pinies", "14542214R", "645124512", Unidad.ENFERMERIA, new Agenda(agendaEnfermero));
+		PersonalSanitario enfermero = new PersonalSanitario("Laura", "Pinies", "14542214R", "645124512", Unidad.CONSULTAS_EXTERNAS, new Agenda(agendaEnfermero));
 		
 		empleados.addEmpleado(empleado);
 		empleados.addEmpleado(medico);

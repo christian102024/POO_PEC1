@@ -15,38 +15,19 @@ import util.EntradaValores;
 import util.FormatosFechas;
 
 public class MostrarAgenda {
-	
-//	public static String darCita(Agenda agenda) {
-//		
-//		Paciente paciente = null;
-//		while(paciente == null) {
-//			
-//		}
-//		
-//		LocalDate fecha = EntradaValores.introducirFecha("Introduzca la fecha en la que quiere reservar la cita.");
-//		boolean mostrarAgenda = EntradaValores.introducirValorBooleano("¿Mostrar agenda? (S/N): ");
-//		
-//		if(mostrarAgenda) {
-//			mostrarAgenda(agenda, fecha);
-//		}
-//		
-//		
-//		Cita cita = null;
-//		while(cita == null) {
-//			System.out.println("Introduzca la hora a la que quiere reservar la cita");
-//			LocalTime hora = EntradaValores.introducirHora();
-//			cita = seleccionarCita(agenda, hora, fecha);
-//			
-//			if(cita == null) {
-//				cita = new Cita(null, null, null, mostrarAgenda)
-//				agenda.anyadirCita(fecha, cita);
-//			} else {
-//				
-//			}
-//		}
-//		
-//	}
 
+	public static LocalDate mostrarAgendaDevolverFecha(Agenda agenda) {
+		boolean agendaHoy = EntradaValores.introducirValorBooleano("¿Quiere mostrar la agenda del día de hoy? (S/N)");
+		
+		if(agendaHoy) {
+			mostrarAgenda(agenda, LocalDate.now());
+			return LocalDate.now();
+		} else {
+			LocalDate fecha = EntradaValores.introducirFecha(null);
+			mostrarAgenda(agenda, fecha);
+			return fecha;
+		}
+	}
 	
 	public static String mostrarAgendaPorFecha(Agenda agenda) {
 		boolean agendaHoy = EntradaValores.introducirValorBooleano("¿Quiere mostrar la agenda del día de hoy? (S/N)");
@@ -154,21 +135,6 @@ public class MostrarAgenda {
 		}
 		return null;
 	}
-	
-//	private String imprimirFilaCita(Cita cita, DateTimeFormatter formatter, int anchoNombreMaximo) {
-//		String dia = cita.getFechaInicio() != null ? cita.getFechaInicio().format(FormatosFechas.FORMATO_DIA.getFormatter()) : "-";
-//	    String fechaInicio = cita.getFechaInicio() != null ? cita.getFechaInicio().format(FormatosFechas.FORMATO_HORA.getFormatter()) : "-";
-//	    String fechaFin = cita.getFechaFin() != null ? cita.getFechaFin().format(FormatosFechas.FORMATO_HORA.getFormatter()) : "-";
-//	    String reservado = cita.isReservado() ? "Sí" : "No";
-//	    String nombrePaciente = cita.getPaciente() != null ? cita.getPaciente().getNombre() : "";
-//
-//	    // Determinar el ancho de la columna para el nombre del paciente
-//	    int anchoColumnaPaciente = Math.max(anchoNombreMaximo, 12); // Mínimo ancho de columna de 12 caracteres
-//	    String formatoColumnaPaciente = "%-" + (anchoColumnaPaciente -2) + "s";
-//
-//	    return String.format("| %-11s | %-14s | %-11s | %-9s | " + formatoColumnaPaciente + " |\n",
-//	    		dia, fechaInicio, fechaFin, reservado, nombrePaciente);
-//	}
 
 	private static String imprimirLineaCierre(int anchoNombreMaximo) {
 	    String lineaCierre = "------------------------------------------------------------------";

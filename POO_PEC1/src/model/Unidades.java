@@ -40,12 +40,13 @@ public class Unidades {
 			break;
 		case ENFERMERIA:
 			unidades.add(Unidad.CONSULTAS_EXTERNAS);
-			unidades.add(Unidad.URGENCAS);
-			unidades.add(Unidad.HOSPITALIZACION);
-			unidades.add(Unidad.UCI);
-			unidades.add(Unidad.PRUEBAS_MEDICAS);
 			unidades.add(Unidad.CARDIOVASCULAR);
 			unidades.add(Unidad.DIABETES);
+			unidades.add(Unidad.HOSPITALIZACION);
+			unidades.add(Unidad.URGENCIAS);
+			unidades.add(Unidad.UCI);
+			unidades.add(Unidad.PRUEBAS_MEDICAS);
+			unidades.add(Unidad.FORMACION);
 			break;
 		case SOPORTE:
 			unidades.add(Unidad.CAFETERIA);
@@ -55,6 +56,55 @@ public class Unidades {
 		}
 		return unidades;
 	}
+	
+	public static List<Servicio> getServiciosPorUnidad(Unidad unidad) {
+	    List<Servicio> servicios = new ArrayList<Servicio>();
+
+	    switch(unidad) {
+	        case ADMINISTRACION:
+	            servicios.add(Servicio.GERENCIA);
+	            servicios.add(Servicio.SOPORTE);
+	            break;
+	        case CONSULTAS_EXTERNAS:
+	            servicios.add(Servicio.MEDICINA);
+	            servicios.add(Servicio.ENFERMERIA);
+	            break;
+	        case CARDIOVASCULAR:
+	            servicios.add(Servicio.MEDICINA);
+	            servicios.add(Servicio.ENFERMERIA);
+	            break;
+	        case DIABETES:
+	            servicios.add(Servicio.MEDICINA);
+	            servicios.add(Servicio.ENFERMERIA);
+	            break;
+	        case HOSPITALIZACION:
+	            servicios.add(Servicio.MEDICINA);
+	            servicios.add(Servicio.ENFERMERIA);
+	            break;
+	        case FORMACION:
+	            servicios.add(Servicio.MEDICINA);
+	            servicios.add(Servicio.ENFERMERIA);
+	            break;
+	        case URGENCIAS:
+	            servicios.add(Servicio.ENFERMERIA);
+	            break;
+	        case UCI:
+	            servicios.add(Servicio.ENFERMERIA);
+	            break;
+	        case PRUEBAS_MEDICAS:
+	            servicios.add(Servicio.ENFERMERIA);
+	            break;
+	        case CAFETERIA:
+	            servicios.add(Servicio.SOPORTE);
+	            break;
+	        case APARCAMIENTO:
+	            servicios.add(Servicio.SOPORTE);
+	            break;
+	    }
+
+	    return servicios;
+	}
+
 	
 	public static List<String> getValoresUnidadesDisponiblesPorServicio(Servicio servicio) {
 		List<String> unidades = new ArrayList<String>();
@@ -72,7 +122,7 @@ public class Unidades {
 			break;
 		case ENFERMERIA:
 			unidades.add(Unidad.CONSULTAS_EXTERNAS.getValor());
-			unidades.add(Unidad.URGENCAS.getValor());
+			unidades.add(Unidad.URGENCIAS.getValor());
 			unidades.add(Unidad.HOSPITALIZACION.getValor());
 			unidades.add(Unidad.UCI.getValor());
 			unidades.add(Unidad.PRUEBAS_MEDICAS.getValor());

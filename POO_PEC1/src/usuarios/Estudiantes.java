@@ -1,12 +1,20 @@
 package usuarios;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
 
+import citas.Agenda;
+import citas.Cita;
+import citas.MostrarAgenda;
+import model.Servicio;
 import model.Unidad;
+import model.Unidades;
 import ui.MostrarMenu;
 import util.EntradaValores;
 
@@ -79,7 +87,7 @@ public class Estudiantes {
 		boolean asignarPersonal = EntradaValores.introducirValorBooleano("¿Asignar personal al estudiante? (S/N): ");
 		
 		if(asignarPersonal) {
-			
+			asignarPersonalAlEmpleado(estudiante);
 		} 
 		return estudiante;
 	}
@@ -93,29 +101,68 @@ public class Estudiantes {
 		switch(opcion) {
 		case 1:
 			Empleado medico = empleados.buscarEmpleadoPorDNI();
-			if(medico != null && medico.getUnidad().equals(Unidad.MEDICINA))  {
+			if(medico != null && Unidades.getServiciosPorUnidad(medico.getUnidad()).contains(Servicio.MEDICINA)) {
 				estudiante.setPersonalAsignado(medico);
 			} else if(medico == null) {
 				System.out.println("El empleado no ha sido encontrado.");
 			} else {
-				System.out.println("El empleado no pertenece a la Unidad de medicina.");
+				System.out.println("El empleado no pertenece al servicio de medicina.");
 			}
 			break;
 		case 2:
 			Empleado enfermero = empleados.buscarEmpleadoPorDNI();
-			if(enfermero != null && enfermero.getUnidad().equals(Unidad.ENFERMERIA)) {
+			if(enfermero != null && Unidades.getServiciosPorUnidad(enfermero.getUnidad()).contains(Servicio.ENFERMERIA)) {
 				estudiante.setPersonalAsignado(enfermero);
 			} else if(enfermero == null) {
 				System.out.println("El empleado no ha sido encontrado.");
 			} else {
-				System.out.println("El empleado no pertenece a la Unidad de enfermería.");
+				System.out.println("El empleado no pertenece al servicio de enfermería.");
 			}
 			break;
 		case 3:
+			Empleado empleado = empleados.buscarEmpleadoPorDNI();
+			if(empleado != null && Unidades.getServiciosPorUnidad(empleado.getUnidad()).contains(Servicio.MEDICINA) || Unidades.getServiciosPorUnidad(empleado.getUnidad()).contains(Servicio.ENFERMERIA)) {
+				PersonalSanitario personalSanitario = PersonalSanitario.convertirEmpleadoEnPersonalSanitario(empleado);
+				LocalDate fecha = MostrarAgenda.mostrarAgendaDevolverFecha(personalSanitario.getAgenda());
+				
+				Cita cita = seleccionarCita(personalSanitario.getAgenda(), fecha);
+				
+				if(cita != null) estudiante.setPersonalAsignado(cita);
+				else System.out.println("La cita no ha sido encontrada.");
+			} else if(empleado == null) {
+				System.out.println("El empleado no ha sido encontrado.");
+			} else {
+				System.out.println("El empleado no es personal sanitario. No dispone de citas.");
+			}
 			break;
 		case 4:
 			break;
 		}
+		
+		System.out.println("Estudiante creado correctamente");
+	}
+	
+	private Cita seleccionarCita(Agenda agenda, LocalDate fecha) {
+		LocalTime horaInicio = EntradaValores.introducirHora("Introduzca la hora de inicio de la cita: ");
+		LocalTime horaFin = EntradaValores.introducirHora("Introduzca la hora de fin de la cita: ");
+		
+		LocalDateTime fechaHoraInicio = LocalDateTime.of(fecha, horaInicio);
+		LocalDateTime fechaHoraFin = LocalDateTime.of(fecha, horaFin);
+		
+		boolean horarioExiste = agenda.comprobarHoraExisteEnHorario(fechaHoraInicio, fechaHoraFin);
+		
+		boolean citaNoExiste = agenda.comprobarCitaEstaDisponible(fecha, fechaHoraInicio, fechaHoraFin);
+		
+		if(horarioExiste && !citaNoExiste) {
+			List<Cita> listaCitas = agenda.getListaCitas(fecha);
+			for (Cita cita : listaCitas) {
+				if(cita.getFechaInicio().equals(fechaHoraInicio) && cita.getFechaFin().equals(fechaHoraFin)) {
+					return cita;
+				}
+			}
+		}
+		
+		return null;
 	}
 	
 	public void darDeBajaEstudiante() {

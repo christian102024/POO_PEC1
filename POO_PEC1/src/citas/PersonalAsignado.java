@@ -1,6 +1,8 @@
 package citas;
 
+import model.Servicio;
 import model.Unidad;
+import model.Unidades;
 import usuarios.Empleado;
 
 public class PersonalAsignado {
@@ -27,9 +29,10 @@ public class PersonalAsignado {
 	public boolean validarPersonalAsignado(Object personal) {
 
 		if (personal instanceof Empleado) {
-			if(((Empleado) personal).getUnidad().equals(Unidad.ENFERMERIA)) {
+			Unidad unidad = ((Empleado) personal).getUnidad();
+			if(Unidades.getServiciosPorUnidad(unidad).contains(Servicio.ENFERMERIA)) {
 				return true;
-			} else if (((Empleado) personal).getUnidad().equals(Unidad.MEDICINA)) {
+			} else if (Unidades.getServiciosPorUnidad(unidad).contains(Servicio.MEDICINA)) {
 				return true;
 			} else {
 				return false;

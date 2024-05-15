@@ -36,7 +36,7 @@ public class Estudiante extends Usuario {
 
 	@Override
 	public String toString() {
-		return super.toString() + ", personalAsignado: " + personalAsignado.getPersonalAsignado();
+		return super.toString() + ", personalAsignado: " + (personalAsignado != null ? personalAsignado.getPersonalAsignado() : "-");
 	}
 	
 	

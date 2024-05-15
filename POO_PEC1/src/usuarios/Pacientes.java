@@ -270,10 +270,6 @@ public class Pacientes {
 		return expediente;
 		
 	}
-	
-	public void modificarPaciente(Paciente paciente) {
-		
-	}
 
 	@Override
 	public String toString() {
