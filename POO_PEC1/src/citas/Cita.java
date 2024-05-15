@@ -53,8 +53,8 @@ public class Cita {
 
 	@Override
 	public String toString() {
-		return "Cita [paciente=" + paciente + ", fechaInicio=" + fechaInicio + ", fechaFin=" + fechaFin + ", reservado="
-				+ reservado + "]";
+		return "Cita [Paciente: " + paciente + ", Fecha de inicio: " + fechaInicio + ", Fecha de fin: " + fechaFin + ", Reservado: "
+				+ (reservado == true ? "Sí" : "No") + "]";
 	}
 	
 	

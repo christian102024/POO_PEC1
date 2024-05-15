@@ -88,7 +88,7 @@ public class Menus {
 
 	public void mostrarMenuGestionHospital() {
 		List<String> opciones = Arrays.asList("Dar de alta a personal", "Dar de baja a personal", "Modificar empleado",
-				"Mostrar empleados", "Buscar empleados por DNI", "Asignar turno", "Expedir factura", "Mostrar empleados clasificados por unidad", "Volver");
+				"Mostrar empleados", "Buscar empleados por DNI", "Asignar turno", "Expedir factura", "Mostrar empleados clasificados por unidad", "Listar las agendas de medicos y enfemeros", "Volver");
 		String opcion;
 		boolean navegar = false;
 
@@ -128,8 +128,10 @@ public class Menus {
 				empleados.mostrarEmpleadosClasificadosPorUnidad();
 				break;
 			case "9":
+				MostrarAgenda.mostrarTodasLasAgendas();
+				break;
+			case "10":
 				return;
-
 			default:
 				System.out.println("Opción inválida. Por favor, introduzca una opción del menu.");
 			}

@@ -4,17 +4,43 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 import model.HoraConsulta;
 import model.Horario;
+import usuarios.Empleado;
+import usuarios.Empleados;
 import usuarios.Paciente;
+import usuarios.PersonalSanitario;
 import util.Cadenas;
 import util.EntradaValores;
 import util.FormatosFechas;
 
 public class MostrarAgenda {
+	
+	public static void mostrarTodasLasAgendas() {
+		Empleados empleados = Empleados.getInstancia();
+		List<Empleado> listaEmpleados = empleados.getEmpleados();		
+		List<PersonalSanitario> listaPersonalSanitario = new ArrayList<PersonalSanitario>();
+		
+		for (Empleado empleado : listaEmpleados) {
+			PersonalSanitario personal = PersonalSanitario.convertirEmpleadoEnPersonalSanitario(empleado);
+			if(personal != null) listaPersonalSanitario.add(personal);
+		}
+		
+		for (PersonalSanitario personalSanitario : listaPersonalSanitario) {
+			imprimirInformacionAgenda(personalSanitario);
+		}
+
+	}
+	
+	private static void imprimirInformacionAgenda(PersonalSanitario personalSanitario) {
+		System.out.println("Nombre: " + personalSanitario.getNombre() + ", Apellidos: " + personalSanitario.getApellidos() + ", DNI: "  + personalSanitario.getDni() + ", Unidad: " + personalSanitario.getUnidad().getValor());
+		System.out.println("\tListado de días apuntados en la agenda: ");
+		System.out.println("\t\t" + personalSanitario.getAgenda());
+	}
 
 	public static LocalDate mostrarAgendaDevolverFecha(Agenda agenda) {
 		boolean agendaHoy = EntradaValores.introducirValorBooleano("¿Quiere mostrar la agenda del día de hoy? (S/N)");

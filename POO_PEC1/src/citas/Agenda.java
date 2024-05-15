@@ -102,4 +102,17 @@ public class Agenda {
 			return null;
 		}
 	}
+	
+    @Override
+    public String toString() {
+        String cadena = "";
+        for (LocalDate fecha : agenda.keySet()) {
+            cadena += fecha + ":\n";
+            List<Cita> citas = agenda.get(fecha);
+            for (Cita cita : citas) {
+                cadena += "\t\t\t" + cita + "\n";
+            }
+        }
+        return cadena;
+    }
 }
