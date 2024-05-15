@@ -12,6 +12,7 @@ import citas.Agenda;
 import citas.Cita;
 import citas.MostrarAgenda;
 import model.Facturas;
+import model.Recursos;
 import usuarios.Empleado;
 import usuarios.Empleados;
 import usuarios.Estudiantes;
@@ -28,6 +29,7 @@ public class Menus {
 	private Pacientes pacientes;
 	private Habitaciones habitaciones;
 	private Facturas facturas;
+	private Recursos recursos;
 
 	public Menus() {
 		super();
@@ -37,6 +39,7 @@ public class Menus {
 		pacientes = Pacientes.getInstancia();
 		habitaciones = Habitaciones.getInstancia();
 		facturas = Facturas.getInstancia();
+		recursos = Recursos.getInstancia();
 	}
 
 	public void mostrarMenuPrincipal() {
@@ -70,7 +73,7 @@ public class Menus {
 				mostrarMenuGestionPacientes();
 				break;
 			case "6":
-				System.out.println("NO IMPLEMENTADO");
+				mostrarMenuGestionSoporte();
 				break;
 			case "7":
 				navegar = true;
@@ -406,6 +409,45 @@ public class Menus {
 				break;
 			case "8":
 				return;
+
+			default:
+				System.out.println("Opción inválida. Por favor, introduzca una opción del menu.");
+			}
+
+		} while (!navegar);
+	}
+	
+	public void mostrarMenuGestionSoporte() {
+		List<String> opciones = Arrays.asList("Añadir recurso dañado", "Eliminar recurso dañado", "Mostrar recursos", "Volver");
+		boolean navegar = false;
+
+		do {
+			MostrarMenu.mostrarMenu("GESTIÓN DE SPORTE", opciones);
+
+			String opcion = EntradaValores.introducirCadena("Seleccione una opción: ");
+			switch (opcion) {
+			case "1":
+				recursos.darDeAltaRecurso();
+				break;
+			case "2":
+//				recursos.darDeBajaRecurso();
+				break;
+			case "3":
+				System.out.println(recursos);
+				break;
+			case "4":
+				return;
+//			case "5":
+//				pacientes.ingresarPaciente();
+//				break;
+//			case "6":
+//				pacientes.darAltaPacienteIngresado();
+//				break;
+//			case "7":
+//				System.out.println(habitaciones.toString());
+//				break;
+//			case "8":
+//				return;
 
 			default:
 				System.out.println("Opción inválida. Por favor, introduzca una opción del menu.");

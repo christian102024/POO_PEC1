@@ -3,8 +3,6 @@ package main;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -17,12 +15,10 @@ import model.Expediente;
 import model.Seguro;
 import model.Unidad;
 import ui.Menus;
-import ui.MostrarMenu;
 import usuarios.Empleado;
 import usuarios.Empleados;
 import usuarios.Estudiante;
 import usuarios.Estudiantes;
-import usuarios.Medico;
 import usuarios.Paciente;
 import usuarios.Pacientes;
 import usuarios.PersonalSanitario;
@@ -32,6 +28,21 @@ public class Hospital {
 	public static void main(String[] args) {
 
 		Empleados empleados = Empleados.getInstancia();
+		empleados.addEmpleado(new Empleado("Ana", "García López", "23456789A", "612345678", Unidad.CONSULTAS_EXTERNAS));
+        empleados.addEmpleado(new Empleado("Pedro", "Martínez Rodríguez", "34567890B", "623456789", Unidad.UCI));
+        empleados.addEmpleado(new Empleado("María", "Fernández Pérez", "45678901C", "634567890", Unidad.HOSPITALIZACION));
+        empleados.addEmpleado(new Empleado("Juan", "Sánchez Gómez", "56789012D", "645678901", Unidad.PRUEBAS_MEDICAS));
+        empleados.addEmpleado(new Empleado("Laura", "Díaz Martín", "67890123E", "656789012", Unidad.CARDIOVASCULAR));
+        empleados.addEmpleado(new Empleado("Carlos", "López Sánchez", "78901234F", "667890123", Unidad.DIABETES));
+        empleados.addEmpleado(new Empleado("Sofía", "Pérez Gómez", "89012345G", "678901234", Unidad.URGENCIAS));
+        empleados.addEmpleado(new Empleado("Daniel", "González Díaz", "90123456H", "689012345", Unidad.FORMACION));
+        empleados.addEmpleado(new Empleado("Lucía", "Sánchez Pérez", "01234567J", "690123456", Unidad.CAFETERIA));
+        empleados.addEmpleado(new Empleado("Mario", "Ramírez Martínez", "12345678K", "701234567", Unidad.APARCAMIENTO));
+        empleados.addEmpleado(new Empleado("Elena", "Gómez Fernández", "23456789L", "712345678", Unidad.ADMINISTRACION));
+        empleados.addEmpleado(new Empleado("David", "Martín López", "34567890M", "723456789", Unidad.CONSULTAS_EXTERNAS));
+        empleados.addEmpleado(new Empleado("Carmen", "Pérez García", "45678901N", "734567890", Unidad.UCI));
+        empleados.addEmpleado(new Empleado("Javier", "Sánchez Rodríguez", "56789012O", "745678901", Unidad.HOSPITALIZACION));
+        empleados.addEmpleado(new Empleado("Marina", "Fernández Díaz", "67890123P", "756789012", Unidad.PRUEBAS_MEDICAS));
 		Empleado empleado = new Empleado("Christian", "Jurado Maique", "18098277W", "629932957", Unidad.ADMINISTRACION);
 		Paciente paciente = new Paciente("Pedro", "Plana", "18475122X", "645142541", Seguro.SEGURIDAD_SOCIAL,
 				"AR1243451314", null);
