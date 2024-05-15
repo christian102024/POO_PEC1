@@ -4,6 +4,7 @@ import citas.Agenda;
 import model.Servicio;
 import model.Unidad;
 import model.Unidades;
+import util.Comparador;
 
 /**
  * Clase que representa a un miembro del personal sanitario.
@@ -88,6 +89,22 @@ public class PersonalSanitario extends Empleado {
 			System.out.println("El empleado no es un Enfermero.");
 			return null;
 		}
-
+	}
+	
+	public static PersonalSanitario comprobarEmpleadoEsEnfermero(Empleado empleado, Unidad[] unidadesValidas) {
+		PersonalSanitario personalSanitario = comprobarEmpleadoEsEnfermero(empleado);
+		
+		if(personalSanitario == null) {
+			return null;
+		}
+		
+		boolean unidadValida = Comparador.buscarValorEnArray(personalSanitario.getUnidad(), unidadesValidas);
+		
+		if(unidadValida) {
+			return personalSanitario;
+		} else {
+			System.out.println("La unidad del enfermero no es válida.");
+			return null;
+		}
 	}
 }

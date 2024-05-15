@@ -62,6 +62,8 @@ public class Agenda {
 	}
 	
 	public boolean comprobarCitaEstaDisponible(LocalDate fecha, LocalDateTime horaInicio, LocalDateTime horaFin) {
+		System.out.println("comprobarHoraExiste: " + comprobarHoraExisteEnHorario(horaInicio, horaFin));
+		System.out.println("citaNoEXISTE: " + comprobarCitaNoExiste(fecha, horaInicio, horaFin));
 		if(comprobarHoraExisteEnHorario(horaInicio, horaFin) && comprobarCitaNoExiste(fecha, horaInicio, horaFin)) {
 			return true;
 		} else {

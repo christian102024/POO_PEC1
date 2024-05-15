@@ -10,6 +10,8 @@ import java.util.Scanner;
 import campus.Habitaciones;
 import citas.Agenda;
 import citas.Cita;
+import citas.GestionarAgenda;
+import citas.GestionarAgenda.TipoPersonal;
 import citas.MostrarAgenda;
 import model.Facturas;
 import model.Recursos;
@@ -214,36 +216,7 @@ public class Menus {
 				}
 				break;
 			case "2":
-				empleado = empleados.buscarEmpleadoPorDNI();
-				if (empleado != null) {
-					PersonalSanitario personalSanitario = PersonalSanitario.comprobarEmpleadoEsMedico(empleado);
-
-					if (personalSanitario != null) {
-						Agenda agenda = personalSanitario.getAgenda();
-						LocalDate fecha = EntradaValores
-								.introducirFecha("Introduzca la fecha en la que quiere dar de alta la cita: ");
-						MostrarAgenda.mostrarAgenda(agenda, fecha);
-						LocalTime horaInicio = EntradaValores.introducirHora("Introduzca la hora de inicio: ");
-						LocalTime horaFin = EntradaValores.introducirHora("Introduzca la hora de fin: ");
-						Paciente paciente = pacientes.buscarPacientePorDNI();
-
-						if (paciente == null) {
-							System.out.println("Paciente no encontrado.");
-						} else {
-
-							LocalDateTime fechaHoraInicio = LocalDateTime.of(fecha, horaInicio);
-							LocalDateTime fechaHoraFin = LocalDateTime.of(fecha, horaFin);
-
-							boolean citaDisponible = agenda.comprobarCitaEstaDisponible(fecha, fechaHoraInicio,
-									fechaHoraFin);
-
-							if (citaDisponible) {
-								agenda.anyadirCita(fecha, new Cita(paciente, fechaHoraInicio, fechaHoraFin, true));
-								System.out.println("Cita registrada correctamente!");
-							}
-						}
-					}
-				}
+				GestionarAgenda.añadirCita(TipoPersonal.MEDICO);
 				break;
 			case "3":
 				empleado = empleados.buscarEmpleadoPorDNI();
@@ -318,39 +291,7 @@ public class Menus {
 				}
 				break;
 			case "2":
-				empleado = empleados.buscarEmpleadoPorDNI();
-				if (empleado != null) {
-					PersonalSanitario personalSanitario = PersonalSanitario.comprobarEmpleadoEsEnfermero(empleado);
-
-					if (personalSanitario != null) {
-						Agenda agenda = personalSanitario.getAgenda();
-						LocalDate fecha = EntradaValores
-								.introducirFecha("Introduzca la fecha en la que quiere dar de alta la cita: ");
-						MostrarAgenda.mostrarAgenda(agenda, fecha);
-						LocalTime horaInicio = EntradaValores.introducirHora("Introduzca la hora de inicio: ");
-						LocalTime horaFin = EntradaValores.introducirHora("Introduzca la hora de fin: ");
-						Paciente paciente = pacientes.buscarPacientePorDNI();
-
-						if (paciente == null) {
-							System.out.println("Paciente no encontrado.");
-						} else {
-
-							LocalDateTime fechaHoraInicio = LocalDateTime.of(fecha, horaInicio);
-							LocalDateTime fechaHoraFin = LocalDateTime.of(fecha, horaFin);
-
-							boolean citaDisponible = agenda.comprobarCitaEstaDisponible(fecha, fechaHoraInicio,
-									fechaHoraFin);
-
-							if (citaDisponible) {
-								agenda.anyadirCita(fecha, new Cita(paciente, fechaHoraInicio, fechaHoraFin, true));
-								System.out.println("Cita registrada correctamente!");
-							}
-						}
-
-					}
-				} else {
-					System.out.println("Proceso cancelado.");
-				}
+				GestionarAgenda.añadirCita(TipoPersonal.ENFERMERO);
 				break;
 			case "3":
 				empleado = empleados.buscarEmpleadoPorDNI();

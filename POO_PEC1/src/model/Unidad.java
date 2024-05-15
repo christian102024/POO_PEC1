@@ -10,8 +10,8 @@ public enum Unidad {
 	UCI("Unidad de Cuidados Intensivos (UCI)"),
 	HOSPITALIZACION("Hospitalización"),
 	PRUEBAS_MEDICAS("Pruebas médicas"),
-	CARDIOVASCULAR("Cardiovascular"),
-	DIABETES("Diabetes"),
+	CARDIOVASCULAR("Cardiovascular"), // Unidades médicas especializadas
+	DIABETES("Diabetes"), // Unidades médicas especializadas
     CAFETERIA("Cafetería"),
     APARCAMIENTO("Aparcamiento"),
 	URGENCIAS("Urgencias"),
