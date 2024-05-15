@@ -11,6 +11,7 @@ import campus.Habitaciones;
 import citas.Agenda;
 import citas.Cita;
 import citas.MostrarAgenda;
+import model.Facturas;
 import usuarios.Empleado;
 import usuarios.Empleados;
 import usuarios.Estudiantes;
@@ -26,6 +27,7 @@ public class Menus {
 	private Estudiantes estudiantes;
 	private Pacientes pacientes;
 	private Habitaciones habitaciones;
+	private Facturas facturas;
 
 	public Menus() {
 		super();
@@ -34,15 +36,7 @@ public class Menus {
 		estudiantes = Estudiantes.getInstancia();
 		pacientes = Pacientes.getInstancia();
 		habitaciones = Habitaciones.getInstancia();
-	}
-
-	public Menus(Empleados empleados, Estudiantes estudiantes, Pacientes pacientes, Habitaciones habitaciones) {
-		super();
-		scanner = new Scanner(System.in);
-		this.empleados = empleados;
-		this.estudiantes = estudiantes;
-		this.pacientes = pacientes;
-		this.habitaciones = habitaciones;
+		facturas = Facturas.getInstancia();
 	}
 
 	public void mostrarMenuPrincipal() {
@@ -91,7 +85,7 @@ public class Menus {
 
 	public void mostrarMenuGestionHospital() {
 		List<String> opciones = Arrays.asList("Dar de alta a personal", "Dar de baja a personal", "Modificar empleado",
-				"Mostrar empleados", "Buscar empleados por DNI", "Asignar turno", "Volver");
+				"Mostrar empleados", "Buscar empleados por DNI", "Asignar turno", "Crear factura", "Volver");
 		String opcion;
 		boolean navegar = false;
 
@@ -125,6 +119,8 @@ public class Menus {
 				empleados.asignarTurno();
 				break;
 			case "7":
+				facturas.generarFactura();
+			case "8":
 				return;
 
 			default:

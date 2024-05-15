@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 public class EntradaValores {
 	
-	public static double introducirNumero(String mensaje) {
+	public static Double introducirNumero(String mensaje) {
 		boolean esValido = false;
 		double numero = -1;
 		
@@ -18,7 +18,9 @@ public class EntradaValores {
 			if (scanner.hasNextDouble()) {
 				numero = scanner.nextDouble();
 				esValido = true;
-			}
+			} else if (scanner.hasNext()) {
+				if(scanner.next().equals("cancelar")) return null;
+			} 
 			
 		} while (!esValido);
 		

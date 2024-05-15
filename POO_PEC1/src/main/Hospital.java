@@ -72,7 +72,7 @@ public class Hospital {
 		Pacientes pacientes = Pacientes.getInstancia();
 		pacientes.addPaciente(paciente);
 		pacientes.addPaciente(new Paciente("Orosco", "Salinas Zambrano", "74891365F", "645474124", Seguro.SEGURIDAD_SOCIAL, "053700291753", new ArrayList<Expediente>()));
-		pacientes.addPaciente(new Paciente("Juan", "García López", "12345678A", "912345678", Seguro.SEGURIDAD_SOCIAL, "123456789012", new ArrayList<>()));
+		pacientes.addPaciente(new Paciente("Juan", "García López", "12345678A", "912345678", Seguro.NO_ASEGURADO, "123456789012", new ArrayList<>()));
 		pacientes.addPaciente(new Paciente("María", "Martínez Rodríguez", "23456789B", "645678901", Seguro.SEGURO_MEDICO, "234567890123", new ArrayList<>()));
 		pacientes.addPaciente(new Paciente("David", "Fernández Pérez", "34567890C", "656789012", Seguro.SEGURIDAD_SOCIAL, "345678901234", new ArrayList<>()));
 		pacientes.addPaciente(new Paciente("Ana", "Sánchez Gómez", "45678901D", "678901234", Seguro.SEGURO_MEDICO, "456789012345", new ArrayList<>()));
