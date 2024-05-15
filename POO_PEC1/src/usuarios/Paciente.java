@@ -5,13 +5,26 @@ import java.util.List;
 import model.Expediente;
 import model.Seguro;
 
+/**
+ * Clase que representa a un paciente en el sistema.
+ */
 public class Paciente extends Usuario {
 
 	private Seguro seguro;
 	private String numeroSeguridadSocial;
 	private List<Expediente> expedientes;
-	private boolean hospitalizado;
 	
+	/**
+     * Constructor de la clase Paciente.
+     *
+     * @param nombre                 El nombre del paciente.
+     * @param apellidos              Los apellidos del paciente.
+     * @param dni                    El DNI del paciente.
+     * @param telefono               El número de teléfono del paciente.
+     * @param seguro                 El tipo de seguro del paciente.
+     * @param numeroSeguridadSocial  El número de seguridad social del paciente.
+     * @param expedientes            La lista de expedientes médicos del paciente.
+     */
 	public Paciente(String nombre, String apellidos, String dni, String telefono, Seguro seguro,
 			String numeroSeguridadSocial, List<Expediente> expedientes) {
 		super(nombre, apellidos, dni, telefono);

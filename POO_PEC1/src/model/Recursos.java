@@ -6,6 +6,7 @@ import java.util.List;
 import usuarios.Empleado;
 import usuarios.Empleados;
 import util.EntradaValores;
+import util.Mensajes;
 
 public class Recursos {
 
@@ -52,7 +53,11 @@ public class Recursos {
 	public void darDeAltaRecurso() {
 		Recurso recurso = pedirDatosRecurso();
 		
-		if(recurso != null) addRecurso(recurso);
+		if(recurso != null) {
+			addRecurso(recurso);
+		} else {
+			System.out.println(Mensajes.PROCESO_CANCELADO.getMensaje());
+		}
 	}
 	
 	public Recurso pedirDatosRecurso() {
@@ -92,7 +97,13 @@ public class Recursos {
 		System.out.println(this);
 
 		if(recursos.size() == 0) return;
-		int indice = EntradaValores.introducirNumeroEntero("Introduzca el número del recurso a eliminar: ");
+		Integer indice = EntradaValores.introducirNumeroEntero("Introduzca el número del recurso a eliminar: ");
+		
+		if(indice == null) {
+			System.out.println(Mensajes.PROCESO_CANCELADO.getMensaje());
+			return;
+		}
+		
 		if(indice >= 0 && indice < recursos.size()) {
 			removeRecurso(indice);
 			System.out.println("Recurso eliminado satisfactoriamente");

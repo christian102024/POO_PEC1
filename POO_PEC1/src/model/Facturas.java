@@ -7,6 +7,9 @@ import usuarios.Paciente;
 import usuarios.Pacientes;
 import util.EntradaValores;
 
+/**
+ * Gestiona la lista de Factuas.
+ */
 public class Facturas {
 
 	private static Facturas instancia;

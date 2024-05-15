@@ -2,15 +2,25 @@ package citas;
 
 import java.time.LocalDateTime;
 
-import usuarios.Empleado;
 import usuarios.Paciente;
 
+/**
+ * Representa una cita médica.
+ */
 public class Cita {
-	private Paciente paciente;
-	private LocalDateTime fechaInicio;
-	private LocalDateTime fechaFin;
-	private boolean reservado;
+    private Paciente paciente;          // El paciente asociado a la cita
+    private LocalDateTime fechaInicio;  // La fecha y hora de inicio de la cita
+    private LocalDateTime fechaFin;     // La fecha y hora de fin de la cita
+    private boolean reservado;          // Indica si la cita está reservada o no
 	
+	/**
+     * Constructor de la clase Cita.
+     * 
+     * @param paciente     El paciente asociado a la cita.
+     * @param fechaInicio  La fecha y hora de inicio de la cita.
+     * @param fechaFin     La fecha y hora de fin de la cita.
+     * @param reservado    Indica si la cita está reservada.
+     */
 	public Cita(Paciente paciente, LocalDateTime fechaInicio, LocalDateTime fechaFin, boolean reservado) {
 		super();
 		this.paciente = paciente;

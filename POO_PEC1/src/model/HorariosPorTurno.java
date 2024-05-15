@@ -1,12 +1,9 @@
 package model;
 
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
-//private static final List<HorasConsulta> HORAS_CONSULTAS_DIA = new ArrayList<>();
-
+/**
+ * Enumeración que representa los diferentes horarios por turno en el centro médico.
+ */
 public enum HorariosPorTurno {
 	HORARIO_DIA(new Horario(Horario.generarHorarioIntensivo(7, 15, 1))),
 	HORARIO_TARDE(new Horario(Horario.generarHorarioIntensivo(16, 12, 1))),

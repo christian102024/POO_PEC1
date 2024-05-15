@@ -2,24 +2,26 @@ package citas;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
-
 import model.HoraConsulta;
 import model.Horario;
 import usuarios.Empleado;
 import usuarios.Empleados;
-import usuarios.Paciente;
 import usuarios.PersonalSanitario;
 import util.Cadenas;
 import util.EntradaValores;
 import util.FormatosFechas;
 
+/**
+ * Clase que proporciona métodos para mostrar la agenda de citas.
+ */
 public class MostrarAgenda {
 	
+    /**
+     * Muestra la agenda de todos los empleados y personal sanitario.
+     */
 	public static void mostrarTodasLasAgendas() {
 		Empleados empleados = Empleados.getInstancia();
 		List<Empleado> listaEmpleados = empleados.getEmpleados();		
@@ -42,6 +44,12 @@ public class MostrarAgenda {
 		System.out.println("\t\t" + personalSanitario.getAgenda());
 	}
 
+    /**
+     * Muestra la agenda del día de hoy o de una fecha especificada y devuelve la fecha mostrada..
+     * 
+     * @param agenda La agenda de citas.
+     * @return La fecha de la agenda mostrada.
+     */
 	public static LocalDate mostrarAgendaDevolverFecha(Agenda agenda) {
 		boolean agendaHoy = EntradaValores.introducirValorBooleano("¿Quiere mostrar la agenda del día de hoy? (S/N)");
 		
@@ -55,6 +63,12 @@ public class MostrarAgenda {
 		}
 	}
 	
+	/**
+     * Muestra la agenda del día de hoy o de una fecha especificada.
+     * 
+     * @param agenda La agenda de citas.
+     * @return La agenda mostrada (con su respectivo formato)
+     */
 	public static String mostrarAgendaPorFecha(Agenda agenda) {
 		boolean agendaHoy = EntradaValores.introducirValorBooleano("¿Quiere mostrar la agenda del día de hoy? (S/N)");
 		
@@ -66,12 +80,19 @@ public class MostrarAgenda {
 		}
 	}
 	
+    /**
+     * Muestra la agenda del día de hoy o de una fecha especificada.
+     * 
+     * @param agenda La agenda de citas.
+     * @param fecha La fecha para la cual se mostrará la agenda.
+     * @return La agenda mostrada.
+     */
 	public static String mostrarAgenda(Agenda agenda, LocalDate fecha) {
 		
 		int longitudDefectoPaciente = longitudMayorNombrePaciente(agenda.getListaCitas(fecha));
 		Horario horario = agenda.getHorario();
 
-		String columnaPaciente = Cadenas.repeatString("-", longitudDefectoPaciente);
+		String columnaPaciente = Cadenas.repetirCaracter("-", longitudDefectoPaciente);
 		
 		String formatoColumnaPaciente = "%-" + (longitudDefectoPaciente-2) + "s";
 		String citas = "";
@@ -147,21 +168,6 @@ public class MostrarAgenda {
 		return null;
 	}
 	
-	private static Cita seleccionarCita(Agenda agenda, LocalTime horaInicio, LocalDate fecha) {
-		List<Cita> listaCitas = agenda.getListaCitas(fecha);
-		if(listaCitas == null) {
-			return null;
-		} else {
-			for (Cita cita : listaCitas) {
-				if(cita.getFechaInicio().equals(LocalDateTime.of(fecha, horaInicio))) {
-					return cita;
-				}
-			}
-			
-		}
-		return null;
-	}
-
 	private static String imprimirLineaCierre(int anchoNombreMaximo) {
 	    String lineaCierre = "------------------------------------------------------------------";
 	    int longitudAdicional = Math.max(0, anchoNombreMaximo - 8); // Determinar longitud adicional basada en el nombre del paciente

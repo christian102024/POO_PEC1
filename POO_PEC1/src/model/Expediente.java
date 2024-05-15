@@ -1,9 +1,11 @@
 package model;
 
 import java.time.LocalDateTime;
-
 import util.FormatosFechas;
 
+/**
+ * Representa el expediente médico de un paciente.
+ */
 public class Expediente {
 
 	private LocalDateTime fecha;

@@ -29,6 +29,18 @@ public class Hospital {
 
 	public static void main(String[] args) {
 
+		iniciar();
+		
+		// Iniciar menú principal
+		Menus menus = new Menus();
+		menus.mostrarMenuPrincipal();
+
+	}
+	
+	/**
+	 * Crea una lista de datos para poder realizar pruebas y trabajar sobre ellos.
+	 */
+	public static void iniciar() {
 		Empleados empleados = Empleados.getInstancia();
 		
 		Empleado empleadoTecnico = new Empleado("Elena", "Gómez Fernández", "23456789L", "712345678", Unidad.ADMINISTRACION);
@@ -111,12 +123,6 @@ public class Hospital {
 		recursos.addRecurso(new Recurso("Router", "Conexión intermitente", empleadoTecnico));
 		recursos.addRecurso(new Recurso("Escáner", "No reconoce documentos", empleadoTecnico));
 
-
-		Menus menus = new Menus();
-
-		
-		// Iniciar menú principal
-		menus.mostrarMenuPrincipal();
 
 	}
 }

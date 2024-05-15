@@ -1,22 +1,32 @@
 package campus;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 import usuarios.Paciente;
 
+/**
+ * Clase que gestiona las habitaciones del centro médico.
+ */
 public class Habitaciones {
 
 	private static Habitaciones instancia;
 	private List<Habitacion> habitaciones;
 
+    /**
+     * Constructor por defecto que inicializa la lista de habitaciones.
+     */
 	public Habitaciones() {
 		super();
 		this.habitaciones = new ArrayList<Habitacion>();
 		inicializarHabitaciones();
 	}
 
+    /**
+     * Obtiene la instancia única de la clase Habitaciones utilizando el patrón Singleton.
+     * 
+     * @return La instancia única de Habitaciones.
+     */
 	public static Habitaciones getInstancia() {
 		if(instancia == null) {
 			instancia = new Habitaciones();
@@ -24,6 +34,11 @@ public class Habitaciones {
 		return instancia;
 	}
 
+    /**
+     * Constructor que inicializa la lista de habitaciones con la lista proporcionada.
+     * 
+     * @param habitaciones La lista de habitaciones.
+     */
 	public Habitaciones(List<Habitacion> habitaciones) {
 		super();
 		this.habitaciones = habitaciones;
@@ -51,6 +66,12 @@ public class Habitaciones {
 		}
 	}
 	
+	/**
+     * Busca una habitación por su número.
+     * 
+     * @param numeroHabitacion El número de habitación a buscar.
+     * @return El índice de la habitación en la lista de habitaciones, o -1 si no se encuentra.
+     */
 	public int buscarHabitacionPorNumero(int numeroHabitacion) {
 		int indice = 0;
 		for (Habitacion habitacion : habitaciones) {
@@ -62,6 +83,12 @@ public class Habitaciones {
 		return -1;
 	}
 	
+	 /**
+     * Busca el índice de la habitación ocupada por un paciente.
+     * 
+     * @param paciente El paciente cuya habitación se busca.
+     * @return El índice de la habitación ocupada por el paciente, o -1 si no se encuentra.
+     */
 	public int buscarIndiceHabitacionPorPaciente(Paciente paciente) {
 		int indice = 0;
 		for (Habitacion habitacion : habitaciones) {

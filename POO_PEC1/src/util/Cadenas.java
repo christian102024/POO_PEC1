@@ -11,7 +11,7 @@ public class Cadenas {
      * @param numeroVeces El número de veces que se repetirá la cadena.
      * @return Una nueva cadena que resulta de repetir la cadena dada el número de veces especificado.
      */
-	public static String repeatString(String c, int numeroVeces) {
+	public static String repetirCaracter(String c, int numeroVeces) {
 	    StringBuilder builder = new StringBuilder();
 	    for (int i = 0; i < numeroVeces; i++) {
 	        builder.append(c);

@@ -21,6 +21,12 @@ import usuarios.Pacientes;
 import usuarios.PersonalSanitario;
 import util.EntradaValores;
 
+/**
+ * Clase dedicada a la navegación entre los menus de la aplicacion y la funcionalidad
+ * de sus respectivas clases.
+ * @author Christian
+ *
+ */
 public class Menus {
 
 	private static Scanner scanner;
@@ -42,6 +48,9 @@ public class Menus {
 		recursos = Recursos.getInstancia();
 	}
 
+	/**
+	 * Muestra el menu principal
+	 */
 	public void mostrarMenuPrincipal() {
 		List<String> opciones = Arrays.asList("GESTIÓN DE PERSONAL DEL HOSPITAL", "GESTIÓN DE ESTUDIANTES",
 				"GESTIÓN DE MEDICINA", "GESTIÓN DE ENFERMERÍA", "GESTIÓN DE PACIENTES", "GESTIÓN DE SOPORTE", "SALIR");
@@ -86,6 +95,9 @@ public class Menus {
 		} while (!navegar);
 	}
 
+	/**
+	 * Muestra el menu de gestión del hospital
+	 */
 	public void mostrarMenuGestionHospital() {
 		List<String> opciones = Arrays.asList("Dar de alta a personal", "Dar de baja a personal", "Modificar empleado",
 				"Mostrar empleados", "Buscar empleados por DNI", "Asignar turno", "Expedir factura", "Mostrar empleados clasificados por unidad", "Listar las agendas de medicos y enfemeros", "Volver");
@@ -139,6 +151,9 @@ public class Menus {
 		} while (!navegar);
 	}
 
+	/**
+	 * Muestra el menu de gestión de los estudiantes
+	 */
 	public void mostrarMenuGestionEstudiantes() {
 		List<String> opciones = Arrays.asList("Dar de alta a estudiante", "Dar de baja a estudiante",
 				"Mostrar estudiantes", "Volver");
@@ -174,6 +189,9 @@ public class Menus {
 		} while (!navegar);
 	}
 
+	/**
+	 * Muestra el menu de gestión de medicina
+	 */
 	public void mostrarMenuGestionMedicina() {
 		List<String> opciones = Arrays.asList("Ver agenda de medico", "Añadir una cita", "Eliminar cita",
 				"Actualizar expediente de paciente", "Volver");
@@ -273,6 +291,9 @@ public class Menus {
 		} while (!navegar);
 	}
 
+	/**
+	 * Muestra el menu de gestión de los enfermería
+	 */
 	public void mostrarMenuGestionEnfermeria() {
 		List<String> opciones = Arrays.asList("Ver agenda del enfermero", "Añadir una cita", "Eliminar una cita",
 				"Actualizar expediente de paciente", "Volver");
@@ -377,6 +398,9 @@ public class Menus {
 		} while (!navegar);
 	}
 
+	/**
+	 * Muestra el menu de gestión de los pacientes
+	 */
 	public void mostrarMenuGestionPacientes() {
 		List<String> opciones = Arrays.asList("Añadir paciente", "Eliminar paciente", "Mostrar pacientes",
 				"Buscar paciente por DNI", "Ingresar paciente", "Dar el alta a paciente ingresado",
@@ -419,6 +443,9 @@ public class Menus {
 		} while (!navegar);
 	}
 	
+	/**
+	 * Muestra el menu de gestión del soporte
+	 */
 	public void mostrarMenuGestionSoporte() {
 		List<String> opciones = Arrays.asList("Añadir recurso dañado", "Eliminar recurso dañado", "Mostrar recursos", "Volver");
 		boolean navegar = false;

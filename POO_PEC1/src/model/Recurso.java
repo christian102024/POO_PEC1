@@ -5,6 +5,9 @@ import java.time.LocalDateTime;
 import usuarios.Empleado;
 import util.FormatosFechas;
 
+/**
+ * Representa un recurso dañado
+ */
 public class Recurso {
 
 	private String nombre;

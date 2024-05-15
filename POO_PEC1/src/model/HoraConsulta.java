@@ -2,8 +2,9 @@ package model;
 
 import java.time.LocalDateTime;
 
-import citas.Cita;
-
+/**
+ * Representa una hora en la que se realiza una consulta.
+ */
 public class HoraConsulta {
 
 	private LocalDateTime horaInicio;

@@ -10,17 +10,28 @@ import model.HoraConsulta;
 import model.Horario;
 import model.HorariosPorTurno;
 
+/**
+ * Representa la agenda de citas.
+ */
 public class Agenda {
 
 	private Map<LocalDate, List<Cita>> agenda;
 	private Horario horario;
 
+    /**
+     * Constructor de la clase Agenda.
+     * 
+     * @param agenda La agenda de citas.
+     */
 	public Agenda(Map<LocalDate, List<Cita>> agenda) {
 		super();
 		this.agenda = agenda;
 		this.horario = HorariosPorTurno.HORARIO_DIA.getHorario();
 	}
 
+    /**
+     * Constructor por defecto de la clase Agenda.
+     */
 	public Agenda() {
 		super();
 		this.agenda = new TreeMap<LocalDate, List<Cita>>();

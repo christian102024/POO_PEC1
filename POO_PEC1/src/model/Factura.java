@@ -2,6 +2,9 @@ package model;
 
 import usuarios.Paciente;
 
+/**
+ * Representa una factura.
+ */
 public class Factura {
 
 	private Paciente paciente;

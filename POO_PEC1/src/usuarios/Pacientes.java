@@ -2,7 +2,6 @@ package usuarios;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
 
@@ -11,7 +10,6 @@ import campus.Habitaciones;
 import model.Expediente;
 import model.Seguro;
 import ui.MostrarMenu;
-import util.Cadenas;
 import util.EntradaValores;
 import util.Mensajes;
 
@@ -79,25 +77,25 @@ public class Pacientes {
      */
 	private Paciente pedirDatosPaciente(Scanner scanner, Paciente paciente) {
 		String nombre = EntradaValores.introducirCadena("Nombre: ", paciente.getNombre());
-		if (nombre.equals("cancelar")) {
+		if (nombre == null) {
 			return null;
 		}
 		paciente.setNombre(nombre);
 
 		String apellidos = EntradaValores.introducirCadena("Apellidos: ", paciente.getApellidos());
-		if (apellidos.equals("cancelar")) {
+		if (apellidos == null) {
 			return null;
 		}
 		paciente.setApellidos(apellidos);
 
 		String dni = EntradaValores.introducirCadena("DNI: ", paciente.getDni());
-		if (dni.equals("cancelar")) {
+		if (dni == null) {
 			return null;
 		}
 		paciente.setDni(dni);
 
 		String telefono = EntradaValores.introducirCadena("Teléfono: ", paciente.getTelefono());
-		if (telefono.equals("cancelar")) {
+		if (telefono == null) {
 			return null;
 		}
 		paciente.setTelefono(telefono);
@@ -112,7 +110,7 @@ public class Pacientes {
 		}
 
 		String seguridadSocial = EntradaValores.introducirCadena("Número de seguridad social: ");
-		if (seguridadSocial.equals("cancelar")) {
+		if (seguridadSocial == null) {
 			return null;
 		}
 		paciente.setNumeroSeguridadSocial(seguridadSocial);
@@ -124,9 +122,15 @@ public class Pacientes {
      * Permite dar de baja a un paciente solicitando su DNI al usuario.
      */
 	public void darDeBajaPaciente() {
-		Scanner scanner = new Scanner(System.in);
-		System.out.print("Introduzca el DNI del paciente a eliminar: ");
-		darDeBajaPaciente(scanner.nextLine());
+			
+			String dni = EntradaValores.introducirCadena("Introduzca el DNI del paciente a eliminar: ");
+			if(dni == null) {
+				System.out.println(Mensajes.PROCESO_CANCELADO.getMensaje());
+				return;
+			} else {
+				darDeBajaPaciente(dni);				
+			}
+		
 	}
 
 	/**
@@ -235,8 +239,8 @@ public class Pacientes {
      */
 	public void darAltaPacienteIngresado() {
 		Paciente paciente = buscarPacientePorDNI();
-		Habitaciones habitaciones = Habitaciones.getInstancia();
 		if (paciente != null) {
+			Habitaciones habitaciones = Habitaciones.getInstancia();
 			int indice = habitaciones.buscarIndiceHabitacionPorPaciente(paciente);
 
 			if (indice != -1) {

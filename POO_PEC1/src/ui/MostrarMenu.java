@@ -1,10 +1,18 @@
 package ui;
 
-import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Clase para mostrar un menú en la consola.
+ */
 public class MostrarMenu {
 	
+    /**
+     * Muestra un menú con el título y las opciones proporcionadas.
+     * 
+     * @param titulo          El título del menú.
+     * @param listaDeOpciones La lista de opciones del menú.
+     */
     public static void mostrarMenu(String titulo, List<String> listaDeOpciones) {
         int anchoMenu = calcularAnchoMenu(titulo, listaDeOpciones);
 
@@ -24,6 +32,13 @@ public class MostrarMenu {
         imprimirLinea(anchoMenu);
     }
 
+    /**
+     * Calcula el ancho necesario para el menú.
+     * 
+     * @param titulo          El título del menú.
+     * @param listaDeOpciones La lista de opciones del menú.
+     * @return El ancho del menú.
+     */
     public static int calcularAnchoMenu(String titulo, List<String> listaDeOpciones) {
         int maxLongitud = titulo.length();
         for (int i = 0; i < listaDeOpciones.size(); i++) {
@@ -35,6 +50,13 @@ public class MostrarMenu {
         return maxLongitud + 10;
     }
 
+    /**
+     * Centra el texto dentro del ancho especificado.
+     * 
+     * @param texto El texto a centrar.
+     * @param ancho El ancho del espacio disponible.
+     * @return El texto centrado.
+     */
     public static String centrarTexto(String texto, int ancho) {
         int espaciosTotales = ancho - texto.length();
         int espaciosIzquierda = espaciosTotales / 2;
@@ -42,6 +64,13 @@ public class MostrarMenu {
         return repetirCaracter(' ', espaciosIzquierda) + texto + repetirCaracter(' ', espaciosDerecha);
     }
 
+    /**
+     * Repite el carácter especificado el número de veces dado.
+     * 
+     * @param caracter El carácter a repetir.
+     * @param veces    El número de veces que se debe repetir el carácter.
+     * @return Una cadena que contiene el carácter repetido el número de veces especificado.
+     */
     public static String repetirCaracter(char caracter, int veces) {
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < veces; i++) {
@@ -49,7 +78,12 @@ public class MostrarMenu {
         }
         return sb.toString();
     }
-
+    
+    /**
+     * Imprime una línea horizontal.
+     * 
+     * @param longitud La longitud de la línea.
+     */
     public static void imprimirLinea(int longitud) {
         System.out.println("+" + repetirCaracter('-', longitud - 2) + "+");
     }
