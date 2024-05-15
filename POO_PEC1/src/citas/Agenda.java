@@ -87,71 +87,19 @@ public class Agenda {
 		}
 		return true;
 	}
-
-//	@Override
-//	public String toString() {
-//		return mostrarCitas();
-//	}
 	
-//	public String mostrarCitas() {
-//		
-//		int longitudDefectoPaciente = longitudMayorNombrePaciente(listaCitas);
-//		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
-//		String columnaPaciente = Cadenas.repeatString("-", longitudDefectoPaciente);
-//		
-//		String formatoColumnaPaciente = "%-" + (longitudDefectoPaciente-2) + "s";
-//		String citas = "";
-//		
-//		citas += ("---------------------------------------------------------+"+ columnaPaciente  +"+" + "\n");
-//		citas += String.format("|    Fecha    | Hora de Inicio | Hora de Fin | Reservado | " + formatoColumnaPaciente + " |" + "\n", "Paciente");
-//		citas +=("---------------------------------------------------------+"+ columnaPaciente + "+" + "\n");
-//	    
-//	    // Imprimir cada cita en la lista
-//	    for (HoraConsulta horaConsulta : horario.getListaHorasConsultas()) {
-//	        citas += imprimirFilaCita(horaConsulta, formatter, longitudDefectoPaciente);
-//	    }
-//
-//	    // Línea de cierre de la tabla
-//	    citas += imprimirLineaCierre(longitudDefectoPaciente);
-//	    
-//	    return citas;
-//	}
-//	
-//	private int longitudMayorNombrePaciente(List<Cita> citas) {
-//		int longitudMayorDeNombre = 10;
-//		for (Cita cita : citas) {
-//			String nombre = cita.getEmpleado().getNombre();
-//			String apellidos = cita.getEmpleado().getApellidos();
-//			
-//			String nombreCompleto = nombre + " " + apellidos;
-//			if(nombreCompleto.length() > longitudMayorDeNombre) {
-//				longitudMayorDeNombre = nombreCompleto.length();
-//			}
-//		}
-//		return longitudMayorDeNombre;
-//	}
-//	
-//	private String imprimirFilaCita(Cita cita, DateTimeFormatter formatter, int anchoNombreMaximo) {
-//		String dia = cita.getFechaInicio() != null ? cita.getFechaInicio().format(FormatosFechas.FORMATO_DIA.getFormatter()) : "-";
-//	    String fechaInicio = cita.getFechaInicio() != null ? cita.getFechaInicio().format(FormatosFechas.FORMATO_HORA.getFormatter()) : "-";
-//	    String fechaFin = cita.getFechaFin() != null ? cita.getFechaFin().format(FormatosFechas.FORMATO_HORA.getFormatter()) : "-";
-//	    String reservado = cita.isReservado() ? "Sí" : "No";
-//	    String nombrePaciente = cita.getPaciente() != null ? cita.getPaciente().getNombre() : "";
-//
-//	    // Determinar el ancho de la columna para el nombre del paciente
-//	    int anchoColumnaPaciente = Math.max(anchoNombreMaximo, 12); // Mínimo ancho de columna de 12 caracteres
-//	    String formatoColumnaPaciente = "%-" + (anchoColumnaPaciente -2) + "s";
-//
-//	    return String.format("| %-11s | %-14s | %-11s | %-9s | " + formatoColumnaPaciente + " |\n",
-//	    		dia, fechaInicio, fechaFin, reservado, nombrePaciente);
-//	}
-//
-//	private String imprimirLineaCierre(int anchoNombreMaximo) {
-//	    String lineaCierre = "------------------------------------------------------------------";
-//	    int longitudAdicional = Math.max(0, anchoNombreMaximo - 8); // Determinar longitud adicional basada en el nombre del paciente
-//	    for (int i = 0; i < longitudAdicional; i++) {
-//	        lineaCierre += "-"; // Agregar guiones adicionales según la longitud del nombre del paciente
-//	    }
-//	    return lineaCierre;
-//	}
+	public Cita buscarCita(LocalDate fecha, LocalDateTime horaInicio, LocalDateTime horaFin) {
+		List<Cita> citas = agenda.get(fecha);
+		
+		if(citas == null) {
+			return null;
+		} else {
+			for (Cita cita : citas) {
+				if(cita.getFechaInicio().equals(horaInicio) && cita.getFechaFin().equals(horaFin)) {
+					return cita;
+				}
+			}
+			return null;
+		}
+	}
 }
