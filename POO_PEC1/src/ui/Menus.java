@@ -424,7 +424,7 @@ public class Menus {
 		boolean navegar = false;
 
 		do {
-			MostrarMenu.mostrarMenu("GESTIÓN DE SPORTE", opciones);
+			MostrarMenu.mostrarMenu("GESTIÓN DE SOPORTE", opciones);
 
 			String opcion = EntradaValores.introducirCadena("Seleccione una opción: ");
 			switch (opcion) {
@@ -439,17 +439,6 @@ public class Menus {
 				break;
 			case "4":
 				return;
-//			case "5":
-//				pacientes.ingresarPaciente();
-//				break;
-//			case "6":
-//				pacientes.darAltaPacienteIngresado();
-//				break;
-//			case "7":
-//				System.out.println(habitaciones.toString());
-//				break;
-//			case "8":
-//				return;
 
 			default:
 				System.out.println("Opción inválida. Por favor, introduzca una opción del menu.");

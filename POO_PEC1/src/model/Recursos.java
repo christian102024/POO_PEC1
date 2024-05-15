@@ -37,22 +37,22 @@ public class Recursos {
 		this.recursos = recursos;
 	}
 	
-	public void anyadirRecurso(Recurso recurso) {
+	public void addRecurso(Recurso recurso) {
 		this.recursos.add(recurso);
 	}
 	
-	public void eliminarRecurso(Recurso recurso) {
+	public void removeRecurso(Recurso recurso) {
 		this.recursos.remove(recurso);		
 	}
 	
-	public void eliminarRecurso(int indice) {
+	public void removeRecurso(int indice) {
 		this.recursos.remove(indice);
 	}
 	
 	public void darDeAltaRecurso() {
 		Recurso recurso = pedirDatosRecurso();
 		
-		if(recurso != null) anyadirRecurso(recurso);
+		if(recurso != null) addRecurso(recurso);
 	}
 	
 	public Recurso pedirDatosRecurso() {
@@ -94,7 +94,10 @@ public class Recursos {
 		if(recursos.size() == 0) return;
 		int indice = EntradaValores.introducirNumeroEntero("Introduzca el número del recurso a eliminar: ");
 		if(indice >= 0 && indice < recursos.size()) {
-			eliminarRecurso(indice);
+			removeRecurso(indice);
+			System.out.println("Recurso eliminado satisfactoriamente");
+		} else {
+			System.out.println("El indice especificado no corresponde con ningún recurso dado de alta.");
 		}
 	}
 

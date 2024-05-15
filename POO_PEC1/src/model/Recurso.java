@@ -3,6 +3,7 @@ package model;
 import java.time.LocalDateTime;
 
 import usuarios.Empleado;
+import util.FormatosFechas;
 
 public class Recurso {
 
@@ -58,7 +59,7 @@ public class Recurso {
 	@Override
 	public String toString() {
 		return "Nombre: " + nombre + ", Descripción del problema: " + descripcionProblema + ", Empleado=" + empleado
-				+ ", Fecha de alta: " + fechaAlta;
+				+ ", Fecha de alta: " + fechaAlta.format(FormatosFechas.FORMATO_DIA_HORA.getFormatter());
 	}
 	
 	

@@ -12,6 +12,8 @@ import campus.Habitaciones;
 import citas.Agenda;
 import citas.Cita;
 import model.Expediente;
+import model.Recurso;
+import model.Recursos;
 import model.Seguro;
 import model.Unidad;
 import ui.Menus;
@@ -28,6 +30,9 @@ public class Hospital {
 	public static void main(String[] args) {
 
 		Empleados empleados = Empleados.getInstancia();
+		
+		Empleado empleadoTecnico = new Empleado("Elena", "Gómez Fernández", "23456789L", "712345678", Unidad.ADMINISTRACION);
+		
 		empleados.addEmpleado(new Empleado("Ana", "García López", "23456789A", "612345678", Unidad.CONSULTAS_EXTERNAS));
         empleados.addEmpleado(new Empleado("Pedro", "Martínez Rodríguez", "34567890B", "623456789", Unidad.UCI));
         empleados.addEmpleado(new Empleado("María", "Fernández Pérez", "45678901C", "634567890", Unidad.HOSPITALIZACION));
@@ -93,6 +98,19 @@ public class Hospital {
 		Habitaciones habitaciones = Habitaciones.getInstancia();
 		Habitacion habitacion = habitaciones.getHabitaciones().get(0);
 		pacientes.ingresarPaciente(paciente, habitacion);
+		
+		Recursos recursos = Recursos.getInstancia();
+		recursos.addRecurso(new Recurso("Impresora", "No imprime correctamente", empleadoTecnico));
+		recursos.addRecurso(new Recurso("Portátil", "Pantalla rota", empleadoTecnico));
+		recursos.addRecurso(new Recurso("Teléfono móvil", "Batería descargada rápidamente", empleadoTecnico));
+		recursos.addRecurso(new Recurso("Monitor", "No muestra imagen", empleadoTecnico));
+		recursos.addRecurso(new Recurso("Teclado", "Teclas atascadas", empleadoTecnico));
+		recursos.addRecurso(new Recurso("Ratón", "No responde", empleadoTecnico));
+		recursos.addRecurso(new Recurso("Cámara web", "Imagen borrosa", empleadoTecnico));
+		recursos.addRecurso(new Recurso("Altavoces", "Sonido distorsionado", empleadoTecnico));
+		recursos.addRecurso(new Recurso("Router", "Conexión intermitente", empleadoTecnico));
+		recursos.addRecurso(new Recurso("Escáner", "No reconoce documentos", empleadoTecnico));
+
 
 		Menus menus = new Menus();
 
