@@ -15,15 +15,26 @@ import util.Cadenas;
 import util.EntradaValores;
 import util.Mensajes;
 
+/**
+ * Clase que gestiona la lista de pacientes. Hace uso del patrón Singleton.
+ */
 public class Pacientes {
 	private static Pacientes instancia;
 	private List<Paciente> pacientes;
 
+	/**
+     * Constructor privado de la clase Pacientes.
+     */
 	public Pacientes() {
 		super();
 		this.pacientes = new ArrayList<Paciente>();
 	}
 
+	/**
+     * Obtiene la instancia única de la clase Pacientes (patrón Singleton).
+     *
+     * @return La instancia de la clase Pacientes.
+     */
 	public static Pacientes getInstancia() {
 		if (instancia == null) {
 			instancia = new Pacientes();
@@ -43,6 +54,9 @@ public class Pacientes {
 		this.pacientes.add(paciente);
 	}
 
+    /**
+     * Permite dar de alta a un paciente.
+     */
 	public void darDeAltaPaciente() {
 		Scanner scanner = new Scanner(System.in);
 		Paciente paciente = new Paciente();
@@ -56,6 +70,13 @@ public class Pacientes {
 		}
 	}
 
+	/**
+     * Solicita los datos de un paciente al usuario.
+     *
+     * @param scanner  El objeto Scanner para la entrada de datos.
+     * @param paciente El paciente para el cual se solicitan los datos.
+     * @return El objeto Paciente con los datos introducidos, o null si se cancela el proceso.
+     */
 	private Paciente pedirDatosPaciente(Scanner scanner, Paciente paciente) {
 		String nombre = EntradaValores.introducirCadena("Nombre: ", paciente.getNombre());
 		if (nombre.equals("cancelar")) {
@@ -99,12 +120,20 @@ public class Pacientes {
 		return paciente;
 	}
 
+    /**
+     * Permite dar de baja a un paciente solicitando su DNI al usuario.
+     */
 	public void darDeBajaPaciente() {
 		Scanner scanner = new Scanner(System.in);
 		System.out.print("Introduzca el DNI del paciente a eliminar: ");
 		darDeBajaPaciente(scanner.nextLine());
 	}
 
+	/**
+     * Elimina un paciente de la lista según su DNI.
+     *
+     * @param dni El DNI del paciente a dar de baja.
+     */
 	public void darDeBajaPaciente(String dni) {
 		Integer indice = buscarIndiceDePacientePorDNI(dni);
 		if (indice == -1) {
@@ -117,6 +146,11 @@ public class Pacientes {
 		}
 	}
 
+	/**
+     * Busca un paciente en la lista por su DNI.
+     *
+     * @return El objeto Paciente encontrado, o null si no se encuentra.
+     */
 	public Paciente buscarPacientePorDNI() {
 		boolean continuar = true;
 
@@ -133,6 +167,11 @@ public class Pacientes {
 		return null;
 	}
 
+	/**
+     * Busca el índice de un paciente en la lista por su DNI.
+     *
+     * @return El índice del paciente encontrado, o null si se cancela el proceso.
+     */
 	public Integer buscarIndiceDePacientePorDNI() {
 		String dni = EntradaValores.introducirCadena("Introduzca el DNI del paciente: ");
 
@@ -144,6 +183,12 @@ public class Pacientes {
 		return buscarIndiceDePacientePorDNI(dni);
 	}
 
+	 /**
+     * Busca el índice de un paciente en la lista por su DNI.
+     *
+     * @param dni El DNI del paciente a buscar.
+     * @return El índice del paciente encontrado, -1 si no se encuentra, o null si se cancela el proceso.
+     */
 	public Integer buscarIndiceDePacientePorDNI(String dni) {
 		if (dni == "cancelar")
 			return null;
@@ -157,6 +202,9 @@ public class Pacientes {
 		return -1;
 	}
 
+	/**
+     * Permite ingresar un paciente y asignarle una habitación.
+     */
 	public void ingresarPaciente() {
 		Paciente paciente = buscarPacientePorDNI();
 		Habitacion habitacion = buscarHabitacionPorNumero();
@@ -166,6 +214,12 @@ public class Pacientes {
 		System.out.println("Paciente ingresado correctamente");
 	}
 
+	 /**
+     * Ingresa un paciente en una habitación específica.
+     *
+     * @param paciente   El paciente a ingresar.
+     * @param habitacion La habitación en la que se va a ingresar al paciente.
+     */
 	public void ingresarPaciente(Paciente paciente, Habitacion habitacion) {
 		if (paciente != null && habitacion != null) {
 			habitacion.setOcupada(true);
@@ -176,6 +230,9 @@ public class Pacientes {
 		}
 	}
 
+    /**
+     * Da de alta a un paciente ingresado, liberando la habitación que ocupaba.
+     */
 	public void darAltaPacienteIngresado() {
 		Paciente paciente = buscarPacientePorDNI();
 		Habitaciones habitaciones = Habitaciones.getInstancia();
@@ -194,6 +251,11 @@ public class Pacientes {
 
 	}
 
+	/**
+     * Busca una habitación disponible por su número.
+     *
+     * @return La habitación encontrada, o null si se cancela el proceso.
+     */
 	public Habitacion buscarHabitacionPorNumero() {
 		boolean encontrada = false;
 		Habitacion habitacionEncontrada = null;
@@ -221,6 +283,14 @@ public class Pacientes {
 		return habitacionEncontrada;
 	}
 
+	/**
+     * Actualiza los datos de una habitación en la lista de habitaciones.
+     *
+     * @param paciente     El paciente ingresado en la habitación.
+     * @param habitacion   La habitación que se va a actualizar.
+     * @param habitaciones La lista de habitaciones donde se va a realizar la actualización.
+     * @return La lista actualizada de habitaciones.
+     */
 	public List<Habitacion> actualizarHabitacion(Paciente paciente, Habitacion habitacion, Habitaciones habitaciones) {
 		List<Habitacion> listaHabitaciones = habitaciones.getHabitaciones();
 
@@ -233,6 +303,12 @@ public class Pacientes {
 		return listaHabitaciones;
 	}
 
+	/**
+     * Agrega un tratamiento al expediente de un paciente.
+     *
+     * @param paciente El paciente al que se le agregará el tratamiento.
+     * @return El paciente con el tratamiento agregado, o null si no se agrega tratamiento.
+     */
 	public Paciente addTratamiento(Paciente paciente) {
 		boolean tratamiento = EntradaValores.introducirValorBooleano("¿Introducir procedimiento médico? (S/N): ");
 
@@ -246,6 +322,11 @@ public class Pacientes {
 		return paciente;
 	}
 
+	/**
+     * Solicita al usuario los datos de un procedimiento médico.
+     *
+     * @return El objeto Expediente con los datos introducidos, o null si se cancela el proceso.
+     */
 	private Expediente pedirDatosProcedimiento() {
 		Expediente expediente = new Expediente(null, null, null);
 		String procedimiento = EntradaValores.introducirCadena("Escriba el procedimiento médico: ");
@@ -254,6 +335,9 @@ public class Pacientes {
 
 	}
 
+	/**
+     * Permite al usuario actualizar el expediente de un paciente.
+     */
 	public void actualizarExpedientePaciente() {
 		Integer indice = buscarIndiceDePacientePorDNI();
 
@@ -269,6 +353,11 @@ public class Pacientes {
 		}
 	}
 
+	/**
+     * Solicita al usuario los datos de un expediente médico.
+     *
+     * @return El objeto Expediente con los datos introducidos, o null si se cancela el proceso.
+     */
 	public Expediente pedirDatosExpediente() {
 		Expediente expediente = new Expediente();
 		String informe = EntradaValores.introducirCadena("Informe: ");

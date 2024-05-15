@@ -1,5 +1,8 @@
 package usuarios;
 
+/**
+ * Clase que representa a un usuario.
+ */
 public class Usuario {
 
 	private String nombre;
@@ -7,6 +10,14 @@ public class Usuario {
 	private String dni;
 	private String telefono;
 	
+    /**
+     * Constructor de la clase Usuario.
+     *
+     * @param nombre    El nombre del usuario.
+     * @param apellidos Los apellidos del usuario.
+     * @param dni       El DNI del usuario.
+     * @param telefono  El número de teléfono del usuario.
+     */
 	public Usuario(String nombre, String apellidos, String dni, String telefono) {
 		super();
 		this.nombre = nombre;
@@ -19,7 +30,6 @@ public class Usuario {
 	public Usuario() {
 		super();
 	}
-
 
 	public String getNombre() {
 		return nombre;
