@@ -386,7 +386,17 @@ public class Pacientes {
 		expediente.setDiagnostico(diagnostico);
 
 		return expediente;
-
+	}
+	
+	public void mostrarPacientesIngresados() {
+		System.out.println("PACIENTES INGRESADOS EN EL HOSPITAL:");
+		for(Habitacion habitacion: Habitaciones.getInstancia().getHabitaciones()) {
+			Paciente paciente = habitacion.getPaciente();
+			
+			if(paciente != null) {
+				System.out.println("\t" + paciente.toString());
+			}
+		}
 	}
 
 	@Override

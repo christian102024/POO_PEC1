@@ -404,7 +404,7 @@ public class Menus {
 	public void mostrarMenuGestionPacientes() {
 		List<String> opciones = Arrays.asList("Añadir paciente", "Eliminar paciente", "Mostrar pacientes",
 				"Buscar paciente por DNI", "Ingresar paciente", "Dar el alta a paciente ingresado",
-				"Mostrar habitaciones", "Volver");
+				"Mostrar habitaciones", "Mostrar pacientes ingresados", "Volver");
 		boolean navegar = false;
 
 		do {
@@ -434,6 +434,9 @@ public class Menus {
 				System.out.println(habitaciones.toString());
 				break;
 			case "8":
+				pacientes.mostrarPacientesIngresados();
+				break;
+			case "9":
 				return;
 
 			default:
