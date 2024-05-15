@@ -170,7 +170,7 @@ public class Menus {
 	}
 
 	public void mostrarMenuGestionMedicina() {
-		List<String> opciones = Arrays.asList("Ver agenda de medico", "Añadir una cita",
+		List<String> opciones = Arrays.asList("Ver agenda de medico", "Añadir una cita", "Eliminar cita",
 				"Actualizar expediente de paciente", "Volver");
 		String opcion;
 		boolean navegar = false;
@@ -224,9 +224,41 @@ public class Menus {
 				}
 				break;
 			case "3":
-				pacientes.actualizarExpedientePaciente();
+				empleado = empleados.buscarEmpleadoPorDNI();
+				if (empleado != null) {
+					PersonalSanitario personalSanitario = PersonalSanitario.comprobarEmpleadoEsMedico(empleado);
+
+					if (personalSanitario != null) {
+						Agenda agenda = personalSanitario.getAgenda();
+						LocalDate fecha = EntradaValores
+								.introducirFecha("Introduzca la fecha en la que quiere eliminar la cita: ");
+						MostrarAgenda.mostrarAgenda(agenda, fecha);
+						LocalTime horaInicio = EntradaValores.introducirHora("Introduzca la hora de inicio: ");
+						LocalTime horaFin = EntradaValores.introducirHora("Introduzca la hora de fin: ");
+
+						LocalDateTime fechaHoraInicio = LocalDateTime.of(fecha, horaInicio);
+						LocalDateTime fechaHoraFin = LocalDateTime.of(fecha, horaFin);
+
+						boolean citaNoExiste = agenda.comprobarCitaNoExiste(fecha, fechaHoraInicio,
+								fechaHoraFin);
+						
+						Cita cita = agenda.buscarCita(fecha, fechaHoraInicio, fechaHoraFin);
+						
+
+						if (cita == null) {
+							System.out.println("La cita no existe");
+						} else {
+							agenda.eliminarCita(fecha, cita);
+							System.out.println("Cita eliminada correctamente");
+						}
+
+					}
+				}
 				break;
 			case "4":
+				pacientes.actualizarExpedientePaciente();
+				break;
+			case "5":
 				navegar = true;
 				break;
 
