@@ -50,7 +50,12 @@ public class Empleados {
 	}
 
 	public void addEmpleado(Empleado empleado) {
-		this.empleados.add(empleado);
+		PersonalSanitario personalSanitario = PersonalSanitario.convertirEmpleadoEnPersonalSanitario(empleado);
+		if (personalSanitario != null) {
+			this.empleados.add(personalSanitario);
+		} else {
+			this.empleados.add(empleado);
+		}
 	}
 
 	public void addEmpleado(Empleado empleado, int indice) {
@@ -169,11 +174,12 @@ public class Empleados {
 	}
 
 	/**
-	 * Inicia el proceso de baja de un empleado, solicitando al usuario el DNI del empleado a eliminar.
+	 * Inicia el proceso de baja de un empleado, solicitando al usuario el DNI del
+	 * empleado a eliminar.
 	 */
 	public void darDeBajaEmpleado() {
 		String dni = EntradaValores.introducirCadena("Introduzca el DNI del empleado a eliminar: ");
-		if(dni == null) {
+		if (dni == null) {
 			System.out.println(Mensajes.PROCESO_CANCELADO.getMensaje());
 			return;
 		}
@@ -260,7 +266,8 @@ public class Empleados {
 	}
 
 	/**
-	 * Muestra los empleados clasificados por unidad, mostrando sus datos por consola.
+	 * Muestra los empleados clasificados por unidad, mostrando sus datos por
+	 * consola.
 	 */
 	public void mostrarEmpleadosClasificadosPorUnidad() {
 		for (Unidad unidad : Unidad.values()) {
