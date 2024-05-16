@@ -188,7 +188,6 @@ public class Empleados {
 			return;
 		}
 		darDeBajaEmpleado(dni);
-		System.out.println("Empleado eliminado correctamente.");
 	}
 
 	/**
@@ -198,10 +197,12 @@ public class Empleados {
 	 */
 	public void darDeBajaEmpleado(String dni) {
 		int indice = buscarIndiceDeEmpleadoPorDNI(dni);
-		if(indice != -1)
+		if(indice != -1) {
 			empleados.remove(indice);
-		else
-			System.out.println("El empleado con el DNI " + dni + " no existe.");
+			System.out.println("Empleado eliminado correctamente.");			
+		} else {
+			System.out.println("El empleado con el DNI " + dni + " no existe.");			
+		}
 	}
 
 	/**
