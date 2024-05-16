@@ -152,7 +152,7 @@ public class Estudiantes {
 			Empleado empleado = empleados.buscarEmpleadoPorDNI();
 			if (empleado != null && Unidades.getServiciosPorUnidad(empleado.getUnidad()).contains(Servicio.MEDICINA)
 					|| Unidades.getServiciosPorUnidad(empleado.getUnidad()).contains(Servicio.ENFERMERIA)) {
-				PersonalSanitario personalSanitario = PersonalSanitario.convertirEmpleadoEnPersonalSanitario(empleado);
+				PersonalSanitario personalSanitario = PersonalSanitario.convertirEmpleadoEnPersonalSanitarioMostrandoErrores(empleado);
 				LocalDate fecha = MostrarAgenda.mostrarAgendaDevolverFecha(personalSanitario.getAgenda());
 
 				Cita cita = seleccionarCita(personalSanitario.getAgenda(), fecha);

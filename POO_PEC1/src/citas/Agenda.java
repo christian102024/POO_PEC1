@@ -36,6 +36,7 @@ public class Agenda {
 	public Agenda() {
 		super();
 		this.agenda = new TreeMap<LocalDate, List<Cita>>();
+		this.horario = HorariosPorTurno.HORARIO_DIA.getHorario();
 	}
 
 	public List<Cita> getListaCitas(LocalDate fecha) {

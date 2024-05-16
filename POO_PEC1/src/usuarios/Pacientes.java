@@ -1,5 +1,6 @@
 package usuarios;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -7,6 +8,7 @@ import java.util.Scanner;
 
 import campus.Habitacion;
 import campus.Habitaciones;
+import citas.MostrarAgenda;
 import model.Expediente;
 import model.Seguro;
 import ui.MostrarMenu;
@@ -395,6 +397,25 @@ public class Pacientes {
 			
 			if(paciente != null) {
 				System.out.println("\t" + paciente.toString());
+			}
+		}
+	}
+	
+	public void mostrarPacientesCadaMiembroPersonalMedico() {
+		LocalDate fecha = EntradaValores.introducirFecha("Introduzca la fecha: ");
+		
+		if(fecha != null) {
+			mostrarPacientesCadaMiembroPersonalMedico(fecha);
+		}
+	}
+	
+	public void mostrarPacientesCadaMiembroPersonalMedico(LocalDate fecha) {
+		List<PersonalSanitario> listaPersonalSanitarios =  PersonalSanitario.obtenerTodosLosEmpleadosDelPersonalSanitario();
+		
+		if(listaPersonalSanitarios != null) {
+			for (PersonalSanitario personalSanitario : listaPersonalSanitarios) {
+				System.out.println("AGENDA DEL PERSONAL SANITARIO " + personalSanitario.getNombre() + " " + personalSanitario.getApellidos());
+				MostrarAgenda.mostrarAgenda(personalSanitario.getAgenda(), fecha);			
 			}
 		}
 	}
