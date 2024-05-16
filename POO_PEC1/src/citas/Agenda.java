@@ -10,6 +10,7 @@ import java.util.TreeMap;
 import model.HoraConsulta;
 import model.Horario;
 import model.HorariosPorTurno;
+import model.Turno;
 
 /**
  * Representa la agenda de citas.
@@ -24,19 +25,27 @@ public class Agenda {
      * 
      * @param agenda La agenda de citas.
      */
-	public Agenda(Map<LocalDate, List<Cita>> agenda) {
+	public Agenda(Map<LocalDate, List<Cita>> agenda, Turno turno) {
 		super();
 		this.agenda = agenda;
-		this.horario = HorariosPorTurno.HORARIO_DIA.getHorario();
+		if(turno.equals(Turno.DIA)) {
+			this.horario = HorariosPorTurno.HORARIO_DIA.getHorario();			
+		} else {
+			this.horario = HorariosPorTurno.HORARIO_NOCHE.getHorario();
+		}
 	}
 
     /**
      * Constructor por defecto de la clase Agenda.
      */
-	public Agenda() {
+	public Agenda(Turno turno) {
 		super();
 		this.agenda = new TreeMap<LocalDate, List<Cita>>();
-		this.horario = HorariosPorTurno.HORARIO_DIA.getHorario();
+		if(turno.equals(Turno.DIA)) {
+			this.horario = HorariosPorTurno.HORARIO_DIA.getHorario();			
+		} else {
+			this.horario = HorariosPorTurno.HORARIO_NOCHE.getHorario();
+		}
 	}
 
 	public List<Cita> getListaCitas(LocalDate fecha) {

@@ -52,7 +52,7 @@ public class PersonalSanitario extends Empleado {
 			return personalSanitario;
 		} else if (comprobarEmpleadoEsPersonalSanitario(empleado)) {
 			PersonalSanitario personalSanitario = new PersonalSanitario(empleado.getNombre(), empleado.getApellidos(),
-					empleado.getDni(), empleado.getTelefono(), empleado.getUnidad(), new Agenda());
+					empleado.getDni(), empleado.getTelefono(), empleado.getUnidad(), new Agenda(empleado.getTurno()));
 			return personalSanitario;
 		} else {
 			System.out.println("El empleado no pertenece al Personal Sanitario");
@@ -73,7 +73,7 @@ public class PersonalSanitario extends Empleado {
 			return personalSanitario;
 		} else if (comprobarEmpleadoEsPersonalSanitario(empleado)) {
 			PersonalSanitario personalSanitario = new PersonalSanitario(empleado.getNombre(), empleado.getApellidos(),
-					empleado.getDni(), empleado.getTelefono(), empleado.getUnidad(), new Agenda());
+					empleado.getDni(), empleado.getTelefono(), empleado.getUnidad(), new Agenda(empleado.getTurno()));
 			return personalSanitario;
 		} else {
 			return null;

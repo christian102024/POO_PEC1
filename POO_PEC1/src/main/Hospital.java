@@ -15,6 +15,7 @@ import model.Expediente;
 import model.Recurso;
 import model.Recursos;
 import model.Seguro;
+import model.Turno;
 import model.Unidad;
 import ui.Menus;
 import usuarios.Empleado;
@@ -85,10 +86,10 @@ public class Hospital {
 
 		// Personal Sanitario de la unidad de MEDICINA
 		PersonalSanitario medico = new PersonalSanitario("María", "Latorre", "18098278W", "624142536",
-				Unidad.CARDIOVASCULAR, new Agenda(agendaMedico));
+				Unidad.CARDIOVASCULAR, new Agenda(agendaMedico, Turno.DIA));
 		
 		// Personal Sanitario de la unidad de ENFERMERÍA
-		PersonalSanitario enfermero = new PersonalSanitario("Laura", "Pinies", "14542214R", "645124512", Unidad.CONSULTAS_EXTERNAS, new Agenda(agendaEnfermero));
+		PersonalSanitario enfermero = new PersonalSanitario("Laura", "Pinies", "14542214R", "645124512", Unidad.CONSULTAS_EXTERNAS, new Agenda(agendaEnfermero, Turno.DIA));
 		
 		empleados.addEmpleado(empleado);
 		empleados.addEmpleado(medico);

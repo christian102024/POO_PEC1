@@ -54,7 +54,7 @@ public class Menus {
 	 * Muestra el menu principal
 	 */
 	public void mostrarMenuPrincipal() {
-		List<String> opciones = Arrays.asList("GESTIÓN DE PERSONAL DEL HOSPITAL", "GESTIÓN DE ESTUDIANTES",
+		List<String> opciones = Arrays.asList("GERENCIA Y GESTIÓN DE SERVICIOS GENERALES DEL HOSPITAL", "GESTIÓN DE ESTUDIANTES",
 				"GESTIÓN DE MEDICINA", "GESTIÓN DE ENFERMERÍA", "GESTIÓN DE PACIENTES", "GESTIÓN DE SOPORTE", "SALIR");
 		String opcion;
 		boolean navegar = false;
@@ -107,8 +107,7 @@ public class Menus {
 		boolean navegar = false;
 
 		do {
-			MostrarMenu.mostrarMenu("GESTIÓN DE PERSONAL DEL HOSPITAL", opciones);
-			System.out.print("Seleccione una opción: ");
+			MostrarMenu.mostrarMenu("GERENCIA Y GESTIÓN DE SERVICIOS GENERALES DEL HOSPITAL", opciones);
 
 			opcion = EntradaValores.introducirCadena("Seleccione una opción: ");
 

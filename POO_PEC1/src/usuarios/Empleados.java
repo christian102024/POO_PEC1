@@ -124,6 +124,8 @@ public class Empleados {
 			Unidad unidad = seleccionarUnidad(servicio);
 			if (unidad != null)
 				empleado.setUnidad(unidad);
+			else
+				return null;
 		}
 
 		return empleado;
@@ -162,9 +164,11 @@ public class Empleados {
 		List<String> lista = Unidades.getValoresUnidadesDisponiblesPorServicio(servicio);
 
 		MostrarMenu.mostrarMenu("SELECCIONE UNA UNIDAD", lista);
-		int opcion = EntradaValores.introducirNumeroEntero("Seleccione una opción",
+		Integer opcion = EntradaValores.introducirNumeroEntero("Seleccione una opción: ",
 				new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 });
 
+		if(opcion == null) return null;
+		
 		if (opcion >= 1 || opcion <= 10) {
 			return listaUnidades.get(opcion - 1);
 		} else {
