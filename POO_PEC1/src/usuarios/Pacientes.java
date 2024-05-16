@@ -400,6 +400,9 @@ public class Pacientes {
 		return expediente;
 	}
 
+	/**
+	 * Muestra los pacientes ingresados en el hospital.
+	 */
 	public void mostrarPacientesIngresados() {
 		System.out.println("PACIENTES INGRESADOS EN EL HOSPITAL:");
 		for (Habitacion habitacion : Habitaciones.getInstancia().getHabitaciones()) {
@@ -411,6 +414,10 @@ public class Pacientes {
 		}
 	}
 
+	/**
+	 * Pide una fecha y muestra los pacientes en el método
+	 * mostrarPacientesCadaMiembroPersonalMedico()
+	 */
 	public void mostrarPacientesCadaMiembroPersonalMedico() {
 		LocalDate fecha = EntradaValores.introducirFecha("Introduzca la fecha: ");
 
@@ -419,6 +426,11 @@ public class Pacientes {
 		}
 	}
 
+	/**
+	 * Muestra los pacientes de cada miembro del personal medico con el tengan
+	 * el registro de haber pedido una cita en una fecha específica.
+	 * @param fecha
+	 */
 	public void mostrarPacientesCadaMiembroPersonalMedico(LocalDate fecha) {
 		List<PersonalSanitario> listaPersonalSanitarios = PersonalSanitario
 				.obtenerTodosLosEmpleadosDelPersonalSanitario();
@@ -439,6 +451,11 @@ public class Pacientes {
 		}
 	}
 
+	/**
+	 * Pide una fecha y muestra los pacientes que tengan una cita en el día indicado en la fecha parametrizada
+	 * con un especialista de la unidad de CONSULTAS EXTERNAS.
+	 * @param fecha
+	 */
 	public void mostrarPacientesAgendaConsultasExternas() {
 		LocalDate fecha = EntradaValores.introducirFecha("Introduzca la fecha: ");
 
@@ -448,6 +465,11 @@ public class Pacientes {
 		}
 	}
 
+	/**
+	 * Muestra los pacientes que tengan una cita en el día indicado en la fecha parametrizada
+	 * con un especialista de la unidad de CONSULTAS EXTERNAS.
+	 * @param fecha
+	 */
 	public void mostrarPacientesAgendaConsultasExternas(LocalDate fecha) {
 		List<PersonalSanitario> listaPersonalSanitarios = PersonalSanitario
 				.obtenerTodosLosEmpleadosDelPersonalSanitario();
@@ -473,6 +495,11 @@ public class Pacientes {
 		}
 	}
 
+	/**
+	 * Muestra los pacientes que tienen citas con un especialista en un periodo
+	 * de una semana o de un día.
+	 * 
+	 */
 	public void mostrarPacientesEspecialistaEnPeriodo() {
 		boolean navegar = false;
 		do {
@@ -497,6 +524,10 @@ public class Pacientes {
 		} while (!navegar);
 	}
 
+	/**
+	 * Muestra los pacientes que tienen citas con un especialista en una semana específica.
+	 * 
+	 */
 	public void mostrarPacientesEspecialistaEnSemana() {
 		LocalDate fecha = EntradaValores.introducirFecha("Introduzca el día para buscar los pacientes");
 		LocalDate[] fechaInicioFin = EntradaValores.obtenerFechaInicioYFinSemana(fecha);
@@ -533,6 +564,10 @@ public class Pacientes {
 		}
 	}
 
+	/**
+	 * Muestra los pacientes que tienen citas con un especialista en un día específico.
+	 * 
+	 */
 	public void mostrarPacientesEspecialistaEnDia() {
 		LocalDate fecha = EntradaValores.introducirFecha("Introduzca el día para buscar los pacientes");
 		List<PersonalSanitario> listaPersonalSanitarios = PersonalSanitario
