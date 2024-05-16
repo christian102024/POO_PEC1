@@ -8,11 +8,13 @@ import java.util.Scanner;
 
 import campus.Habitacion;
 import campus.Habitaciones;
+import citas.Cita;
 import citas.MostrarAgenda;
 import model.Expediente;
 import model.Seguro;
 import ui.MostrarMenu;
 import util.EntradaValores;
+import util.FormatosFechas;
 import util.Mensajes;
 
 /**
@@ -414,8 +416,14 @@ public class Pacientes {
 		
 		if(listaPersonalSanitarios != null) {
 			for (PersonalSanitario personalSanitario : listaPersonalSanitarios) {
-				System.out.println("AGENDA DEL PERSONAL SANITARIO " + personalSanitario.getNombre() + " " + personalSanitario.getApellidos());
-				MostrarAgenda.mostrarAgenda(personalSanitario.getAgenda(), fecha);			
+				System.out.println("PACIENTES DEL PERSONAL SANITARIO " + personalSanitario.getNombre() + " " + personalSanitario.getApellidos());
+				List<Cita> listaCitas = personalSanitario.getAgenda().getListaCitas(fecha);
+				if(listaCitas == null || listaCitas.size() == 0) {
+					System.out.println("\tSin pacientes asignados el día " + fecha.format(FormatosFechas.FORMATO_DIA.getFormatter()));
+					System.out.println();
+				} else {
+					MostrarAgenda.mostrarAgenda(personalSanitario.getAgenda(), fecha);								
+				}
 			}
 		}
 	}
