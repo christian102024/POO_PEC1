@@ -467,7 +467,93 @@ public class Pacientes {
 		}
 
 		if (pacientes.equals("")) {
-			System.out.println("Sin emplaedos en consultas externas");
+			System.out.println("Sin empleados en consultas externas");
+		} else {
+			System.out.println(pacientes);
+		}
+	}
+
+	public void mostrarPacientesEspecialistaEnPeriodo() {
+		boolean navegar = false;
+		do {
+			MostrarMenu.mostrarMenu("Seleccione el tipo de periodo",
+					Arrays.asList("Pacientes en una semana", "Pacientes en un día"));
+
+			String opcion = EntradaValores.introducirCadena("Seleccione una opción: ");
+			switch (opcion) {
+			case "1":
+				mostrarPacientesEspecialistaEnSemana();
+				navegar = true;
+				break;
+			case "2":
+				mostrarPacientesEspecialistaEnDia();
+				navegar = true;
+				break;
+
+			default:
+				System.out.println("Opción inválida. Por favor, introduzca una opción del menu.");
+			}
+
+		} while (!navegar);
+	}
+
+	public void mostrarPacientesEspecialistaEnSemana() {
+		LocalDate fecha = EntradaValores.introducirFecha("Introduzca el día para buscar los pacientes");
+		LocalDate[] fechaInicioFin = EntradaValores.obtenerFechaInicioYFinSemana(fecha);
+		LocalDate fechaInicio = fechaInicioFin[0];
+		LocalDate fechaFin = fechaInicioFin[1];
+
+		List<PersonalSanitario> listaPersonalSanitarios = PersonalSanitario
+				.obtenerTodosLosEmpleadosDelPersonalSanitario();
+		String pacientes = "";
+
+		System.out.println("PACIENTES QUE TIENEN QUE VER A UN ESPECIALISTA LA SEMANA "
+				+ fechaInicio.format(FormatosFechas.FORMATO_DIA.getFormatter()) + " - "
+				+ fechaFin.format(FormatosFechas.FORMATO_DIA.getFormatter()));
+		for (PersonalSanitario personalSanitario : listaPersonalSanitarios) {
+
+			for (int i = 0; i < 7; i++) {
+				List<Cita> listaCitas = personalSanitario.getAgenda().getListaCitas(fechaInicio);
+
+				if (listaCitas != null)
+					for (Cita cita : listaCitas) {
+						pacientes += "\t" + cita.getPaciente().toString() + "\n";
+					}
+
+				fechaInicio = fechaInicio.plusDays(1);
+			}
+			fechaInicio = fechaInicioFin[0];
+
+		}
+
+		if (pacientes.equals("")) {
+			System.out.println("Sin empleados en esa semana.");
+		} else {
+			System.out.println(pacientes);
+		}
+	}
+
+	public void mostrarPacientesEspecialistaEnDia() {
+		LocalDate fecha = EntradaValores.introducirFecha("Introduzca el día para buscar los pacientes");
+		List<PersonalSanitario> listaPersonalSanitarios = PersonalSanitario
+				.obtenerTodosLosEmpleadosDelPersonalSanitario();
+		String pacientes = "";
+
+		System.out.println("PACIENTES QUE TIENEN QUE VER A UN ESPECIALISTA EL DÍA "
+				+ fecha.format(FormatosFechas.FORMATO_DIA.getFormatter()));
+		for (PersonalSanitario personalSanitario : listaPersonalSanitarios) {
+
+			List<Cita> listaCitas = personalSanitario.getAgenda().getListaCitas(fecha);
+
+			if (listaCitas != null)
+				for (Cita cita : listaCitas) {
+					pacientes += "\t" + cita.getPaciente().toString() + "\n";
+				}
+
+		}
+
+		if (pacientes.equals("")) {
+			System.out.println("Sin empleados en ese día.");
 		} else {
 			System.out.println(pacientes);
 		}

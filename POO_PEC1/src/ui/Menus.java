@@ -346,7 +346,7 @@ public class Menus {
 		List<String> opciones = Arrays.asList("Añadir paciente", "Eliminar paciente", "Mostrar pacientes",
 				"Buscar paciente por DNI", "Ingresar paciente", "Dar el alta a paciente ingresado",
 				"Mostrar habitaciones", "Mostrar pacientes ingresados", "Mostrar pacientes que tiene cada miembro del personal médico en una fecha "
-						+ "concreta.", "Mostrar pacientes con citas en la agenda de consultas externas", "Volver");
+						+ "concreta.", "Mostrar pacientes con citas en la agenda de consultas externas", "Pacientes que tienen que ver un especialista en un periodo", "Volver");
 		boolean navegar = false;
 
 		do {
@@ -384,6 +384,9 @@ public class Menus {
 			case "10":
 				pacientes.mostrarPacientesAgendaConsultasExternas();
 			case "11":
+				pacientes.mostrarPacientesEspecialistaEnPeriodo();
+				break;
+			case "12":
 				return;
 
 			default:

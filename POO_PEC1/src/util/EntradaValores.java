@@ -1,5 +1,6 @@
 package util;
 
+import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Scanner;
@@ -322,5 +323,26 @@ public class EntradaValores {
 
 		return LocalTime.of(hora, minutos);
 	}
+	
+    /**
+     * Obtiene el primer y último día de la semana para una fecha dada.
+     *
+     * @param fecha la fecha para la cual se desea obtener el primer y último día de la semana
+     * @return un array de dos elementos donde el primer elemento es el primer día de la semana
+     *         y el segundo elemento es el último día de la semana
+     */
+    public static LocalDate[] obtenerFechaInicioYFinSemana(LocalDate fecha) {
+        LocalDate[] inicioFinSemana = new LocalDate[2];
+
+        // Calcula el primer día de la semana (lunes)
+        LocalDate primerDiaSemana = fecha.with(DayOfWeek.MONDAY);
+        inicioFinSemana[0] = primerDiaSemana;
+
+        // Calcula el último día de la semana (domingo)
+        LocalDate ultimoDiaSemana = fecha.with(DayOfWeek.SUNDAY);
+        inicioFinSemana[1] = ultimoDiaSemana;
+
+        return inicioFinSemana;
+    }
 
 }
