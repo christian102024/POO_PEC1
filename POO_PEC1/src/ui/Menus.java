@@ -230,10 +230,10 @@ public class Menus {
 						LocalTime horaInicio = EntradaValores.introducirHora("Introduzca la hora de inicio: ");
 						LocalTime horaFin = EntradaValores.introducirHora("Introduzca la hora de fin: ");
 
-						LocalDateTime fechaHoraInicio = LocalDateTime.of(fecha, horaInicio);
-						LocalDateTime fechaHoraFin = LocalDateTime.of(fecha, horaFin);
+						LocalDateTime.of(fecha, horaInicio);
+						LocalDateTime.of(fecha, horaFin);
 
-						boolean citaNoExiste = agenda.comprobarCitaNoExiste(fecha, horaInicio,
+						agenda.comprobarCitaNoExiste(fecha, horaInicio,
 								horaFin);
 						
 						Cita cita = agenda.buscarCita(fecha, horaInicio, horaFin);
@@ -305,10 +305,10 @@ public class Menus {
 						LocalTime horaInicio = EntradaValores.introducirHora("Introduzca la hora de inicio: ");
 						LocalTime horaFin = EntradaValores.introducirHora("Introduzca la hora de fin: ");
 
-						LocalDateTime fechaHoraInicio = LocalDateTime.of(fecha, horaInicio);
-						LocalDateTime fechaHoraFin = LocalDateTime.of(fecha, horaFin);
+						LocalDateTime.of(fecha, horaInicio);
+						LocalDateTime.of(fecha, horaFin);
 
-						boolean citaNoExiste = agenda.comprobarCitaNoExiste(fecha, horaInicio,
+						agenda.comprobarCitaNoExiste(fecha, horaInicio,
 								horaFin);
 						
 						Cita cita = agenda.buscarCita(fecha, horaInicio, horaFin);

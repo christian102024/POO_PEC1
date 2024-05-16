@@ -55,8 +55,6 @@ public class Recursos {
 		
 		if(recurso != null) {
 			addRecurso(recurso);
-		} else {
-			System.out.println(Mensajes.PROCESO_CANCELADO.getMensaje());
 		}
 	}
 	
