@@ -189,9 +189,9 @@ public class Estudiantes {
 		LocalDateTime fechaHoraInicio = LocalDateTime.of(fecha, horaInicio);
 		LocalDateTime fechaHoraFin = LocalDateTime.of(fecha, horaFin);
 
-		boolean horarioExiste = agenda.comprobarHoraExisteEnHorario(fechaHoraInicio, fechaHoraFin);
+		boolean horarioExiste = agenda.comprobarHoraExisteEnHorario(horaInicio, horaFin);
 
-		boolean citaNoExiste = agenda.comprobarCitaEstaDisponible(fecha, fechaHoraInicio, fechaHoraFin);
+		boolean citaNoExiste = agenda.comprobarCitaEstaDisponible(fecha, horaInicio, horaFin);
 
 		if (horarioExiste && !citaNoExiste) {
 			List<Cita> listaCitas = agenda.getListaCitas(fecha);

@@ -2,6 +2,7 @@ package citas;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
@@ -134,7 +135,7 @@ public class MostrarAgenda {
 	private static String imprimirFilaHoraConsulta(HoraConsulta horaConsulta, int anchoNombreMaximo, Agenda agenda, LocalDate fecha) {
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
 		
-		String dia = horaConsulta.getHoraInicio() != null ? horaConsulta.getHoraInicio().format(FormatosFechas.FORMATO_DIA.getFormatter()) : "-";
+		String dia = fecha != null ? fecha.format(FormatosFechas.FORMATO_DIA.getFormatter()) : "-";
 	    String fechaInicio = horaConsulta.getHoraInicio() != null ? horaConsulta.getHoraInicio().format(FormatosFechas.FORMATO_HORA.getFormatter()) : "-";
 	    String fechaFin = horaConsulta.getHoraFin() != null ? horaConsulta.getHoraFin().format(FormatosFechas.FORMATO_HORA.getFormatter()) : "-";
 	    Cita cita = buscarCita(agenda, horaConsulta.getHoraInicio(), horaConsulta.getHoraFin(), fecha);
@@ -153,13 +154,13 @@ public class MostrarAgenda {
 	    		dia, fechaInicio, fechaFin, reservado, nombrePaciente);
 	}
 	
-	private static Cita buscarCita(Agenda agenda, LocalDateTime horaInicio, LocalDateTime horaFin, LocalDate fecha) {
+	private static Cita buscarCita(Agenda agenda, LocalTime horaInicio, LocalTime horaFin, LocalDate fecha) {
 		List<Cita> listaCitas = agenda.getListaCitas(fecha);
 		if(listaCitas == null) {
 			return null;
 		} else {
 			for (Cita cita : listaCitas) {
-				if(cita.getFechaInicio().equals(horaInicio) && cita.getFechaFin().equals(horaFin)) {
+				if(cita.getFechaInicio().toLocalTime().equals(horaInicio) && cita.getFechaFin().toLocalTime().equals(horaFin)) {
 					return cita;
 				}
 			}

@@ -178,6 +178,7 @@ public class Empleados {
 			return;
 		}
 		darDeBajaEmpleado(dni);
+		System.out.println("Empleado eliminado correctamente.");
 	}
 
 	/**

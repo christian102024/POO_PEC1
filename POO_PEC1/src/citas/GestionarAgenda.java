@@ -42,8 +42,7 @@ public class GestionarAgenda {
 					LocalDateTime fechaHoraInicio = LocalDateTime.of(fecha, horaInicio);
 					LocalDateTime fechaHoraFin = LocalDateTime.of(fecha, horaFin);
 
-					boolean citaDisponible = agenda.comprobarCitaEstaDisponible(fecha, fechaHoraInicio,
-							fechaHoraFin);
+					boolean citaDisponible = agenda.comprobarCitaEstaDisponible(fecha, horaInicio, horaFin);
 
 					if (citaDisponible) {
 						agenda.anyadirCita(fecha, new Cita(paciente, fechaHoraInicio, fechaHoraFin, true));

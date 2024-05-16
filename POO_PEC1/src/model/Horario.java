@@ -1,6 +1,7 @@
 package model;
 
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,12 +26,11 @@ public class Horario {
 	}
 
 	public static List<HoraConsulta> generarHorarioIntensivo(int horaEntrada, int horaSalida, int duracionConsulta) {
-	    LocalDateTime hoy = LocalDateTime.now();
 	    List<HoraConsulta> listahoras = new ArrayList<>();
 
 	    for (int i = horaEntrada; i < horaSalida; i++) {
-	        LocalDateTime horaInicio = LocalDateTime.of(hoy.getYear(), hoy.getMonth(), hoy.getDayOfMonth(), i, 0);
-	        LocalDateTime horaFin = horaInicio.plusHours(duracionConsulta);
+	        LocalTime horaInicio = LocalTime.of(i, 0);
+	        LocalTime horaFin = horaInicio.plusHours(duracionConsulta);
 	        listahoras.add(new HoraConsulta(horaInicio, horaFin));
 	    }
 

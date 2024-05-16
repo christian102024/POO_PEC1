@@ -1,16 +1,16 @@
 package model;
 
-import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 /**
  * Representa una hora en la que se realiza una consulta.
  */
 public class HoraConsulta {
 
-	private LocalDateTime horaInicio;
-	private LocalDateTime horaFin;
+	private LocalTime horaInicio;
+	private LocalTime horaFin;
 	
-	public HoraConsulta(LocalDateTime horaInicio, LocalDateTime horaFin) {
+	public HoraConsulta(LocalTime horaInicio, LocalTime horaFin) {
 		super();
 		this.horaInicio = horaInicio;
 		this.horaFin = horaFin;
@@ -20,19 +20,19 @@ public class HoraConsulta {
 		super();
 	}
 
-	public LocalDateTime getHoraInicio() {
+	public LocalTime getHoraInicio() {
 		return horaInicio;
 	}
 
-	public void setHoraInicio(LocalDateTime horaInicio) {
+	public void setHoraInicio(LocalTime horaInicio) {
 		this.horaInicio = horaInicio;
 	}
 
-	public LocalDateTime getHoraFin() {
+	public LocalTime getHoraFin() {
 		return horaFin;
 	}
 
-	public void setHoraFin(LocalDateTime horaFin) {
+	public void setHoraFin(LocalTime horaFin) {
 		this.horaFin = horaFin;
 	}
 }

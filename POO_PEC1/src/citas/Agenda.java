@@ -1,7 +1,8 @@
 package citas;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
@@ -51,6 +52,10 @@ public class Agenda {
 
 	public void anyadirCita(LocalDate fecha, Cita cita) {
 		List<Cita> citas = this.agenda.get(fecha);
+		if(citas == null) {
+			addAgendaDate(fecha);
+			citas = this.agenda.get(fecha);
+		}
 		citas.add(cita);
 		this.agenda.replace(fecha, citas);
 	}
@@ -61,7 +66,11 @@ public class Agenda {
 		this.agenda.replace(fecha, citas);
 	}
 	
-	public boolean comprobarCitaEstaDisponible(LocalDate fecha, LocalDateTime horaInicio, LocalDateTime horaFin) {
+	public void addAgendaDate(LocalDate fecha) {
+		agenda.put(fecha, new ArrayList<Cita>());
+	}
+	
+	public boolean comprobarCitaEstaDisponible(LocalDate fecha, LocalTime horaInicio, LocalTime horaFin) {
 		System.out.println("comprobarHoraExiste: " + comprobarHoraExisteEnHorario(horaInicio, horaFin));
 		System.out.println("citaNoEXISTE: " + comprobarCitaNoExiste(fecha, horaInicio, horaFin));
 		if(comprobarHoraExisteEnHorario(horaInicio, horaFin) && comprobarCitaNoExiste(fecha, horaInicio, horaFin)) {
@@ -71,7 +80,7 @@ public class Agenda {
 		}
 	}
 	
-	public boolean comprobarHoraExisteEnHorario(LocalDateTime horaInicio, LocalDateTime horaFin) {
+	public boolean comprobarHoraExisteEnHorario(LocalTime horaInicio, LocalTime horaFin) {
 		List<HoraConsulta> listaHorasConsultas = horario.getListaHorasConsultas();
 		
 		if(listaHorasConsultas == null) {
@@ -86,14 +95,14 @@ public class Agenda {
 		return false;
 	}
 	
-	public boolean comprobarCitaNoExiste(LocalDate fecha, LocalDateTime horaInicio, LocalDateTime horaFin) {
+	public boolean comprobarCitaNoExiste(LocalDate fecha, LocalTime horaInicio, LocalTime horaFin) {
 		List<Cita> citas = agenda.get(fecha);
 		
 		if(citas == null) {
 			return true;
 		} else {
 			for (Cita cita : citas) {
-				if(cita.getFechaInicio().equals(horaInicio) && cita.getFechaFin().equals(horaFin) && cita.getPaciente() != null) {
+				if(cita.getFechaInicio().toLocalTime().equals(horaInicio) && cita.getFechaFin().toLocalTime().equals(horaFin) && cita.getPaciente() != null) {
 					return false;
 				}
 			}
@@ -101,14 +110,14 @@ public class Agenda {
 		return true;
 	}
 	
-	public Cita buscarCita(LocalDate fecha, LocalDateTime horaInicio, LocalDateTime horaFin) {
+	public Cita buscarCita(LocalDate fecha, LocalTime horaInicio, LocalTime horaFin) {
 		List<Cita> citas = agenda.get(fecha);
 		
 		if(citas == null) {
 			return null;
 		} else {
 			for (Cita cita : citas) {
-				if(cita.getFechaInicio().equals(horaInicio) && cita.getFechaFin().equals(horaFin)) {
+				if(cita.getFechaInicio().toLocalTime().equals(horaInicio) && cita.getFechaFin().toLocalTime().equals(horaFin)) {
 					return cita;
 				}
 			}

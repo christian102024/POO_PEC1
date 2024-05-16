@@ -234,10 +234,10 @@ public class Menus {
 						LocalDateTime fechaHoraInicio = LocalDateTime.of(fecha, horaInicio);
 						LocalDateTime fechaHoraFin = LocalDateTime.of(fecha, horaFin);
 
-						boolean citaNoExiste = agenda.comprobarCitaNoExiste(fecha, fechaHoraInicio,
-								fechaHoraFin);
+						boolean citaNoExiste = agenda.comprobarCitaNoExiste(fecha, horaInicio,
+								horaFin);
 						
-						Cita cita = agenda.buscarCita(fecha, fechaHoraInicio, fechaHoraFin);
+						Cita cita = agenda.buscarCita(fecha, horaInicio, horaFin);
 						
 
 						if (cita == null) {
@@ -309,10 +309,10 @@ public class Menus {
 						LocalDateTime fechaHoraInicio = LocalDateTime.of(fecha, horaInicio);
 						LocalDateTime fechaHoraFin = LocalDateTime.of(fecha, horaFin);
 
-						boolean citaNoExiste = agenda.comprobarCitaNoExiste(fecha, fechaHoraInicio,
-								fechaHoraFin);
+						boolean citaNoExiste = agenda.comprobarCitaNoExiste(fecha, horaInicio,
+								horaFin);
 						
-						Cita cita = agenda.buscarCita(fecha, fechaHoraInicio, fechaHoraFin);
+						Cita cita = agenda.buscarCita(fecha, horaInicio, horaFin);
 						
 
 						if (cita == null) {
