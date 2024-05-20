@@ -1,7 +1,5 @@
 package campus;
 
-import java.util.List;
-
 import usuarios.Paciente;
 
 /**

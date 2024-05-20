@@ -1,6 +1,5 @@
 package usuarios;
 
-import java.text.Normalizer.Form;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -219,7 +218,9 @@ public class Pacientes {
 	 */
 	public void ingresarPaciente() {
 		Paciente paciente = buscarPacientePorDNI();
+		if(paciente == null) return;
 		Habitacion habitacion = buscarHabitacionPorNumero();
+		if(habitacion == null) return;
 		paciente = addTratamiento(paciente);
 
 		ingresarPaciente(paciente, habitacion);
@@ -327,7 +328,13 @@ public class Pacientes {
 		boolean tratamiento = EntradaValores.introducirValorBooleano("¿Introducir procedimiento médico? (S/N): ");
 
 		if (tratamiento) {
-			paciente.getExpedientes().add(pedirDatosProcedimiento());
+			List<Expediente> expedientes = paciente.getExpedientes();
+			if (expedientes == null) {
+				paciente.setExpedientes(new ArrayList<Expediente>());
+				Expediente expediente = pedirDatosProcedimiento();
+				paciente.getExpedientes().add(expediente);
+			}
+
 			System.out.println("Tratamiento");
 		} else {
 			return null;
@@ -427,8 +434,9 @@ public class Pacientes {
 	}
 
 	/**
-	 * Muestra los pacientes de cada miembro del personal medico con el tengan
-	 * el registro de haber pedido una cita en una fecha específica.
+	 * Muestra los pacientes de cada miembro del personal medico con el tengan el
+	 * registro de haber pedido una cita en una fecha específica.
+	 * 
 	 * @param fecha
 	 */
 	public void mostrarPacientesCadaMiembroPersonalMedico(LocalDate fecha) {
@@ -452,8 +460,10 @@ public class Pacientes {
 	}
 
 	/**
-	 * Pide una fecha y muestra los pacientes que tengan una cita en el día indicado en la fecha parametrizada
-	 * con un especialista de la unidad de CONSULTAS EXTERNAS.
+	 * Pide una fecha y muestra los pacientes que tengan una cita en el día indicado
+	 * en la fecha parametrizada con un especialista de la unidad de CONSULTAS
+	 * EXTERNAS.
+	 * 
 	 * @param fecha
 	 */
 	public void mostrarPacientesAgendaConsultasExternas() {
@@ -466,8 +476,9 @@ public class Pacientes {
 	}
 
 	/**
-	 * Muestra los pacientes que tengan una cita en el día indicado en la fecha parametrizada
-	 * con un especialista de la unidad de CONSULTAS EXTERNAS.
+	 * Muestra los pacientes que tengan una cita en el día indicado en la fecha
+	 * parametrizada con un especialista de la unidad de CONSULTAS EXTERNAS.
+	 * 
 	 * @param fecha
 	 */
 	public void mostrarPacientesAgendaConsultasExternas(LocalDate fecha) {
@@ -496,8 +507,8 @@ public class Pacientes {
 	}
 
 	/**
-	 * Muestra los pacientes que tienen citas con un especialista en un periodo
-	 * de una semana o de un día.
+	 * Muestra los pacientes que tienen citas con un especialista en un periodo de
+	 * una semana o de un día.
 	 * 
 	 */
 	public void mostrarPacientesEspecialistaEnPeriodo() {
@@ -525,7 +536,8 @@ public class Pacientes {
 	}
 
 	/**
-	 * Muestra los pacientes que tienen citas con un especialista en una semana específica.
+	 * Muestra los pacientes que tienen citas con un especialista en una semana
+	 * específica.
 	 * 
 	 */
 	public void mostrarPacientesEspecialistaEnSemana() {
@@ -565,7 +577,8 @@ public class Pacientes {
 	}
 
 	/**
-	 * Muestra los pacientes que tienen citas con un especialista en un día específico.
+	 * Muestra los pacientes que tienen citas con un especialista en un día
+	 * específico.
 	 * 
 	 */
 	public void mostrarPacientesEspecialistaEnDia() {

@@ -1,7 +1,6 @@
 package citas;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -133,8 +132,6 @@ public class MostrarAgenda {
 	}
 	
 	private static String imprimirFilaHoraConsulta(HoraConsulta horaConsulta, int anchoNombreMaximo, Agenda agenda, LocalDate fecha) {
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
-		
 		String dia = fecha != null ? fecha.format(FormatosFechas.FORMATO_DIA.getFormatter()) : "-";
 	    String fechaInicio = horaConsulta.getHoraInicio() != null ? horaConsulta.getHoraInicio().format(FormatosFechas.FORMATO_HORA.getFormatter()) : "-";
 	    String fechaFin = horaConsulta.getHoraFin() != null ? horaConsulta.getHoraFin().format(FormatosFechas.FORMATO_HORA.getFormatter()) : "-";

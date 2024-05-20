@@ -18,7 +18,6 @@ import model.Recursos;
 import usuarios.Empleado;
 import usuarios.Empleados;
 import usuarios.Estudiantes;
-import usuarios.Paciente;
 import usuarios.Pacientes;
 import usuarios.PersonalSanitario;
 import util.EntradaValores;
@@ -345,7 +344,7 @@ public class Menus {
 		List<String> opciones = Arrays.asList("Añadir paciente", "Eliminar paciente", "Mostrar pacientes",
 				"Buscar paciente por DNI", "Ingresar paciente", "Dar el alta a paciente ingresado",
 				"Mostrar habitaciones", "Mostrar pacientes ingresados", "Mostrar pacientes que tiene cada miembro del personal médico en una fecha "
-						+ "concreta.", "Mostrar pacientes con citas en la agenda de consultas externas", "Pacientes que tienen que ver un especialista en un periodo", "Volver");
+						+ "concreta.", "Mostrar pacientes con citas en la agenda de consultas externas", "Mostrar pacientes que tienen que ver un especialista en un periodo de tiempo", "Volver");
 		boolean navegar = false;
 
 		do {
